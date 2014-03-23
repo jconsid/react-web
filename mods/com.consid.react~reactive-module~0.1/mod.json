@@ -1,0 +1,37 @@
+{
+
+  // Java verticle
+  "main":"com.consid.react.Receiver",
+
+  // In this example we also provide various other versions of the main verticle, you can uncomment this and
+  // play around:
+
+  // Java *source* verticle
+  //"main":"JavaSourcePingVerticle.java",
+
+  // Compiled Groovy verticle - note that they must be prefixed with 'groovy:' to distinguish them from compiled Java verticles
+  //"main":"groovy:com.mycompany.myproject.GroovyPingVerticle",
+
+  // Groovy *script* verticle
+  //"main": "GroovyVerticle.groovy",
+
+  // Ruby verticle
+  //"main":"ping_verticle.rb",
+
+  // JavaScript verticle
+  //"main": "ping_verticle.js",
+
+  // If your module is going to be registered in the Vert.x module registry you will also need the following
+  // mandatory fields
+
+  "description":"Sample test evalutation experiment module",
+  "licenses": ["The Apache Software License Version 2.0"],
+  "author": "MrSmith",
+
+  // Optional fields
+  "developers": ["swanmo"],
+  "keywords": ["test", "socketjs"],
+  "homepage": "url to your project page",
+
+  "auto-redeploy": true
+}
