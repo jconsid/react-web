@@ -1,0 +1,16 @@
+react-web
+=========
+
+Installera för att köra:
+- MongoDB
+- vert.x
+- Maven
+
+Ett vert.x-projekt som initierar moduler, bl a:
+mod-web-server
+mod-auth-mgr
+mod-mongo-persistor
+com.consid.react~reactive-module~0.1
+
+Projektet innehåller även (alla?) statiska web-resurser.
+
