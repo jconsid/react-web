@@ -14,3 +14,6 @@ com.consid.react~reactive-module~0.1
 
 Projektet innehåller även (alla?) statiska web-resurser.
 
+Kör igång med:
+"vertx run app.js""
+
