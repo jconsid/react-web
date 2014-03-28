@@ -1,0 +1,36 @@
+<div class="partial">
+	<div class="row">
+		<div class="col-sm-12 col-md-10">
+			<div class="jumbotron">
+				<h1><span class="glyphicon glyphicon-list"></span> Ärenden</h1>
+				<p>Alla ärenden visas här</p>
+
+	          	<input style="width: 40%" class="form-control" id="appendedInputButton" type="text" id="queryField" ng-model="query" placeholder="Sök">
+        		<span ng-show="query.length">Din sökning gav {{(tickets|filter:query).length}} resultat</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="list-group">
+		<a href="#" ng-repeat="ticket in tickets | filter:query" class="list-group-item">
+
+			<dl class="dl-horizontal">
+			  <dt><h4 class="list-group-item-heading">Ärende:</h4></dt>
+			  <dd><h4 class="list-group-item-heading">{{ticket.subject}}</h4></dd>
+
+			  <dt>Rapporterat av:</dt>
+			  <dd>{{ticket.reporter}}</dd>
+
+			  <dt>Pryl:</dt>
+			  <dd>{{ticket.gadget}}</dd>
+
+			  <dt>Beskrivning av händelse:</dt>
+			  <dd>{{ticket.description}}</dd>
+
+			  <dt>Pryl:</dt>
+			  <dd>{{ticket.gadget}}</dd>
+			</dl>
+
+		</a>
+	</div>
+</div>

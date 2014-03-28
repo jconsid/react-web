@@ -46,7 +46,7 @@ var webServerConf = {
       address : 'vertx.mongopersistor',
       match : {
         action : 'find',
-        collection : 'albums'
+        collection : 'tickets'
       }
     },
     // Custom
@@ -79,7 +79,7 @@ container.deployModule('io.vertx~mod-mongo-persistor~2.0.0-final', function(err,
   // And when it's deployed run a script to load it with some reference
   // data for the demo
   if (!err) {
-    load('static_data.js');
+    load('import.js');
   } else {
     err.printStackTrace();
   }

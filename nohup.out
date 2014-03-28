@@ -1,0 +1,222 @@
+Thu Mar 27 20:29:36.109 [initandlisten] MongoDB starting : pid=325 port=27017 dbpath=/Users/swanmo/mongodb/db/ 64-bit host=Bjorns-MacBook-Pro.local
+Thu Mar 27 20:29:36.110 [initandlisten] 
+Thu Mar 27 20:29:36.110 [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+Thu Mar 27 20:29:36.110 [initandlisten] db version v2.4.9
+Thu Mar 27 20:29:36.110 [initandlisten] git version: nogitversion
+Thu Mar 27 20:29:36.110 [initandlisten] build info: Darwin minimavericks.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST 2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+Thu Mar 27 20:29:36.110 [initandlisten] allocator: tcmalloc
+Thu Mar 27 20:29:36.110 [initandlisten] options: { dbpath: "/Users/swanmo/mongodb/db/" }
+Thu Mar 27 20:29:36.112 [initandlisten] journal dir=/Users/swanmo/mongodb/db/journal
+Thu Mar 27 20:29:36.113 [initandlisten] recover : no journal files present, no recovery needed
+Thu Mar 27 20:29:36.331 [websvr] admin web console waiting for connections on port 28017
+Thu Mar 27 20:29:36.331 [initandlisten] waiting for connections on port 27017
+Thu Mar 27 20:29:53.623 [initandlisten] connection accepted from 127.0.0.1:49650 #1 (1 connection now open)
+Thu Mar 27 20:29:53.658 [initandlisten] connection accepted from 127.0.0.1:49651 #2 (2 connections now open)
+Thu Mar 27 20:29:53.669 [initandlisten] connection accepted from 127.0.0.1:49652 #3 (3 connections now open)
+Thu Mar 27 20:29:53.669 [initandlisten] connection accepted from 127.0.0.1:49653 #4 (4 connections now open)
+Thu Mar 27 20:29:53.669 [initandlisten] connection accepted from 127.0.0.1:49654 #5 (5 connections now open)
+Thu Mar 27 20:29:53.669 [initandlisten] connection accepted from 127.0.0.1:49655 #6 (6 connections now open)
+Thu Mar 27 20:29:53.669 [initandlisten] connection accepted from 127.0.0.1:49656 #7 (7 connections now open)
+Thu Mar 27 21:44:16.665 [conn2] end connection 127.0.0.1:49651 (6 connections now open)
+Thu Mar 27 21:44:16.665 [conn4] end connection 127.0.0.1:49653 (6 connections now open)
+Thu Mar 27 21:44:16.665 [conn6] end connection 127.0.0.1:49655 (6 connections now open)
+Thu Mar 27 21:44:16.665 [conn7] end connection 127.0.0.1:49656 (6 connections now open)
+Thu Mar 27 21:44:16.665 [conn3] end connection 127.0.0.1:49652 (6 connections now open)
+Thu Mar 27 21:44:16.665 [conn5] end connection 127.0.0.1:49654 (6 connections now open)
+Thu Mar 27 21:44:16.665 [conn1] end connection 127.0.0.1:49650 (6 connections now open)
+Thu Mar 27 21:44:19.951 [initandlisten] connection accepted from 127.0.0.1:50373 #8 (1 connection now open)
+Thu Mar 27 21:44:20.004 [initandlisten] connection accepted from 127.0.0.1:50374 #9 (2 connections now open)
+Thu Mar 27 21:44:20.018 [initandlisten] connection accepted from 127.0.0.1:50375 #10 (3 connections now open)
+Thu Mar 27 21:44:20.019 [initandlisten] connection accepted from 127.0.0.1:50376 #11 (4 connections now open)
+Thu Mar 27 21:44:20.019 [initandlisten] connection accepted from 127.0.0.1:50377 #12 (5 connections now open)
+Thu Mar 27 21:44:20.019 [initandlisten] connection accepted from 127.0.0.1:50378 #13 (6 connections now open)
+Thu Mar 27 21:44:20.019 [initandlisten] connection accepted from 127.0.0.1:50379 #14 (7 connections now open)
+Thu Mar 27 21:44:20.020 [initandlisten] connection accepted from 127.0.0.1:50380 #15 (8 connections now open)
+Thu Mar 27 21:44:20.020 [initandlisten] connection accepted from 127.0.0.1:50381 #16 (9 connections now open)
+Thu Mar 27 21:44:20.021 [initandlisten] connection accepted from 127.0.0.1:50382 #17 (10 connections now open)
+Thu Mar 27 21:44:20.024 [conn10] build index default_db.tickets { _id: 1 }
+Thu Mar 27 21:44:20.028 [conn10] build index done.  scanned 0 total records. 0.004 secs
+Thu Mar 27 21:44:49.200 [initandlisten] connection accepted from 127.0.0.1:50415 #18 (11 connections now open)
+Thu Mar 27 21:46:11.532 [conn18] end connection 127.0.0.1:50415 (10 connections now open)
+Thu Mar 27 22:24:21.085 [conn10] end connection 127.0.0.1:50375 (9 connections now open)
+Thu Mar 27 22:24:21.085 [conn8] end connection 127.0.0.1:50373 (9 connections now open)
+Thu Mar 27 22:24:21.085 [conn11] end connection 127.0.0.1:50376 (9 connections now open)
+Thu Mar 27 22:24:21.085 [conn12] end connection 127.0.0.1:50377 (9 connections now open)
+Thu Mar 27 22:24:21.085 [conn14] end connection 127.0.0.1:50379 (9 connections now open)
+Thu Mar 27 22:24:21.085 [conn13] end connection 127.0.0.1:50378 (9 connections now open)
+Thu Mar 27 22:24:21.086 [conn16] end connection 127.0.0.1:50381 (9 connections now open)
+Thu Mar 27 22:24:21.086 [conn17] end connection 127.0.0.1:50382 (8 connections now open)
+Thu Mar 27 22:24:21.085 [conn15] end connection 127.0.0.1:50380 (9 connections now open)
+Thu Mar 27 22:24:21.086 [conn9] end connection 127.0.0.1:50374 (8 connections now open)
+Thu Mar 27 22:24:25.726 [initandlisten] connection accepted from 127.0.0.1:50665 #19 (1 connection now open)
+Thu Mar 27 22:24:25.754 [initandlisten] connection accepted from 127.0.0.1:50666 #20 (2 connections now open)
+Thu Mar 27 22:24:25.771 [initandlisten] connection accepted from 127.0.0.1:50668 #21 (3 connections now open)
+Thu Mar 27 22:24:25.771 [initandlisten] connection accepted from 127.0.0.1:50667 #22 (4 connections now open)
+Thu Mar 27 22:24:25.771 [initandlisten] connection accepted from 127.0.0.1:50669 #23 (5 connections now open)
+Thu Mar 27 22:24:25.772 [initandlisten] connection accepted from 127.0.0.1:50671 #24 (6 connections now open)
+Thu Mar 27 22:24:25.772 [initandlisten] connection accepted from 127.0.0.1:50670 #25 (7 connections now open)
+Thu Mar 27 22:24:25.772 [initandlisten] connection accepted from 127.0.0.1:50672 #26 (8 connections now open)
+Thu Mar 27 22:24:25.772 [initandlisten] connection accepted from 127.0.0.1:50673 #27 (9 connections now open)
+Thu Mar 27 22:24:25.774 [initandlisten] connection accepted from 127.0.0.1:50674 #28 (10 connections now open)
+Thu Mar 27 23:38:54.815 [conn27] end connection 127.0.0.1:50673 (9 connections now open)
+Thu Mar 27 23:38:54.815 [conn28] end connection 127.0.0.1:50674 (9 connections now open)
+Thu Mar 27 23:38:54.815 [conn20] end connection 127.0.0.1:50666 (9 connections now open)
+Thu Mar 27 23:38:54.815 [conn25] end connection 127.0.0.1:50670 (9 connections now open)
+Thu Mar 27 23:38:54.815 [conn24] end connection 127.0.0.1:50671 (9 connections now open)
+Thu Mar 27 23:38:54.815 [conn22] end connection 127.0.0.1:50667 (9 connections now open)
+Thu Mar 27 23:38:54.815 [conn26] end connection 127.0.0.1:50672 (9 connections now open)
+Thu Mar 27 23:38:54.815 [conn23] end connection 127.0.0.1:50669 (9 connections now open)
+Thu Mar 27 23:38:54.815 [conn19] end connection 127.0.0.1:50665 (9 connections now open)
+Thu Mar 27 23:38:54.815 [conn21] end connection 127.0.0.1:50668 (9 connections now open)
+Thu Mar 27 23:38:57.425 [initandlisten] connection accepted from 127.0.0.1:51135 #29 (1 connection now open)
+Thu Mar 27 23:38:57.456 [initandlisten] connection accepted from 127.0.0.1:51136 #30 (2 connections now open)
+Thu Mar 27 23:38:57.462 [initandlisten] connection accepted from 127.0.0.1:51137 #31 (3 connections now open)
+Thu Mar 27 23:38:57.462 [initandlisten] connection accepted from 127.0.0.1:51138 #32 (4 connections now open)
+Thu Mar 27 23:38:57.462 [initandlisten] connection accepted from 127.0.0.1:51139 #33 (5 connections now open)
+Thu Mar 27 23:38:57.463 [initandlisten] connection accepted from 127.0.0.1:51140 #34 (6 connections now open)
+Thu Mar 27 23:38:57.463 [initandlisten] connection accepted from 127.0.0.1:51141 #35 (7 connections now open)
+Thu Mar 27 23:38:57.463 [initandlisten] connection accepted from 127.0.0.1:51142 #36 (8 connections now open)
+Thu Mar 27 23:38:57.463 [initandlisten] connection accepted from 127.0.0.1:51143 #37 (9 connections now open)
+Thu Mar 27 23:38:57.465 [initandlisten] connection accepted from 127.0.0.1:51144 #38 (10 connections now open)
+Thu Mar 27 23:39:32.016 [conn31] end connection 127.0.0.1:51137 (9 connections now open)
+Thu Mar 27 23:39:32.016 [conn29] end connection 127.0.0.1:51135 (9 connections now open)
+Thu Mar 27 23:39:32.016 [conn30] end connection 127.0.0.1:51136 (9 connections now open)
+Thu Mar 27 23:39:32.016 [conn34] end connection 127.0.0.1:51140 (9 connections now open)
+Thu Mar 27 23:39:32.016 [conn38] end connection 127.0.0.1:51144 (9 connections now open)
+Thu Mar 27 23:39:32.016 [conn33] end connection 127.0.0.1:51139 (9 connections now open)
+Thu Mar 27 23:39:32.016 [conn36] end connection 127.0.0.1:51142 (9 connections now open)
+Thu Mar 27 23:39:32.016 [conn37] end connection 127.0.0.1:51143 (9 connections now open)
+Thu Mar 27 23:39:32.017 [conn32] end connection 127.0.0.1:51138 (8 connections now open)
+Thu Mar 27 23:39:32.016 [conn35] end connection 127.0.0.1:51141 (9 connections now open)
+Thu Mar 27 23:40:05.751 [signalProcessingThread] got signal 15 (Terminated: 15), will terminate after current cmd ends
+Thu Mar 27 23:40:05.753 [signalProcessingThread] now exiting
+Thu Mar 27 23:40:05.753 dbexit: 
+Thu Mar 27 23:40:05.753 [signalProcessingThread] shutdown: going to close listening sockets...
+Thu Mar 27 23:40:05.753 [signalProcessingThread] closing listening socket: 10
+Thu Mar 27 23:40:05.753 [signalProcessingThread] closing listening socket: 11
+Thu Mar 27 23:40:05.753 [signalProcessingThread] closing listening socket: 12
+Thu Mar 27 23:40:05.753 [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+Thu Mar 27 23:40:05.753 [signalProcessingThread] shutdown: going to flush diaglog...
+Thu Mar 27 23:40:05.753 [signalProcessingThread] shutdown: going to close sockets...
+Thu Mar 27 23:40:05.753 [signalProcessingThread] shutdown: waiting for fs preallocator...
+Thu Mar 27 23:40:05.753 [signalProcessingThread] shutdown: lock for final commit...
+Thu Mar 27 23:40:05.753 [signalProcessingThread] shutdown: final commit...
+Thu Mar 27 23:40:05.755 [signalProcessingThread] shutdown: closing all files...
+Thu Mar 27 23:40:05.755 [signalProcessingThread] closeAllFiles() finished
+Thu Mar 27 23:40:05.755 [signalProcessingThread] journalCleanup...
+Thu Mar 27 23:40:05.755 [signalProcessingThread] removeJournalFiles
+Thu Mar 27 23:40:05.755 [signalProcessingThread] shutdown: removing fs lock...
+Thu Mar 27 23:40:05.755 dbexit: really exiting now
+Fri Mar 28 19:36:13.938 [initandlisten] MongoDB starting : pid=604 port=27017 dbpath=/Users/swanmo/mongodb/db/ 64-bit host=Bjorns-MacBook-Pro.local
+Fri Mar 28 19:36:13.942 [initandlisten] 
+Fri Mar 28 19:36:13.943 [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+Fri Mar 28 19:36:13.943 [initandlisten] db version v2.4.9
+Fri Mar 28 19:36:13.943 [initandlisten] git version: nogitversion
+Fri Mar 28 19:36:13.943 [initandlisten] build info: Darwin minimavericks.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST 2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+Fri Mar 28 19:36:13.943 [initandlisten] allocator: tcmalloc
+Fri Mar 28 19:36:13.943 [initandlisten] options: { dbpath: "/Users/swanmo/mongodb/db/" }
+Fri Mar 28 19:36:13.948 [initandlisten] journal dir=/Users/swanmo/mongodb/db/journal
+Fri Mar 28 19:36:13.948 [initandlisten] recover : no journal files present, no recovery needed
+Fri Mar 28 19:36:14.204 [websvr] admin web console waiting for connections on port 28017
+Fri Mar 28 19:36:14.204 [initandlisten] waiting for connections on port 27017
+Fri Mar 28 19:36:29.296 [initandlisten] connection accepted from 127.0.0.1:50325 #1 (1 connection now open)
+Fri Mar 28 19:36:29.330 [initandlisten] connection accepted from 127.0.0.1:50326 #2 (2 connections now open)
+Fri Mar 28 19:36:29.341 [initandlisten] connection accepted from 127.0.0.1:50327 #3 (3 connections now open)
+Fri Mar 28 19:36:29.341 [initandlisten] connection accepted from 127.0.0.1:50328 #4 (4 connections now open)
+Fri Mar 28 19:36:29.341 [initandlisten] connection accepted from 127.0.0.1:50329 #5 (5 connections now open)
+Fri Mar 28 19:36:29.341 [initandlisten] connection accepted from 127.0.0.1:50330 #6 (6 connections now open)
+Fri Mar 28 19:36:29.341 [initandlisten] connection accepted from 127.0.0.1:50331 #7 (7 connections now open)
+Fri Mar 28 19:36:29.341 [initandlisten] connection accepted from 127.0.0.1:50332 #8 (8 connections now open)
+Fri Mar 28 19:36:29.342 [initandlisten] connection accepted from 127.0.0.1:50333 #9 (9 connections now open)
+Fri Mar 28 19:36:29.342 [initandlisten] connection accepted from 127.0.0.1:50334 #10 (10 connections now open)
+Fri Mar 28 22:40:42.439 [initandlisten] connection accepted from 127.0.0.1:52636 #11 (11 connections now open)
+Fri Mar 28 23:13:43.201 [conn8] end connection 127.0.0.1:50332 (10 connections now open)
+Fri Mar 28 23:13:43.201 [conn6] end connection 127.0.0.1:50330 (10 connections now open)
+Fri Mar 28 23:13:43.201 [conn9] end connection 127.0.0.1:50333 (10 connections now open)
+Fri Mar 28 23:13:43.201 [conn1] end connection 127.0.0.1:50325 (10 connections now open)
+Fri Mar 28 23:13:43.201 [conn3] end connection 127.0.0.1:50327 (10 connections now open)
+Fri Mar 28 23:13:43.201 [conn10] end connection 127.0.0.1:50334 (10 connections now open)
+Fri Mar 28 23:13:43.201 [conn7] end connection 127.0.0.1:50331 (10 connections now open)
+Fri Mar 28 23:13:43.201 [conn2] end connection 127.0.0.1:50326 (10 connections now open)
+Fri Mar 28 23:13:43.201 [conn5] end connection 127.0.0.1:50329 (10 connections now open)
+Fri Mar 28 23:13:43.201 [conn4] end connection 127.0.0.1:50328 (10 connections now open)
+Fri Mar 28 23:13:46.923 [initandlisten] connection accepted from 127.0.0.1:52822 #12 (2 connections now open)
+Fri Mar 28 23:13:46.962 [initandlisten] connection accepted from 127.0.0.1:52823 #13 (3 connections now open)
+Fri Mar 28 23:13:46.970 [initandlisten] connection accepted from 127.0.0.1:52824 #14 (4 connections now open)
+Fri Mar 28 23:13:46.971 [initandlisten] connection accepted from 127.0.0.1:52825 #15 (5 connections now open)
+Fri Mar 28 23:13:46.971 [initandlisten] connection accepted from 127.0.0.1:52826 #16 (6 connections now open)
+Fri Mar 28 23:13:46.971 [initandlisten] connection accepted from 127.0.0.1:52827 #17 (7 connections now open)
+Fri Mar 28 23:13:46.971 [initandlisten] connection accepted from 127.0.0.1:52828 #18 (8 connections now open)
+Fri Mar 28 23:13:46.971 [initandlisten] connection accepted from 127.0.0.1:52829 #19 (9 connections now open)
+Fri Mar 28 23:13:46.972 [initandlisten] connection accepted from 127.0.0.1:52830 #20 (10 connections now open)
+Fri Mar 28 23:13:46.972 [initandlisten] connection accepted from 127.0.0.1:52831 #21 (11 connections now open)
+Fri Mar 28 23:15:39.676 [conn14] end connection 127.0.0.1:52824 (10 connections now open)
+Fri Mar 28 23:15:39.676 [conn17] end connection 127.0.0.1:52827 (10 connections now open)
+Fri Mar 28 23:15:39.676 [conn21] end connection 127.0.0.1:52831 (10 connections now open)
+Fri Mar 28 23:15:39.676 [conn15] end connection 127.0.0.1:52825 (10 connections now open)
+Fri Mar 28 23:15:39.676 [conn12] end connection 127.0.0.1:52822 (10 connections now open)
+Fri Mar 28 23:15:39.676 [conn18] end connection 127.0.0.1:52828 (10 connections now open)
+Fri Mar 28 23:15:39.676 [conn19] end connection 127.0.0.1:52829 (10 connections now open)
+Fri Mar 28 23:15:39.676 [conn13] end connection 127.0.0.1:52823 (10 connections now open)
+Fri Mar 28 23:15:39.676 [conn20] end connection 127.0.0.1:52830 (10 connections now open)
+Fri Mar 28 23:15:39.676 [conn16] end connection 127.0.0.1:52826 (10 connections now open)
+Fri Mar 28 23:15:42.433 [initandlisten] connection accepted from 127.0.0.1:52852 #22 (2 connections now open)
+Fri Mar 28 23:15:42.464 [initandlisten] connection accepted from 127.0.0.1:52853 #23 (3 connections now open)
+Fri Mar 28 23:15:42.471 [initandlisten] connection accepted from 127.0.0.1:52854 #24 (4 connections now open)
+Fri Mar 28 23:15:42.471 [initandlisten] connection accepted from 127.0.0.1:52855 #25 (5 connections now open)
+Fri Mar 28 23:15:42.471 [initandlisten] connection accepted from 127.0.0.1:52856 #26 (6 connections now open)
+Fri Mar 28 23:15:42.471 [initandlisten] connection accepted from 127.0.0.1:52857 #27 (7 connections now open)
+Fri Mar 28 23:15:42.472 [initandlisten] connection accepted from 127.0.0.1:52858 #28 (8 connections now open)
+Fri Mar 28 23:15:42.472 [initandlisten] connection accepted from 127.0.0.1:52859 #29 (9 connections now open)
+Fri Mar 28 23:15:42.472 [initandlisten] connection accepted from 127.0.0.1:52860 #30 (10 connections now open)
+Fri Mar 28 23:15:42.472 [initandlisten] connection accepted from 127.0.0.1:52861 #31 (11 connections now open)
+Sat Mar 29 00:12:31.494 [conn22] end connection 127.0.0.1:52852 (10 connections now open)
+Sat Mar 29 00:12:31.494 [conn27] end connection 127.0.0.1:52857 (10 connections now open)
+Sat Mar 29 00:12:31.494 [conn31] end connection 127.0.0.1:52861 (10 connections now open)
+Sat Mar 29 00:12:31.494 [conn26] end connection 127.0.0.1:52856 (10 connections now open)
+Sat Mar 29 00:12:31.494 [conn28] end connection 127.0.0.1:52858 (10 connections now open)
+Sat Mar 29 00:12:31.494 [conn29] end connection 127.0.0.1:52859 (10 connections now open)
+Sat Mar 29 00:12:31.494 [conn25] end connection 127.0.0.1:52855 (10 connections now open)
+Sat Mar 29 00:12:31.494 [conn30] end connection 127.0.0.1:52860 (10 connections now open)
+Sat Mar 29 00:12:31.494 [conn24] end connection 127.0.0.1:52854 (10 connections now open)
+Sat Mar 29 00:12:31.494 [conn23] end connection 127.0.0.1:52853 (10 connections now open)
+Sat Mar 29 00:12:34.647 [initandlisten] connection accepted from 127.0.0.1:53382 #32 (2 connections now open)
+Sat Mar 29 00:12:34.685 [initandlisten] connection accepted from 127.0.0.1:53383 #33 (3 connections now open)
+Sat Mar 29 00:12:34.692 [initandlisten] connection accepted from 127.0.0.1:53384 #34 (4 connections now open)
+Sat Mar 29 00:12:34.692 [initandlisten] connection accepted from 127.0.0.1:53385 #35 (5 connections now open)
+Sat Mar 29 00:12:34.692 [initandlisten] connection accepted from 127.0.0.1:53386 #36 (6 connections now open)
+Sat Mar 29 00:12:34.693 [initandlisten] connection accepted from 127.0.0.1:53387 #37 (7 connections now open)
+Sat Mar 29 00:12:34.693 [initandlisten] connection accepted from 127.0.0.1:53388 #38 (8 connections now open)
+Sat Mar 29 00:12:34.693 [initandlisten] connection accepted from 127.0.0.1:53389 #39 (9 connections now open)
+Sat Mar 29 00:12:34.693 [initandlisten] connection accepted from 127.0.0.1:53390 #40 (10 connections now open)
+Sat Mar 29 00:12:34.694 [initandlisten] connection accepted from 127.0.0.1:53391 #41 (11 connections now open)
+Sat Mar 29 00:15:00.723 [conn33] end connection 127.0.0.1:53383 (10 connections now open)
+Sat Mar 29 00:15:00.723 [conn32] end connection 127.0.0.1:53382 (10 connections now open)
+Sat Mar 29 00:15:00.723 [conn35] end connection 127.0.0.1:53385 (10 connections now open)
+Sat Mar 29 00:15:00.723 [conn37] end connection 127.0.0.1:53387 (10 connections now open)
+Sat Mar 29 00:15:00.723 [conn38] end connection 127.0.0.1:53388 (10 connections now open)
+Sat Mar 29 00:15:00.723 [conn36] end connection 127.0.0.1:53386 (10 connections now open)
+Sat Mar 29 00:15:00.723 [conn41] end connection 127.0.0.1:53391 (9 connections now open)
+Sat Mar 29 00:15:00.723 [conn40] end connection 127.0.0.1:53390 (10 connections now open)
+Sat Mar 29 00:15:00.723 [conn34] end connection 127.0.0.1:53384 (9 connections now open)
+Sat Mar 29 00:15:00.723 [conn39] end connection 127.0.0.1:53389 (10 connections now open)
+Sat Mar 29 00:15:04.347 [initandlisten] connection accepted from 127.0.0.1:53394 #42 (2 connections now open)
+Sat Mar 29 00:15:04.377 [initandlisten] connection accepted from 127.0.0.1:53395 #43 (3 connections now open)
+Sat Mar 29 00:15:04.393 [initandlisten] connection accepted from 127.0.0.1:53396 #44 (4 connections now open)
+Sat Mar 29 00:15:04.394 [initandlisten] connection accepted from 127.0.0.1:53397 #45 (5 connections now open)
+Sat Mar 29 00:15:04.395 [initandlisten] connection accepted from 127.0.0.1:53398 #46 (6 connections now open)
+Sat Mar 29 00:15:04.395 [initandlisten] connection accepted from 127.0.0.1:53399 #47 (7 connections now open)
+Sat Mar 29 00:15:04.395 [initandlisten] connection accepted from 127.0.0.1:53400 #48 (8 connections now open)
+Sat Mar 29 00:15:04.395 [initandlisten] connection accepted from 127.0.0.1:53401 #49 (9 connections now open)
+Sat Mar 29 00:15:04.396 [initandlisten] connection accepted from 127.0.0.1:53402 #50 (10 connections now open)
+Sat Mar 29 00:15:04.396 [initandlisten] connection accepted from 127.0.0.1:53403 #51 (11 connections now open)
+Sat Mar 29 00:25:18.473 [conn43] end connection 127.0.0.1:53395 (10 connections now open)
+Sat Mar 29 00:25:18.474 [conn50] end connection 127.0.0.1:53402 (10 connections now open)
+Sat Mar 29 00:25:18.473 [conn44] end connection 127.0.0.1:53396 (10 connections now open)
+Sat Mar 29 00:25:18.474 [conn49] end connection 127.0.0.1:53401 (10 connections now open)
+Sat Mar 29 00:25:18.474 [conn47] end connection 127.0.0.1:53399 (10 connections now open)
+Sat Mar 29 00:25:18.474 [conn48] end connection 127.0.0.1:53400 (10 connections now open)
+Sat Mar 29 00:25:18.474 [conn45] end connection 127.0.0.1:53397 (10 connections now open)
+Sat Mar 29 00:25:18.474 [conn51] end connection 127.0.0.1:53403 (10 connections now open)
+Sat Mar 29 00:25:18.473 [conn42] end connection 127.0.0.1:53394 (10 connections now open)
+Sat Mar 29 00:25:18.474 [conn46] end connection 127.0.0.1:53398 (10 connections now open)

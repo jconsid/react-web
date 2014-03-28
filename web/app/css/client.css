@@ -1,0 +1,54 @@
+/* app css stylesheet */
+div.top {
+  background: #18385f;
+  color:#fff;
+  font-size:120%;
+  vertical-align: bottom;
+}
+
+.menu-item {
+  padding:2em .5em 1em .1em;
+}
+
+.menu-item a {
+  font-family: 'Oswald', sans-serif; 
+  color:#fff;
+  text-decoration: none;  
+  margin: 0 .5em 0 .5em;
+  padding-bottom:.2em;
+}
+.menu-item a:hover {
+  color:#ddd;
+  text-decoration: none;  
+  border-bottom:3px solid #ddd;
+}
+.menu-item a span.glyphicon {
+  margin-right: .5em;
+}
+div.login-panel {
+  background: #18385f;
+  color:#fff;
+  padding:1em;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.login-panel input {
+  opacity: .7;
+}
+.login-panel input:hover {
+  opacity: .9;
+}
+.login-panel input:focus {
+  opacity: 1;
+}
+.right-panel{
+  background:#ccc;
+  height:600px;
+  width:100%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+div.partial {
+  margin-top:1em;
+}
