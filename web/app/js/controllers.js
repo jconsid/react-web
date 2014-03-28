@@ -3,7 +3,17 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('RegisterCtrl', [ '$scope', function($scope) {
+  controller('RegisterCtrl', [ '$scope', 'ReceiverSampleService', function($scope, rss) {
+    $scope.statusText = "Prova ping knappen";
+    $scope.ping = function() {
+      rss.ping(function(err, results) {
+        console.log("err: ", err);
+        console.log("results: ", results);
+        $scope.statusText = results;
+        $scope.$apply();
+      });
+
+    }
   }])
 
 

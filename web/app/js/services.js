@@ -10,26 +10,25 @@ angular.module('myApp.services', []).
 
 	return eb;
   }).
-  /*service('KnalliTicketService', ['vertxEventBus', function(vertxEventBus) {
-		this.findAll = function() {
-			console.log("TicketService::findAll");
-			vertxEventBus.send('vertx.mongopersistor',
-				{action: 'find', collection: 'tickets', matcher: {} }
-				, true);.then(function(reply){
-	  				console.log('A reply received: ', reply);
-				}).catch(function(){
-	  				console.warn('No message');
-				});
-		}
+  service('ReceiverSampleService', [function() {
+  	this.ping = function(fn) {
+  		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+  		eb.onopen = function() {
 
-		this.find = function() {
-			console.log("find...");
-	    	vertxEventBus.send('vertx.mongopersistor',
-	    		{action: 'find', collection: 'tickets', matcher: {} },
-	    		function(r) {console.log(r)});
-		}
+	  	    eb.send('ping-address', {action: 'ping' },
+		      function(reply) {
+		      	console.log('ReceiverSampleService::processing reply', reply);
+		        if (reply.results === 'ok') {
+		          fn.call(this, null, reply.results);
+		        } else {
+		          console.error('Failed to retrieve ping response: ' + reply.message);
+		          fn.call("error", null);
+		        }
+		        eb.close();
+		      });
+		};
   	}
-  ]).*/
+  }]).
   service('TicketService', [function() {
   	this.findAll = function(fn) {
   		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
