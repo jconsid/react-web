@@ -5,14 +5,15 @@
 angular.module('myApp.controllers', []).
   controller('RegisterCtrl', [ '$scope', 'ReceiverSampleService', function($scope, rss) {
     $scope.statusText = "Prova ping knappen";
+    
     $scope.ping = function() {
-      rss.ping(function(err, results) {
-        console.log("err: ", err);
-        console.log("results: ", results);
-        $scope.statusText = results;
-        $scope.$apply();
-      });
-
+      rss.ping(
+        function(err, results) {
+          console.log("err: ", err);
+          console.log("results: ", results);
+          $scope.statusText = results;
+          $scope.$apply();
+        });
     }
   }])
 
@@ -45,13 +46,32 @@ angular.module('myApp.controllers', []).
     
   }])
 
+
+
+
+  .controller('TicketCtrl', ['$scope', 'TicketService', '$routeParams', function($scope, ts, $routeParams) {
+    $scope.ticket = {};
+
+    $scope.findTicket = function() {
+      var s = ts.findOne($routeParams.ticketId, function(status, reply) {
+        console.log("TicketCtrl::reply status: ", status, reply);
+        $scope.ticket = reply[0];
+        $scope.$apply();
+      });
+    };
+    $scope.findTicket();
+    
+  }])
+
+
+
   
   .controller('ListCtrl', ['$scope', 'TicketService', function($scope, ts) {
     $scope.tickets = [];
     $scope.update = function() {
       var s = ts.findAll(function(status, reply) {
         console.log("ListCtrl::reply status: ", status);
-        console.log("ListCtrl::reply body: ", reply);
+        // console.log("ListCtrl::reply body: ", reply);
         $scope.tickets = reply;
         $scope.$apply();
       });

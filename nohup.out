@@ -240,3 +240,11 @@ Sat Mar 29 00:48:05.337 [conn61] end connection 127.0.0.1:53671 (10 connections 
 Sat Mar 29 00:48:05.337 [conn60] end connection 127.0.0.1:53670 (10 connections now open)
 Sat Mar 29 00:48:05.337 [conn57] end connection 127.0.0.1:53667 (10 connections now open)
 Sat Mar 29 00:48:05.337 [conn55] end connection 127.0.0.1:53665 (10 connections now open)
+Sat Mar 29 00:59:32.874 [conn11] end connection 127.0.0.1:52636 (0 connections now open)
+Sat Mar 29 01:01:10.554 [signalProcessingThread] got signal 15 (Terminated: 15), will terminate after current cmd ends
+Sat Mar 29 01:01:10.555 [signalProcessingThread] now exiting
+Sat Mar 29 01:01:10.555 dbexit: 
+Sat Mar 29 01:01:10.555 [signalProcessingThread] shutdown: going to close listening sockets...
+Sat Mar 29 01:01:10.555 [signalProcessingThread] closing listening socket: 10
+Sat Mar 29 01:01:10.555 [signalProcessingThread] closing listening socket: 11
+Sat Mar 29 01:01:10.555 [signalProcessingThread] closing listening socket: 12

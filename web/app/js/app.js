@@ -15,5 +15,6 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: 'RegisterCtrl'});
   $routeProvider.when('/loglist', {templateUrl: 'partials/loglist.html', controller: 'AdminLogCtrl'});
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
+  $routeProvider.when('/ticket/:ticketId', {templateUrl: 'partials/ticket.html', controller: 'TicketCtrl'});
   $routeProvider.otherwise({redirectTo: '/list'});
 }]);

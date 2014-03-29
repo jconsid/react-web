@@ -1,0 +1,44 @@
+<div class="partial">
+	<div class="well">
+		<div class="row">
+			<div class="col-md-3">
+				<h4>Ärende:</h4>
+			</div>
+			<div class="col-md-9">
+				<h4>{{ticket.subject}}</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				Rapporterat av:
+			</div>
+			<div class="col-md-9">
+				{{ticket.reporter}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				Pryl:
+			</div>
+			<div class="col-md-9">
+				{{ticket.gadget}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				Beskrivning av händelse:
+			</div>
+			<div class="col-md-9">
+				{{ticket.description}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				Värde (SEK):
+			</div>
+			<div class="col-md-9">
+				{{ticket.currentPriceSEK}}
+			</div>
+		</div>
+	</div>
+</div>

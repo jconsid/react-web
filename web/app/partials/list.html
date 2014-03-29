@@ -12,7 +12,9 @@
 	</div>
 
 	<div class="list-group">
-		<a href="#" ng-repeat="ticket in tickets | filter:query" class="list-group-item">
+		<a href="#/ticket/{{ticket._id}}"
+			ng-repeat="ticket in tickets | filter:query"
+			class="list-group-item">
 
 			<dl class="dl-horizontal">
 			  <dt><h4 class="list-group-item-heading">Ärende:</h4></dt>
