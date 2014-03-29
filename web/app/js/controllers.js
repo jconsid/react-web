@@ -46,7 +46,7 @@ angular.module('myApp.controllers', []).
   }])
 
   
-  .controller('ListCtrl', ['$scope', 'TicketService', function($scope, ts) {
+  .controller('ListCtrl', ['$scope', 'TicketService', "SearchLogService", function($scope, ts, sls) {
     $scope.tickets = [];
     $scope.update = function() {
       var s = ts.findAll(function(status, reply) {
@@ -56,5 +56,11 @@ angular.module('myApp.controllers', []).
         $scope.$apply();
       });
     };
+
+    $scope.logSearch = function(){
+        var searchString = $scope.query;
+        console.log("Sökte efter: " + searchString);
+        sls.sendSearchLog(searchString);
+    }
     $scope.update();
   }]);

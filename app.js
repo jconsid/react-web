@@ -41,6 +41,9 @@ var webServerConf = {
     {
       address: 'vertx.basicauthmanager.login'
     },
+    {
+          address: 'Consid.SearchLog'
+    },
     // Allow calls to get static album data from the persistor
     {
       address : 'vertx.mongopersistor',
@@ -94,6 +97,8 @@ container.deployModule('io.vertx~mod-auth-mgr~2.0.0-final');
 container.deployModule('io.vertx~mod-web-server~2.0.0-final', webServerConf);
 
 container.deployModule('com.consid.react~reactive-module~0.1');
+
+container.deployModule('se.consid.reactive~SearchLogger~0.1');
 
 
 

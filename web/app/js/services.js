@@ -63,4 +63,11 @@ angular.module('myApp.services', []).
 				}
 		});
   	}
-  }]);
+  }]).
+  service('SearchLogService', ['EventBus', function(eb){
+    this.sendSearchLog = function(searchString){
+    		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+    		eb.onopen = function() {
+  	            eb.send('Consid.SearchLog', "{'search': '" + searchString +"'}",null);
+  }}}])
+  ;
