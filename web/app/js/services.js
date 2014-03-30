@@ -33,6 +33,21 @@ angular.module('myApp.services', []).
 
 
   service('TicketService', [function() {
+
+	this.addLogMessage = function(_id, _subject, _body, fnDone) {
+		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+		console.log("Öppnar buss...");
+  		eb.onopen = function() {
+			console.log("Buss öppen!");
+
+	  	    eb.send('arende.skapalog', {id: _id, subject: _subject, body: _body},
+		      function(reply) {
+		      	console.log('TicketService::addLogMessage processing reply', reply);
+		      	fnDone.call(this, "ok", reply);
+		      });
+		};
+	};
+
 	this.findOne = function(id, fnOpen, fnOpenedByUser) {
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
 		console.log("Öppnar buss...");

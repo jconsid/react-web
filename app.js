@@ -46,6 +46,9 @@ var webServerConf = {
       address: 'arende.oppnat'
     },
     {
+      address: 'arende.skapalog'
+    },
+    {
       address: 'vertx.basicauthmanager.login'
     },
     {

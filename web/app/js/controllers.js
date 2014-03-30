@@ -66,9 +66,17 @@ angular.module('myApp.controllers', []).
       $scope.showFieldsForNew = true;
     }
     $scope.saveNew = function(_subject, _body) {
+      if (!$scope.logMessages) {
+        $scope.logMessages = [];
+      }
       $scope.logMessages.push({subject:_subject, body:_body})
 
       $scope.showFieldsForNew = false;
+      ts.addLogMessage($scope.ticket._id, _subject, _body, function() {
+        console.log("skapalog done");
+      });
+
+
       $scope.subject = null;
       $scope.body = null;
     }
@@ -79,6 +87,7 @@ angular.module('myApp.controllers', []).
       var ticketCall = function(status, reply) {
         console.log("TicketCtrl::reply status: ", status, reply);
         $scope.ticket = reply;
+        $scope.logMessages = reply.loggar;
         $scope.$apply();
       };
 
