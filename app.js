@@ -95,7 +95,7 @@ container.deployModule('io.vertx~mod-mongo-persistor~2.1.0', mongoConf, function
 
 // Deploy an auth manager to handle the authentication
 
-container.deployModule('io.vertx~mod-auth-mgr~2.0.0-final');
+container.deployModule('io.vertx~mod-auth-mgr~2.0.0-final', {"persistor_address": "test.mongodb"});
 
 // Start the web server, with the config we defined above
 
