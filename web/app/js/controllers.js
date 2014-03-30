@@ -63,11 +63,21 @@ angular.module('myApp.controllers', []).
     }
 
     $scope.findTicket = function() {
-      var s = ts.findOne($routeParams.ticketId, function(status, reply) {
+      var ticketCall = function(status, reply) {
         console.log("TicketCtrl::reply status: ", status, reply);
-        $scope.ticket = reply[0];
+        $scope.ticket = reply;
         $scope.$apply();
-      });
+      };
+
+      var concurrentUserCall = function(status, reply) {
+        console.log("TicketCtrl::another user: ", status, reply);
+        alert("En annan användare tittar på samma anmälan.");
+      };
+
+      var s = ts.findOne($routeParams.ticketId,
+        ticketCall,
+        concurrentUserCall
+        );
     };
     $scope.findTicket();
     

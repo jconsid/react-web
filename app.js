@@ -39,6 +39,9 @@ var webServerConf = {
   inbound_permitted: [
     // Allow calls to login and authorise
     {
+      address: 'arende.oppna'
+    },
+    {
       address: 'vertx.basicauthmanager.login'
     },
     {
@@ -50,6 +53,13 @@ var webServerConf = {
       match : {
         action : 'find',
         collection : 'tickets'
+      }
+    },
+    {
+      address : 'test.mongodb',
+      match : {
+        action : 'find',
+        collection : 'anmalningar'
       }
     },
     // Custom
@@ -76,8 +86,16 @@ var webServerConf = {
 // Now we deploy the modules that we need
 
 // Deploy a MongoDB persistor module
+var mongoConf = {
 
-container.deployModule('io.vertx~mod-mongo-persistor~2.1.0', function(err, deployID) {
+    "address": "test.mongodb",
+    "host": "192.168.5.158",
+    "port": 27017,
+    "pool_size": 10,
+    "db_name": "poa"
+
+  }
+container.deployModule('io.vertx~mod-mongo-persistor~2.1.0', mongoConf, function(err, deployID) {
 
   // And when it's deployed run a script to load it with some reference
   // data for the demo
@@ -97,6 +115,8 @@ container.deployModule('io.vertx~mod-auth-mgr~2.0.0-final');
 container.deployModule('io.vertx~mod-web-server~2.0.0-final', webServerConf);
 
 container.deployModule('com.consid.react~reactive-module~0.1');
+
+container.deployModule('se.consid.reactive~OppnaAnmalan~0.1');
 
 container.deployModule('se.consid.reactive~SearchLogger~0.1');
 

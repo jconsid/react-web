@@ -33,23 +33,34 @@ angular.module('myApp.services', []).
 
 
   service('TicketService', [function() {
-	this.findOne = function(id, fn) {
+	this.findOne = function(id, fnOpen, fnOpenedByUser) {
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+		console.log("Öppnar buss...");
   		eb.onopen = function() {
+			console.log("Buss öppen!");
 
-	  	    eb.send('vertx.mongopersistor', {action: 'find', collection: 'tickets', matcher: {_id:id} },
+	  	    eb.send('arende.oppna', {id: id},
 		      function(reply) {
 		      	console.log('TicketService::findOne processing reply', reply);
+		      	fnOpen.call(this, "ok", reply);
+		      	return;
 		        if (reply.status === 'ok') {
 		          var ticketArray = [];
 		          for (var i = 0; i < reply.results.length; i++) {
 		            ticketArray[i] = reply.results[i];
 		          }
-		          fn.call(this, "ok", ticketArray);
+		          fnOpen.call(this, "ok", ticketArray);
 		        } else {
 		          console.error('Failed to retrieve tickets: ' + reply.message);
-		          fn.call("error", null);
+		          fnOpen.call("error", null);
 		        }
+		      });
+
+
+	  	    eb.send('arende.oppnat', {},
+		      function(reply) {
+		      	console.log('TicketService::findOne arende.oppnat reply', reply);
+		      	fnOpenedByUser.call(this, "ok", reply);
 		      });
 		};
 	};
@@ -59,7 +70,7 @@ angular.module('myApp.services', []).
   		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
   		eb.onopen = function() {
 
-	  	    eb.send('vertx.mongopersistor', {action: 'find', collection: 'tickets', matcher: {} },
+	  	    eb.send('test.mongodb', {action: 'find', collection: 'anmalningar', matcher: {} },
 		      function(reply) {
 		      	console.log('TicketService::processing reply', reply);
 		        if (reply.status === 'ok') {
