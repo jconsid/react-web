@@ -50,18 +50,31 @@ angular.module('myApp.controllers', []).
   }])
 
 
-
-
   .controller('TicketCtrl', ['$scope', 'TicketService', '$routeParams', 'global', function($scope, ts, $routeParams, global) {
+    $scope.userMessages = [];
+    $scope.showFieldsForNew = false;
     $scope.ticket = {};
-    $scope.logMessages = [];
+    $scope.logMessages = [{subject:"kalle", body:"Lite text här"}];
+    var msgCount = 0;
     
     if (global.isAuth()) {
       $scope.loggedInMessage = "Du är inloggad som " + global.getUser();  
     } else {
       $scope.loggedInMessage = "Du är inte inloggad";
     }
+    $scope.startNew = function() {
+      $scope.showFieldsForNew = true;
+    }
+    $scope.saveNew = function(_subject, _body) {
+      $scope.logMessages.push({subject:_subject, body:_body})
 
+      $scope.showFieldsForNew = false;
+      $scope.subject = null;
+      $scope.body = null;
+    }
+    $scope.abortNew = function() {
+      $scope.showFieldsForNew = false;
+    }
     $scope.findTicket = function() {
       var ticketCall = function(status, reply) {
         console.log("TicketCtrl::reply status: ", status, reply);
@@ -71,7 +84,8 @@ angular.module('myApp.controllers', []).
 
       var concurrentUserCall = function(status, reply) {
         console.log("TicketCtrl::another user: ", status, reply);
-        alert("En annan användare tittar på samma anmälan.");
+        $scope.userMessages.push({messageNumer: msgCount, text: "En annan avändare tittar på ansökan"});
+        $scope.$apply();
       };
 
       var s = ts.findOne($routeParams.ticketId,

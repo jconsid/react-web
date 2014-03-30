@@ -28,7 +28,7 @@ var webServerConf = {
   // Normal web server stuff
 
   port: 8080,
-  host: 'localhost',
+  host: '192.168.5.187',
 
   // Configuration for the event bus client side bridge
   // This bridges messages from the client side to the server side event bus
@@ -40,6 +40,9 @@ var webServerConf = {
     // Allow calls to login and authorise
     {
       address: 'arende.oppna'
+    },
+    {
+      address: 'arende.oppnat'
     },
     {
       address: 'vertx.basicauthmanager.login'

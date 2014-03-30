@@ -43,8 +43,7 @@ angular.module('myApp.services', []).
 		      function(reply) {
 		      	console.log('TicketService::findOne processing reply', reply);
 		      	fnOpen.call(this, "ok", reply);
-		      	return;
-		        if (reply.status === 'ok') {
+		        /*if (reply.status === 'ok') {
 		          var ticketArray = [];
 		          for (var i = 0; i < reply.results.length; i++) {
 		            ticketArray[i] = reply.results[i];
@@ -53,11 +52,11 @@ angular.module('myApp.services', []).
 		        } else {
 		          console.error('Failed to retrieve tickets: ' + reply.message);
 		          fnOpen.call("error", null);
-		        }
+		        }*/
 		      });
 
 
-	  	    eb.send('arende.oppnat', {},
+	  	    eb.registerHandler('arende.oppnat',
 		      function(reply) {
 		      	console.log('TicketService::findOne arende.oppnat reply', reply);
 		      	fnOpenedByUser.call(this, "ok", reply);
