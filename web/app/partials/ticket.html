@@ -1,4 +1,10 @@
 <div class="partial">
+	<div class="panel panel-info">
+		<div class="panel-body">
+			<p>{{loggedInMessage}}</p>
+		</div>
+	</div>
+
 	<div class="well">
 		<div class="row">
 			<div class="col-md-3">
@@ -39,6 +45,13 @@
 			<div class="col-md-9">
 				{{ticket.currentPriceSEK}}
 			</div>
+		</div>
+	</div>
+
+
+	<div class="panel panel-default" ng-repeat="log in logMessages">
+		<div class="panel-body">
+			{{log.reporter}}
 		</div>
 	</div>
 </div>
