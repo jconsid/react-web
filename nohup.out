@@ -248,3 +248,27 @@ Sat Mar 29 01:01:10.555 [signalProcessingThread] shutdown: going to close listen
 Sat Mar 29 01:01:10.555 [signalProcessingThread] closing listening socket: 10
 Sat Mar 29 01:01:10.555 [signalProcessingThread] closing listening socket: 11
 Sat Mar 29 01:01:10.555 [signalProcessingThread] closing listening socket: 12
+Sun Mar 30 14:58:05.339 [initandlisten] MongoDB starting : pid=2832 port=27017 dbpath=/Users/swanmo/mongodb/db/ 64-bit host=Bjorns-MacBook-Pro.local
+Sun Mar 30 14:58:05.342 [initandlisten] 
+Sun Mar 30 14:58:05.342 [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+Sun Mar 30 14:58:05.342 [initandlisten] db version v2.4.9
+Sun Mar 30 14:58:05.342 [initandlisten] git version: nogitversion
+Sun Mar 30 14:58:05.342 [initandlisten] build info: Darwin minimavericks.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST 2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+Sun Mar 30 14:58:05.342 [initandlisten] allocator: tcmalloc
+Sun Mar 30 14:58:05.343 [initandlisten] options: { dbpath: "/Users/swanmo/mongodb/db/" }
+Sun Mar 30 14:58:05.345 [initandlisten] journal dir=/Users/swanmo/mongodb/db/journal
+Sun Mar 30 14:58:05.345 [initandlisten] recover : no journal files present, no recovery needed
+Sun Mar 30 14:58:05.573 [websvr] admin web console waiting for connections on port 28017
+Sun Mar 30 14:58:05.574 [initandlisten] waiting for connections on port 27017
+Sun Mar 30 14:58:10.379 [initandlisten] connection accepted from 127.0.0.1:54752 #1 (1 connection now open)
+Sun Mar 30 14:58:10.435 [initandlisten] connection accepted from 127.0.0.1:54753 #2 (2 connections now open)
+Sun Mar 30 14:58:10.471 [initandlisten] connection accepted from 127.0.0.1:54754 #3 (3 connections now open)
+Sun Mar 30 14:58:10.471 [initandlisten] connection accepted from 127.0.0.1:54755 #4 (4 connections now open)
+Sun Mar 30 14:58:10.471 [initandlisten] connection accepted from 127.0.0.1:54756 #5 (5 connections now open)
+Sun Mar 30 14:58:10.471 [initandlisten] connection accepted from 127.0.0.1:54757 #6 (6 connections now open)
+Sun Mar 30 14:58:10.472 [initandlisten] connection accepted from 127.0.0.1:54758 #7 (7 connections now open)
+Sun Mar 30 14:58:10.473 [initandlisten] connection accepted from 127.0.0.1:54759 #8 (8 connections now open)
+Sun Mar 30 14:58:10.474 [initandlisten] connection accepted from 127.0.0.1:54760 #9 (9 connections now open)
+Sun Mar 30 14:58:10.474 [initandlisten] connection accepted from 127.0.0.1:54761 #10 (10 connections now open)
+Sun Mar 30 14:58:10.476 [conn3] build index default_db.anmalningar { _id: 1 }
+Sun Mar 30 14:58:10.479 [conn3] build index done.  scanned 0 total records. 0.002 secs

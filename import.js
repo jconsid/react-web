@@ -2,10 +2,11 @@ var vertx = require('vertx')
 
 var eb = vertx.eventBus;
 
-var pa = 'vertx.mongopersistor';
+var pa = 'test.mongodb';
 
-var tickets = [
+var anmalningar = [
   {
+    _id: 1,
     reporter: 'Léon Bourgeois',
     gadget: 'Black & decker planslip DUOSAND',
     subject: 'Stulen planslip',
@@ -13,6 +14,7 @@ var tickets = [
     currentPriceSEK: 450
   },
   {
+    _id: 2,
     reporter: 'Aung San Suu Kyi',
     gadget: 'Motorsåg Husqvarna 536 Li XP',
     subject: 'Motorsåg plockad ur vertygsskjul',
@@ -20,6 +22,7 @@ var tickets = [
     currentPriceSEK: 7500
   },
   {
+    _id: 3,
     reporter: 'Martti Ahtisaari',
     gadget: 'Motorkap Husqvarna K760',
     subject: 'Besindriven motorkap försvunnen',
@@ -27,6 +30,7 @@ var tickets = [
     currentPriceSEK: 6000
   },
   {
+    _id: 4,
     reporter: 'Liu Xiaobo',
     gadget: 'Husqvarna 440 såg, 2,1 kW',
     subject: 'Motorsåg försvunnen...',
@@ -34,6 +38,7 @@ var tickets = [
     currentPriceSEK: 5500
   },
   {
+    _id: 5,
     reporter: 'Wangari Maathai',
     gadget: 'Husqvarna RT422 Rider',
     subject: 'Gräsklippare på rymmen!',
@@ -41,6 +46,7 @@ var tickets = [
     currentPriceSEK: 89000
   },
   {
+    _id: 6,
     reporter: 'Nelson M',
     gadget: 'Festool betongslip',
     subject: 'Borta eller bortslarvad',
@@ -48,6 +54,7 @@ var tickets = [
     currentPriceSEK: 4000
   },
   {
+    _id: 7,
     reporter: 'Desmond Tutu ',
     gadget: 'Peltor hörselkåpor',
     subject: 'Hörselkåpor försvunna på Smirres',
@@ -55,6 +62,7 @@ var tickets = [
     currentPriceSEK: 1500
   },
   {
+    _id: 8,
     reporter: 'Ellen Johnson-Sirleaf',
     gadget: 'Makita borrhammare',
     subject: 'En borrhammare av okänd modell stulen',
@@ -65,15 +73,15 @@ var tickets = [
 
 // First delete everything
 
-eb.send(pa, {action: 'delete', collection: 'tickets', matcher: {}}, function(reply) {
+eb.send(pa, {action: 'delete', collection: 'anmalningar', matcher: {}}, function(reply) {
   eb.send(pa, {action: 'delete', collection: 'users', matcher: {}}, function(reply) {
     // Insert albums - in real life price would probably be stored in a different collection, but, hey, this is a demo.
 
-    for (var i = 0; i < tickets.length; i++) {
+    for (var i = 0; i < anmalningar.length; i++) {
       eb.send(pa, {
         action: 'save',
-        collection: 'tickets',
-        document: tickets[i]
+        collection: 'anmalningar',
+        document: anmalningar[i]
       });
     }
 

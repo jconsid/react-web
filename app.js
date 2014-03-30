@@ -28,7 +28,8 @@ var webServerConf = {
   // Normal web server stuff
 
   port: 8080,
-  host: '192.168.5.187',
+  // host: '192.168.5.187',
+  host: 'localhost',
 
   // Configuration for the event bus client side bridge
   // This bridges messages from the client side to the server side event bus
@@ -50,14 +51,7 @@ var webServerConf = {
     {
           address: 'Consid.SearchLog'
     },
-    // Allow calls to get static album data from the persistor
-    {
-      address : 'vertx.mongopersistor',
-      match : {
-        action : 'find',
-        collection : 'tickets'
-      }
-    },
+    // Tillåt meddelanden för att komma åt anmalningar
     {
       address : 'test.mongodb',
       match : {
@@ -65,18 +59,9 @@ var webServerConf = {
         collection : 'anmalningar'
       }
     },
-    // Custom
+    // Test
     {
       address : 'ping-address'
-    },
-    // And to place orders
-    {
-      address : 'vertx.mongopersistor',
-      requires_auth : true,  // User must be logged in to send let these through
-      match : {
-        action : 'save',
-        collection : 'orders'
-      }
     }
   ],
 
@@ -91,13 +76,9 @@ var webServerConf = {
 // Deploy a MongoDB persistor module
 var mongoConf = {
 
-    "address": "test.mongodb",
-    "host": "192.168.5.158",
-    "port": 27017,
-    "pool_size": 10,
-    "db_name": "poa"
+    "address": "test.mongodb"
 
-  }
+}
 container.deployModule('io.vertx~mod-mongo-persistor~2.1.0', mongoConf, function(err, deployID) {
 
   // And when it's deployed run a script to load it with some reference
