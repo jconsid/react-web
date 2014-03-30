@@ -77,7 +77,7 @@ var webServerConf = {
 
 // Deploy a MongoDB persistor module
 
-container.deployModule('io.vertx~mod-mongo-persistor~2.0.0-final', function(err, deployID) {
+container.deployModule('io.vertx~mod-mongo-persistor~2.1.0', function(err, deployID) {
 
   // And when it's deployed run a script to load it with some reference
   // data for the demo
