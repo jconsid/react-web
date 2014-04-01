@@ -1,95 +1,117 @@
-<div class="partial">
-	<div class="panel panel-info">
-		<div class="panel-body">
-			<p>{{loggedInMessage}}</p>
+<div class="row">
+	<div class="col-sm-8">
 
-			<ul class="list-group">
-  				<li ng-repeat="msg in userMessages"
-  				class="list-group-item">{{msg.text}}</li>
-			</ul>
+		<div class="partial">
+
+			<div class="well">
+				<div class="row">
+					<div class="col-md-3">
+						<h4>Ärende:</h4>
+					</div>
+					<div class="col-md-9">
+						<h4>{{ticket.subject}}</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						Rapporterat av:
+					</div>
+					<div class="col-md-9">
+						{{ticket.reporter}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						Pryl:
+					</div>
+					<div class="col-md-9">
+						{{ticket.gadget}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						Beskrivning av händelse:
+					</div>
+					<div class="col-md-9">
+						{{ticket.description}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						Värde (SEK):
+					</div>
+					<div class="col-md-9">
+						{{ticket.currentPriceSEK}}
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="logMessages.length" class="list-group">
+				<div class="list-group-item active" style="background:#f2f2f2">
+					Logg-meddelade
+				</div>
+				<div ng-repeat="log in logMessages"
+					class="list-group-item list-animation">
+					<h4>{{log.subject}}</h4>
+					{{log.body}} <span style="color:#aaa">({{log.username}})</span>
+				</div>
+				
+			</div>
+
+			<div ng-hide="isLoggedIn" class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Ej inloggad</h3>
+				</div>
+				<div class="panel-body">
+					Du behöver logga in för att lägga till logg-meddelanden.
+				</div>
+			</div>
+			<button ng-show="isLoggedIn" type="button" class="btn btn-primary"
+					ng-click="startNew()"
+					ng-hide="showFieldsForNew">
+				<span class="glyphicon glyphicon-plus-sign"></span> Skapa logg-meddelade
+			</button>
+
+			<div class="panel panel-primary my-special-animation" ng-show="showFieldsForNew">
+				<div class="panel-heading">
+					<h3 class="panel-title">Skapa loggmeddelande (som <em>{{loggedInUser}}</em>)</h3>
+				</div>
+				<div class="panel-body">
+					<form role="form">
+						<div class="form-group">
+							<label for="newSubject" class="sr-only">Rubrik</label>
+							<input ng-model="subject" type="text" class="form-control"
+								id="newSubject" placeholder="Rubrik" />
+						</div>
+						<div class="form-group">
+							<label for="newBody" class="sr-only">Meddelandetext</label>
+							<textarea ng-model="body" class="form-control"
+								id="newBody" placeholder="Skriv ditt meddelande här..."></textarea>
+						</div>
+					</form>
+
+					<button type="button" class="btn btn-primary" ng-click="saveNew(subject, body, loggedInUser)">
+						<span class="glyphicon glyphicon-save"></span> Spara
+					</button>
+
+					<button type="button" class="btn btn-default" ng-click="abortNew()">
+						<span class="glyphicon glyphicon-remove"></span> Avbryt
+					</button>
+				</div>
+			</div>
+
+			<br /><br />
 		</div>
 	</div>
+	<div class="col-sm-4">
+		<div class="partial">
 
-	<div class="well">
-		<div class="row">
-			<div class="col-md-3">
-				<h4>Ärende:</h4>
-			</div>
-			<div class="col-md-9">
-				<h4>{{ticket.subject}}</h4>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				Rapporterat av:
-			</div>
-			<div class="col-md-9">
-				{{ticket.reporter}}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				Pryl:
-			</div>
-			<div class="col-md-9">
-				{{ticket.gadget}}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				Beskrivning av händelse:
-			</div>
-			<div class="col-md-9">
-				{{ticket.description}}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				Värde (SEK):
-			</div>
-			<div class="col-md-9">
-				{{ticket.currentPriceSEK}}
+			<div class="panel-body">
+				<ul class="list-group">
+					<li ng-repeat="msg in userMessages"
+					class="list-group-item list-animation">{{msg.text}}</li>
+				</ul>
 			</div>
 		</div>
 	</div>
-
-	<div class="list-group">
-	  <div class="list-group-item active" style="background:#f2f2f2">
-	    Logg-meddelade
-	  </div>
-	  <div ng-repeat="log in logMessages"
-	  	class="list-group-item">
-			<h4>{{log.subject}}</h4>
-			{{log.body}}
-	  	</div>
-
-	</div>
-
-	<button type="button" class="btn btn-primary"
-			ng-click="startNew()"
-			ng-hide="showFieldsForNew">
-		<span class="glyphicon glyphicon-plus-sign"></span> Skapa logg-meddelade
-	</button>
-	<div ng-show="showFieldsForNew">
-		<form role="form">
-		  <div class="form-group">
-		    <label for="newSubject" class="sr-only">Rubrik</label>
-		    <input ng-model="subject" type="text" class="form-control" id="newSubject" placeholder="Rubrik" />
-		  </div>
-		  <div class="form-group">
-		    <label for="newBody" class="sr-only">Meddelandetext</label>
-		    <textarea ng-model="body" class="form-control" id="newBody" placeholder="Skriv ditt meddelande här..."></textarea>
-		  </div>
-		</form>
-
-
-		<button type="button" class="btn btn-primary" ng-click="saveNew(subject, body)">
-			<span class="glyphicon glyphicon-save"></span> Spara
-		</button>
-
-		<button type="button" class="btn btn-default" ng-click="abortNew()">
-			<span class="glyphicon glyphicon-remove-circle"></span> Avbryt
-		</button>
-	</div>
-
 </div>

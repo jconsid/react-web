@@ -30,13 +30,11 @@ angular.module('myApp.controllers', []).
 
     var loggedIn=function(error, results) {
       if (error == "ok") {
-        console.log("userLoggedIn = true");
         $scope.userLoggedIn = true;
         global.setUser($scope.username);
         $scope.$apply();
       } else {
         alert(error);
-        console.log("userLoggedIn = false");
       }
       $scope.username = global.getUser();
       $scope.$apply();
@@ -46,36 +44,37 @@ angular.module('myApp.controllers', []).
       loginService.login($scope.username, $scope.password, loggedIn);
     };
 
-    
+    $scope.logout = function() {
+      global.setUser(null);
+    };    
   }])
 
 
   .controller('TicketCtrl', ['$scope', 'TicketService', '$routeParams', 'global', function($scope, ts, $routeParams, global) {
     $scope.userMessages = [];
     $scope.showFieldsForNew = false;
+    $scope.isLoggedIn = false;
     $scope.ticket = {};
-    $scope.logMessages = [{subject:"kalle", body:"Lite text här"}];
+    $scope.logMessages;
+
     var msgCount = 0;
     
     if (global.isAuth()) {
-      $scope.loggedInMessage = "Du är inloggad som " + global.getUser();  
-    } else {
-      $scope.loggedInMessage = "Du är inte inloggad";
+      $scope.isLoggedIn = true;
+      $scope.loggedInUser = global.getUser();
     }
     $scope.startNew = function() {
       $scope.showFieldsForNew = true;
     }
-    $scope.saveNew = function(_subject, _body) {
+    $scope.saveNew = function(_subject, _body, _user) {
       if (!$scope.logMessages) {
         $scope.logMessages = [];
       }
-      $scope.logMessages.push({subject:_subject, body:_body})
 
       $scope.showFieldsForNew = false;
-      ts.addLogMessage($scope.ticket._id, _subject, _body, function() {
+      ts.addLogMessage($scope.ticket._id, _subject, _body, _user, function() {
         console.log("skapalog done");
       });
-
 
       $scope.subject = null;
       $scope.body = null;
@@ -93,13 +92,22 @@ angular.module('myApp.controllers', []).
 
       var concurrentUserCall = function(status, reply) {
         console.log("TicketCtrl::another user: ", status, reply);
-        $scope.userMessages.push({messageNumer: msgCount, text: "En annan avändare tittar på ansökan"});
+        $scope.userMessages.push({messageNumer: msgCount, text: "En annan avändare tittar på ansökan."});
+        $scope.$apply();
+      };
+
+      var logMessageCreated = function(status, reply) {
+        console.log("TicketCtrl::another log message: ", status, reply);
+
+        $scope.logMessages.push(reply);
+        $scope.userMessages.push({messageNumer: msgCount, text: "Anmälan uppdaterad med loggmeddelande."});
         $scope.$apply();
       };
 
       var s = ts.findOne($routeParams.ticketId,
         ticketCall,
-        concurrentUserCall
+        concurrentUserCall,
+        logMessageCreated
         );
     };
     $scope.findTicket();

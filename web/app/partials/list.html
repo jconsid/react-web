@@ -1,19 +1,20 @@
-<div class="partial">
-	<div class="row">
-		<div class="col-sm-12 col-md-10">
-			<div class="jumbotron">
-				<h1><span class="glyphicon glyphicon-list"></span> Ärenden</h1>
-				<p>Alla ärenden visas här</p>
+<div class="row">
+	<div class="col-sm-8">
 
-	          	<input style="width: 40%" class="form-control" id="appendedInputButton" type="text" id="queryField" ng-model="query" placeholder="Sök" ng-blur="logSearch()">
-        		<span ng-show="query.length">Din sökning gav {{(tickets|filter:query).length}} resultat</span>
-			</div>
-		</div>
+
+<div class="partial">
+	<div class="jumbotron">
+		<h1><span class="glyphicon glyphicon-list"></span> Ärenden</h1>
+		<p>Alla ärenden visas här</p>
+
+		<input style="width: 40%" class="form-control" id="appendedInputButton" type="text" id="queryField" ng-model="query" placeholder="Sök" ng-blur="logSearch()">
+		<span ng-show="query.length">Din sökning gav {{(tickets|filter:query).length}} resultat</span>
 	</div>
+		
 
 	<div class="list-group">
 		<a href="#/ticket/{{ticket._id}}"
-			ng-repeat="ticket in tickets | filter:query"
+			ng-repeat="ticket in tickets | filter:query | orderBy:'_id' "
 			class="list-group-item">
 
 			<dl class="dl-horizontal">
@@ -34,5 +35,8 @@
 			</dl>
 
 		</a>
+	</div>
+</div>
+
 	</div>
 </div>

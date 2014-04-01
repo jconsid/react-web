@@ -9,11 +9,13 @@
 	        </div>
 	        <div class="form-group">
 
-	          <input type="password" ng-model="password" class="form-control" id="passwd" placeholder="Lösenord" />
-
+	          <input type="password" ng-model="password"
+	          	class="form-control" id="passwd" placeholder="Lösenord" />
 	        </div>
-	        <div class="form-group">
-	          <button type="button" class="btn btn-default" ng-click="login()" style="width:100%">Ok</button>
+	        <div class="form-group" style="text-align:center">
+	          <button type="button" class="btn btn-default" ng-click="login()"
+	          style="width:100%; margin-bottom:2em">Ok</button>
+	          <a href="#" ng-click="logout()" style="color:white">Log out</button>
 	        </div>
 	      </form>
     	</div>

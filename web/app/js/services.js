@@ -29,18 +29,13 @@ angular.module('myApp.services', []).
   	}
   }]).
 
-
-
-
   service('TicketService', [function() {
 
-	this.addLogMessage = function(_id, _subject, _body, fnDone) {
+	this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
-		console.log("Öppnar buss...");
   		eb.onopen = function() {
-			console.log("Buss öppen!");
 
-	  	    eb.send('arende.skapalog', {id: _id, subject: _subject, body: _body},
+	  	    eb.send('arende.skapalog', {id: _id, username: _user, subject: _subject, body: _body},
 		      function(reply) {
 		      	console.log('TicketService::addLogMessage processing reply', reply);
 		      	fnDone.call(this, "ok", reply);
@@ -48,7 +43,7 @@ angular.module('myApp.services', []).
 		};
 	};
 
-	this.findOne = function(id, fnOpen, fnOpenedByUser) {
+	this.findOne = function(id, fnOpen, fnOpenedByUser, fnLogCreated) {
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
 		console.log("Öppnar buss...");
   		eb.onopen = function() {
@@ -76,6 +71,14 @@ angular.module('myApp.services', []).
 		      	console.log('TicketService::findOne arende.oppnat reply', reply);
 		      	fnOpenedByUser.call(this, "ok", reply);
 		      });
+
+			eb.registerHandler('arende.logskapad',
+		      function(reply) {
+		      	console.log('TicketService::findOne arende.logskapad reply', reply);
+		      	fnLogCreated.call(this, "ok", reply);
+		      });
+
+	  	    
 		};
 	};
 

@@ -52,3 +52,15 @@ div.login-panel {
 div.partial {
   margin-top:1em;
 }
+
+.list-animation.ng-enter {
+  -webkit-transition:0.5s linear all;
+  transition:.5s linear all;
+
+  background:blue;
+}
+
+/* destination animations */
+.list-animation.ng-enter.ng-enter-active {
+  background:transparent;
+}

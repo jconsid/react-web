@@ -10,7 +10,8 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'myApp.controllers',
-  'ngCookies'
+  'ngCookies',
+  'ngAnimate'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/list', {templateUrl: 'partials/list.html', controller: 'ListCtrl'});
