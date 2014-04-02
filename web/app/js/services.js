@@ -43,13 +43,13 @@ angular.module('myApp.services', []).
 		};
 	};
 
-	this.findOne = function(id, fnOpen, fnOpenedByUser, fnLogCreated) {
+	this.findOne = function(id, _user, fnOpen, fnOpenedByUser, fnLogCreated) {
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
 		console.log("Öppnar buss...");
   		eb.onopen = function() {
 			console.log("Buss öppen!");
 
-	  	    eb.send('arende.oppna', {id: id},
+	  	    eb.send('arende.oppna', {id: id, username: _user},
 		      function(reply) {
 		      	console.log('TicketService::findOne processing reply', reply);
 		      	fnOpen.call(this, "ok", reply);

@@ -99,6 +99,18 @@ eb.send(pa, {action: 'delete', collection: 'anmalningar', matcher: {}}, function
       }
     });
 
+    eb.send(pa, {
+      action: 'save',
+      collection: 'users',
+      document: {
+        firstname: 'Björn',
+        lastname: 'Svanmo',
+        email: 'swanmo@localhost.com',
+        username: 'swanmo',
+        password: 'password'
+      }
+    });
+
   });
 });
 

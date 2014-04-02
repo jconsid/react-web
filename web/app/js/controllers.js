@@ -56,6 +56,53 @@ angular.module('myApp.controllers', []).
     $scope.isLoggedIn = false;
     $scope.ticket = {};
     $scope.logMessages;
+    var ONE_HOUR = 60 * 60 * 1000;
+    var openingTime = new Date();
+    var latestLogMessageLogTime = 0;
+
+    var formatted = function(unix_timestamp) {
+      // create a new javascript Date object based on the timestamp
+      // multiplied by 1000 so that the argument is in milliseconds, not seconds
+      var date = new Date(unix_timestamp);
+      // hours part from the timestamp
+      var hours = date.getHours();
+      // minutes part from the timestamp
+      var minutes = date.getMinutes();
+      // seconds part from the timestamp
+      var seconds = date.getSeconds();
+
+      // will display time in 10:30:23 format
+      var formattedTime = hours + ':' + minutes + ':' + seconds;
+      return formattedTime;
+    }
+
+    function timeSince(date) {
+
+      var seconds = Math.floor((new Date() - date) / 1000);
+
+      var interval = Math.floor(seconds / 31536000);
+
+      if (interval > 1) {
+          return interval + " år";
+      }
+      interval = Math.floor(seconds / 2592000);
+      if (interval > 1) {
+          return interval + " månader";
+      }
+      interval = Math.floor(seconds / 86400);
+      if (interval > 1) {
+          return interval + " dagar";
+      }
+      interval = Math.floor(seconds / 3600);
+      if (interval > 1) {
+          return interval + " timmar";
+      }
+      interval = Math.floor(seconds / 60);
+      if (interval > 1) {
+          return interval + " minuter";
+      }
+      return Math.floor(seconds) + " sekunder";
+  }
 
     var msgCount = 0;
     
@@ -92,19 +139,45 @@ angular.module('myApp.controllers', []).
 
       var concurrentUserCall = function(status, reply) {
         console.log("TicketCtrl::another user: ", status, reply);
-        $scope.userMessages.push({messageNumer: msgCount, text: "En annan avändare tittar på ansökan."});
+
+
+        for(var i = 0; i < reply.usage.length; i++) {
+          if (reply.usage[i].logTime > latestLogMessageLogTime) {
+            latestLogMessageLogTime = reply.usage[i].logTime;
+            var messageTime = new Date(reply.usage[i].logTime);
+            if (((new Date) - messageTime) < ONE_HOUR) {
+              if (messageTime <= openingTime ||
+                  reply.usage[i].username != $scope.loggedInUser) {
+                var user = reply.usage[i].username;
+                if (user == $scope.loggedInUser) {
+                  user = "Du";
+                }
+                $scope.userMessages.push({messageNumer: msgCount++, logTime: reply.usage[i].logTime, text: user + " tittade på anmälan för " + timeSince(messageTime) + " sedan."});
+              }
+            }
+          }
+        }
+
         $scope.$apply();
       };
 
       var logMessageCreated = function(status, reply) {
         console.log("TicketCtrl::another log message: ", status, reply);
-
+        
+        for(var i = 0; i < reply.usage.length; i++) {
+          if (reply[i].logTime > latestLogMessageLogTime) {
+            latestLogMessageLogTime = reply[i].logTime;
+            $scope.userMessages.push({messageNumer: msgCount++, text: "Nytt loggmeddelande"});
+          }
+        }
+        
         $scope.logMessages.push(reply);
-        $scope.userMessages.push({messageNumer: msgCount, text: "Anmälan uppdaterad med loggmeddelande."});
+        
         $scope.$apply();
       };
 
       var s = ts.findOne($routeParams.ticketId,
+        $scope.loggedInUser,
         ticketCall,
         concurrentUserCall,
         logMessageCreated
