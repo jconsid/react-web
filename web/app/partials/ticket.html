@@ -100,6 +100,34 @@
 				</div>
 			</div>
 
+            <button ng-show="isLoggedIn" type="button" class="btn btn-primary"
+                    ng-click="startNewFile()"
+                    ng-hide="showFieldsForNewFile">
+                <span class="glyphicon glyphicon-plus-sign"></span> Ladda upp bilaga
+            </button>
+            <div class="panel panel-primary my-special-animation" ng-show="showFieldsForNewFile">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Ladda upp bilaga (som <em>{{loggedInUser}}</em>)</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <input ng-model="uploadfile" onchange="angular.element(this).scope().setNewFile(this)" type="file" class="form-control" />
+                        </div>
+                        <!-- http://jsfiddle.net/vishalvasani/4hqVu/ -->
+                        <!--div id="dropbox" class="dropbox" ng-class="dropClass"><span>Drop files here...</span></div-->
+                    </form>
+
+                    <button type="button" class="btn btn-primary" ng-click="saveNewFile(uploadfile, loggedInUser)">
+                        <span class="glyphicon glyphicon-save"></span> Ladda upp
+                    </button>
+
+                    <button type="button" class="btn btn-default" ng-click="abortNewFile()">
+                        <span class="glyphicon glyphicon-remove"></span> Avbryt
+                    </button>
+                </div>
+            </div>
+
 			<br /><br />
 		</div>
 	</div>

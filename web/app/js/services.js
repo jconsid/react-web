@@ -43,6 +43,36 @@ angular.module('myApp.services', []).
 		};
 	};
 
+	this.addFile = function(_id, _file, _user, fnDone) {
+	    //https://github.com/vert-x/vertx-examples/tree/master/src/raw/java/upload
+	    //UploadClient
+		//console.log('myfile : '+_file);
+		console.log('myfile : '+_file.files[0].name);
+
+		var fd = new FormData();
+         fd.append("uploadedFile", _file.files[0]);
+
+        //Göra lite snyggare sen
+        var uploadComplete = function(evt) {
+            console.log(evt.target.responseText);
+        };
+        var uploadFailed = function(evt) {
+            console.log("There was an error attempting to upload the file.");
+        };
+        var uploadCanceled = function(evt) {
+            console.log("The upload has been canceled by the user or the browser dropped the connection.");
+        };
+
+         var xhr = new XMLHttpRequest();
+         //xhr.upload.addEventListener("progress", _uploadProgress, false);
+         xhr.addEventListener("load", uploadComplete, false);
+         xhr.addEventListener("error", uploadFailed, false);
+         xhr.addEventListener("abort", uploadCanceled, false);
+         xhr.open("POST", "http://localhost:8081/form");
+         xhr.send(fd);
+         console.log('myfile sent!');
+	};
+
 	this.findOne = function(id, _user, fnOpen, fnOpenedByUser, fnLogCreated) {
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
 		console.log("Öppnar buss...");

@@ -56,6 +56,8 @@ angular.module('myApp.controllers', []).
     $scope.isLoggedIn = false;
     $scope.ticket = {};
     $scope.logMessages;
+    $scope.showFieldsForNewFile = false;
+    $scope.newfile;
     var ONE_HOUR = 60 * 60 * 1000;
     var openingTime = new Date();
     var latestLogMessageLogTime = 0;
@@ -112,6 +114,7 @@ angular.module('myApp.controllers', []).
     }
     $scope.startNew = function() {
       $scope.showFieldsForNew = true;
+      $scope.showFieldsForNewFile = false;
     }
     $scope.saveNew = function(_subject, _body, _user) {
       if (!$scope.logMessages) {
@@ -128,6 +131,26 @@ angular.module('myApp.controllers', []).
     }
     $scope.abortNew = function() {
       $scope.showFieldsForNew = false;
+    }
+    $scope.startNewFile = function() {
+      $scope.showFieldsForNewFile = true;
+      $scope.showFieldsForNew = false;
+    }
+    $scope.setNewFile = function(_file) {
+      $scope.newfile = _file;
+    }
+    $scope.saveNewFile = function(_user) {
+      $scope.showFieldsForNewFile = false;
+
+      ts.addFile($scope.ticket._id, $scope.newfile, _user, function() {
+        console.log("ladda upp fil done");
+      });
+
+      $scope.uploadfile = null;
+      $scope.newfile = null;
+    }
+    $scope.abortNewFile = function() {
+      $scope.showFieldsForNewFile = false;
     }
     $scope.findTicket = function() {
       var ticketCall = function(status, reply) {
