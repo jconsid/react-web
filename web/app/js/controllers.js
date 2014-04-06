@@ -186,14 +186,7 @@ angular.module('myApp.controllers', []).
 
       var logMessageCreated = function(status, reply) {
         console.log("TicketCtrl::another log message: ", status, reply);
-        
-        for(var i = 0; i < reply.usage.length; i++) {
-          if (reply[i].logTime > latestLogMessageLogTime) {
-            latestLogMessageLogTime = reply[i].logTime;
-            $scope.userMessages.push({messageNumer: msgCount++, text: "Nytt loggmeddelande"});
-          }
-        }
-        
+
         $scope.logMessages.push(reply);
         
         $scope.$apply();
