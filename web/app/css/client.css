@@ -1,3 +1,10 @@
+ textarea:focus, input:focus{
+    outline: 0;
+}
+*:focus {
+    outline: 0;
+}
+
 /* app css stylesheet */
 div.top-nav {
   background: #18385f;
@@ -64,30 +71,6 @@ div.partial {
 .list-animation.ng-enter.ng-enter-active {
   background:transparent;
 }
-
-/* sdfkjsölkjfölskjfsldkjf */
-.bl_form input {
-}
-
-.lb_wrap .lb_label.top, .lb_wrap .lb_label.bottom {
-  left: 15px !important;
-  width:400px;
-}
-
-.lb_wrap .lb_label.left {
-  left: 0;
-}
-
-.lb_label {
-  font-weight: bold;
-  color: #999;
-}
-
-.lb_label.active {
-  color: black;
-}
-
-.lb-inp {margin-top: 35px}
 
 /* Flowup */
 

@@ -4,24 +4,30 @@
 			<div class="well">
 				<form role="form" class="FlowupLabels">
 					<div class='fl_wrap'>
-						<label class='fl_label' for='rf_name'>Name:</label>
-						<input class='fl_input' type='text' id='rf_name' />
+						<label class='fl_label' for='reporter'>Ditt namn:</label>
+						<input ng-model="ticket.reporter" class='fl_input' type='text' id='reporter' />
 					</div>
 
 					<div class='fl_wrap'>
-						<label class='fl_label' for='rf_email'>Email:</label>
-						<input class='fl_input' type='email' id='rf_email' />
+						<label class='fl_label' for='subject'>Anmälans titel:</label>
+						<input ng-model="ticket.subject" class='fl_input' type='text' id='subject' />
 					</div>
 					
 					<div class='fl_wrap'>
-						<label class='fl_label' for='rf_company'>Company:</label>
-						<input class='fl_input' type='text' id='rf_company' />
+						<label class='fl_label' for='gadget'>Benämning på försvunnet objekt:</label>
+						<input ng-model="ticket.gadget" class='fl_input' type='text' id='gadget' />
 					</div>
-
 					<div class='fl_wrap'>
-						<label class='fl_label' for='rf_phone'>Text:</label>
-						<textarea class='fl_input' rows="8" id='rf_phone'></textarea>
+						<label class='fl_label' for='price'>Värde i SEK:</label>
+						<input ng-model="ticket.currentPriceSEK" class='fl_input' type='text' id='price' />
 					</div>
+					<div class='fl_wrap'>
+						<label class='fl_label' for='rf_phone'>Beskrivning av händelse:</label>
+						<textarea ng-model="ticket.description" class='fl_input' rows="8" id='rf_phone'></textarea>
+					</div>
+					<div class='fl_wrap' style='clear:both'>
+					</div>
+					
 					<div class='fl_wrap' style='clear:both'>
 					</div>
 				</form>

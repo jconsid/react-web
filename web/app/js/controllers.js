@@ -8,9 +8,7 @@ angular.module('myApp.controllers', []).
       $scope.setup = function() {
 
         $('.FlowupLabels').FlowupLabels({
-            feature_onInitLoad: false, 
-            class_focused:    'focused',
-            class_populated:  'populated' 
+            feature_onInitLoad: false
           });
       }
   }])
