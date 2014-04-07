@@ -1,25 +1,33 @@
-<div class="">
-	<form role="form" class="bl_form">
-		<div class="form-group">
-			<label for="reportedBy"  class="sr-only">Ditt namn</label>
-			<input ng-model="ticket.reporter" type="text" data-position="top" class="label_better form-control lb-inp" id="reportedBy" placeholder="Ditt namn">
+<div class="row">
+	<div class="col-md-6 col-sm-10">
+		<div class="partial">
+			<div class="well">
+				<form role="form" class="FlowupLabels">
+					<div class='fl_wrap'>
+						<label class='fl_label' for='rf_name'>Name:</label>
+						<input class='fl_input' type='text' id='rf_name' />
+					</div>
+
+					<div class='fl_wrap'>
+						<label class='fl_label' for='rf_email'>Email:</label>
+						<input class='fl_input' type='email' id='rf_email' />
+					</div>
+					
+					<div class='fl_wrap'>
+						<label class='fl_label' for='rf_company'>Company:</label>
+						<input class='fl_input' type='text' id='rf_company' />
+					</div>
+
+					<div class='fl_wrap'>
+						<label class='fl_label' for='rf_phone'>Text:</label>
+						<textarea class='fl_input' rows="8" id='rf_phone'></textarea>
+					</div>
+					<div class='fl_wrap' style='clear:both'>
+					</div>
+				</form>
+
+				<ANY ng-init="setup()"/>
+			</div>
 		</div>
-		<div class="form-group">
-			<label for="subj" class="sr-only">Kort beskrivning</label>
-			<input ng-model="ticket.subject" type="text" data-position="top" class="label_better form-control lb-inp" id="subj" placeholder="Titel på anmälan">
-  		</div>
-  		<div class="form-group">
-			<label for="gadget" class="sr-only">Försvunnen sak</label>
-			<input ng-model="ticket.gadget" type="text" data-position="top" class="label_better form-control lb-inp" id="gadget" placeholder="Benämning på försvunnen pryl">
-  		</div>
-  		<div class="form-group">
-			<label for="desc" class="sr-only">Beskrivning av händelse</label>
-			<textarea ng-model="ticket.description" data-position="top" class="label_better form-control lb-inp" id="desc" placeholder="Beskrivning av händelse"></textarea>
-  		</div>
-  		<div class="form-group">
-			<label for="price" class="sr-only">Värde (SEK)</label>
-			<input ng-model="ticket.currentPriceSEK" type="text" data-position="top" class="label_better form-control lb-inp" id="price" placeholder="Värde i SEK">
-  		</div>
-	</form>
-	<ANY ng-init="setup()">
+	</div>
 </div>

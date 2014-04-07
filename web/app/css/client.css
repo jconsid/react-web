@@ -65,6 +65,7 @@ div.partial {
   background:transparent;
 }
 
+/* sdfkjsölkjfölskjfsldkjf */
 .bl_form input {
 }
 
@@ -87,3 +88,56 @@ div.partial {
 }
 
 .lb-inp {margin-top: 35px}
+
+/* Flowup */
+
+#formBody {
+  font-weight: 300;
+  font-size: 1.15em;
+}
+
+.rf_notice {
+  font-size:.8em;
+  text-align: center;
+}
+
+.FlowupLabels .fl_label {
+  cursor: text;
+}
+
+.rf_submit {
+  background:none;
+  border-radius: 4px;
+  border: 1px dotted #3dd585;
+  color: #3dd585;
+  font-size: 18px;
+  padding: 5px 25px;
+  display: block;
+  margin: auto;
+}
+.rf_submit:hover {
+  cursor:pointer;
+  background:#3dd585;
+  color: #555;
+}
+.rf_submit:focus {
+  outline:none;
+  border: 1px solid #3dd585;
+}
+
+#miscInfo {
+  position:fixed;
+  bottom:10px;
+  left:15px;
+  font-size: 12px;
+  color: #999;
+}
+#miscInfo a {
+  color:#999;
+}
+#ghBanner {
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  border: 0;
+}

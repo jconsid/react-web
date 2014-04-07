@@ -3,37 +3,17 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('RegisterCtrl', [ '$scope', 'ReceiverSampleService', function($scope, rss) {
-    $scope.statusText = "Prova ping knappen";
+  controller('RegisterCtrl', [ '$scope', function($scope) {
     
-    $scope.ping = function() {
-      rss.ping(
-        function(err, results) {
-          console.log("err: ", err);
-          console.log("results: ", results);
-          $scope.statusText = results;
-          $scope.$apply();
-        });
-    }
-    $scope.setup = function() {
-      $("input.label_better").label_better({
-        position: "top",
-        animationTime: 120,
-        easing: "bounce",
-        offset: 40,
-        hidePlaceholderOnFocus: true
-      });
-      $("textarea.label_better").label_better({
-        position: "top",
-        animationTime: 120,
-        easing: "bounce",
-        offset: 60,
-        hidePlaceholderOnFocus: true
-      });
-      alert("setup");
-    }
-  }])
+      $scope.setup = function() {
 
+        $('.FlowupLabels').FlowupLabels({
+            feature_onInitLoad: false, 
+            class_focused:    'focused',
+            class_populated:  'populated' 
+          });
+      }
+  }])
 
   .controller('PingCtrl', [ '$scope', 'ReceiverSampleService', function($scope, rss) {
     $scope.statusText = "Prova ping knappen";
