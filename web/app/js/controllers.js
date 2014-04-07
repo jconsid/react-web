@@ -15,6 +15,23 @@ angular.module('myApp.controllers', []).
           $scope.$apply();
         });
     }
+    $scope.setup = function() {
+      $("input.label_better").label_better({
+        position: "top",
+        animationTime: 120,
+        easing: "bounce",
+        offset: 40,
+        hidePlaceholderOnFocus: true
+      });
+      $("textarea.label_better").label_better({
+        position: "top",
+        animationTime: 120,
+        easing: "bounce",
+        offset: 60,
+        hidePlaceholderOnFocus: true
+      });
+      alert("setup");
+    }
   }])
 
 

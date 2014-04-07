@@ -1,5 +1,5 @@
 /* app css stylesheet */
-div.top {
+div.top-nav {
   background: #18385f;
   color:#fff;
   font-size:120%;
@@ -64,3 +64,26 @@ div.partial {
 .list-animation.ng-enter.ng-enter-active {
   background:transparent;
 }
+
+.bl_form input {
+}
+
+.lb_wrap .lb_label.top, .lb_wrap .lb_label.bottom {
+  left: 15px !important;
+  width:400px;
+}
+
+.lb_wrap .lb_label.left {
+  left: 0;
+}
+
+.lb_label {
+  font-weight: bold;
+  color: #999;
+}
+
+.lb_label.active {
+  color: black;
+}
+
+.lb-inp {margin-top: 35px}
