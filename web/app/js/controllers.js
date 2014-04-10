@@ -80,15 +80,15 @@ angular.module('myApp.controllers', []).
     var ONE_HOUR = 60 * 60 * 1000;
     var openingTime = new Date();
     var latestLogMessageLogTime = 0;
-
-    
-
     var msgCount = 0;
-    
+
     if (global.isAuth()) {
       $scope.isLoggedIn = true;
       $scope.loggedInUser = global.getUser();
     }
+    /*var setup = function() {
+      $("#userMessagesUl").addClass("anim");
+    }*/
     $scope.startNew = function() {
       $scope.showFieldsForNew = true;
       $scope.showFieldsForNewFile = false;
@@ -100,7 +100,7 @@ angular.module('myApp.controllers', []).
 
       $scope.showFieldsForNew = false;
       $.when(
-      ts.addLogMessage($scope.ticket._id, _subject, _body, _user))
+          ts.addLogMessage($scope.ticket._id, _subject, _body, _user))
         .done(
           function(reply) {
             console.log('addLogMessage ok', reply);
@@ -140,15 +140,16 @@ angular.module('myApp.controllers', []).
     }
     $scope.findTicket = function() {
       var ticketCall = function(status, reply) {
-        console.log("TicketCtrl::reply status: ", status, reply);
         $scope.ticket = reply;
         $scope.logMessages = reply.loggar;
         $scope.$apply();
       };
 
       var concurrentUserCall = function(status, reply) {
-        console.log("TicketCtrl::another user: ", status, reply);
-
+        console.log("TicketCtrl::another user: ", status, reply.query.matcher._id);
+        if (!$scope.ticket._id || reply.query.matcher._id != $scope.ticket._id) {
+          return;
+        }
 
         for(var i = 0; i < reply.usage.length; i++) {
           if (reply.usage[i].logTime > latestLogMessageLogTime) {
@@ -161,7 +162,14 @@ angular.module('myApp.controllers', []).
                 if (user == $scope.loggedInUser) {
                   user = "Du";
                 }
-                $scope.userMessages.push({messageNumer: msgCount++, logTime: reply.usage[i].logTime, text: user + " tittade på anmälan för " + displayTime.timeSince(messageTime) + " sedan."});
+                var time = displayTime.timeSince(messageTime);
+                var userMsg;
+                if (!time) {
+                  userMsg = user + " tittar på anmälan nu.";
+                } else {
+                  userMsg = user + " tittade på anmälan för " + displayTime.timeSince(messageTime) + " sedan.";
+                }
+                $scope.userMessages.push({messageNumer: msgCount++, logTime: reply.usage[i].logTime, text: userMsg});
               }
             }
           }

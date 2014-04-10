@@ -185,7 +185,12 @@ angular.module('myApp.services', []).
 	      if (interval > 1) {
 	          return interval + " minuter";
 	      }
-	      return Math.floor(seconds) + " sekunder";
+	      var seconds = Math.floor(seconds);
+	      if (seconds == 0) {
+	      	return null;
+	      } else {
+	      	return seconds + " sekunder";
+	      }
 	  	}
   }]).
 

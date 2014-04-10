@@ -883,3 +883,54 @@ Thu Apr 10 13:59:17.651 [initandlisten] connection accepted from 127.0.0.1:49184
 Thu Apr 10 13:59:17.652 [initandlisten] connection accepted from 127.0.0.1:49185 #8 (8 connections now open)
 Thu Apr 10 13:59:17.652 [initandlisten] connection accepted from 127.0.0.1:49186 #9 (9 connections now open)
 Thu Apr 10 13:59:17.653 [initandlisten] connection accepted from 127.0.0.1:49187 #10 (10 connections now open)
+Thu Apr 10 15:06:51.679 [conn4] end connection 127.0.0.1:49181 (9 connections now open)
+Thu Apr 10 15:06:51.679 [conn5] end connection 127.0.0.1:49182 (9 connections now open)
+Thu Apr 10 15:06:51.679 [conn3] end connection 127.0.0.1:49180 (9 connections now open)
+Thu Apr 10 15:06:51.679 [conn8] end connection 127.0.0.1:49185 (9 connections now open)
+Thu Apr 10 15:06:51.679 [conn6] end connection 127.0.0.1:49183 (9 connections now open)
+Thu Apr 10 15:06:51.679 [conn1] end connection 127.0.0.1:49178 (9 connections now open)
+Thu Apr 10 15:06:51.679 [conn2] end connection 127.0.0.1:49179 (9 connections now open)
+Thu Apr 10 15:06:51.679 [conn10] end connection 127.0.0.1:49187 (9 connections now open)
+Thu Apr 10 15:06:51.679 [conn9] end connection 127.0.0.1:49186 (9 connections now open)
+Thu Apr 10 15:06:51.679 [conn7] end connection 127.0.0.1:49184 (9 connections now open)
+Thu Apr 10 15:07:43.018 [signalProcessingThread] got signal 15 (Terminated: 15), will terminate after current cmd ends
+Thu Apr 10 15:07:43.018 [signalProcessingThread] now exiting
+Thu Apr 10 15:07:43.018 dbexit: 
+Thu Apr 10 15:07:43.018 [signalProcessingThread] shutdown: going to close listening sockets...
+Thu Apr 10 15:07:43.018 [signalProcessingThread] closing listening socket: 10
+Thu Apr 10 15:07:43.018 [signalProcessingThread] closing listening socket: 11
+Thu Apr 10 15:07:43.018 [signalProcessingThread] closing listening socket: 12
+Thu Apr 10 15:07:43.019 [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+Thu Apr 10 15:07:43.019 [signalProcessingThread] shutdown: going to flush diaglog...
+Thu Apr 10 15:07:43.019 [signalProcessingThread] shutdown: going to close sockets...
+Thu Apr 10 15:07:43.019 [signalProcessingThread] shutdown: waiting for fs preallocator...
+Thu Apr 10 15:07:43.019 [signalProcessingThread] shutdown: lock for final commit...
+Thu Apr 10 15:07:43.019 [signalProcessingThread] shutdown: final commit...
+Thu Apr 10 15:07:43.019 [signalProcessingThread] shutdown: closing all files...
+Thu Apr 10 15:07:43.020 [signalProcessingThread] closeAllFiles() finished
+Thu Apr 10 15:07:43.020 [signalProcessingThread] journalCleanup...
+Thu Apr 10 15:07:43.020 [signalProcessingThread] removeJournalFiles
+Thu Apr 10 15:07:43.020 [signalProcessingThread] shutdown: removing fs lock...
+Thu Apr 10 15:07:43.020 dbexit: really exiting now
+Thu Apr 10 16:03:18.115 [initandlisten] MongoDB starting : pid=279 port=27017 dbpath=/Users/swanmo/mongodb/db/ 64-bit host=Bjorns-MacBook-Pro.local
+Thu Apr 10 16:03:18.120 [initandlisten] 
+Thu Apr 10 16:03:18.120 [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+Thu Apr 10 16:03:18.120 [initandlisten] db version v2.4.9
+Thu Apr 10 16:03:18.120 [initandlisten] git version: nogitversion
+Thu Apr 10 16:03:18.120 [initandlisten] build info: Darwin minimavericks.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST 2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+Thu Apr 10 16:03:18.120 [initandlisten] allocator: tcmalloc
+Thu Apr 10 16:03:18.120 [initandlisten] options: { dbpath: "/Users/swanmo/mongodb/db/" }
+Thu Apr 10 16:03:18.122 [initandlisten] journal dir=/Users/swanmo/mongodb/db/journal
+Thu Apr 10 16:03:18.123 [initandlisten] recover : no journal files present, no recovery needed
+Thu Apr 10 16:03:18.340 [websvr] admin web console waiting for connections on port 28017
+Thu Apr 10 16:03:18.340 [initandlisten] waiting for connections on port 27017
+Thu Apr 10 16:03:26.643 [initandlisten] connection accepted from 127.0.0.1:49154 #1 (1 connection now open)
+Thu Apr 10 16:03:26.676 [initandlisten] connection accepted from 127.0.0.1:49155 #2 (2 connections now open)
+Thu Apr 10 16:03:26.685 [initandlisten] connection accepted from 127.0.0.1:49156 #3 (3 connections now open)
+Thu Apr 10 16:03:26.686 [initandlisten] connection accepted from 127.0.0.1:49157 #4 (4 connections now open)
+Thu Apr 10 16:03:26.686 [initandlisten] connection accepted from 127.0.0.1:49158 #5 (5 connections now open)
+Thu Apr 10 16:03:26.686 [initandlisten] connection accepted from 127.0.0.1:49159 #6 (6 connections now open)
+Thu Apr 10 16:03:26.686 [initandlisten] connection accepted from 127.0.0.1:49160 #7 (7 connections now open)
+Thu Apr 10 16:03:26.686 [initandlisten] connection accepted from 127.0.0.1:49161 #8 (8 connections now open)
+Thu Apr 10 16:03:26.687 [initandlisten] connection accepted from 127.0.0.1:49162 #9 (9 connections now open)
+Thu Apr 10 16:03:26.687 [initandlisten] connection accepted from 127.0.0.1:49163 #10 (10 connections now open)
