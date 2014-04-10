@@ -32,15 +32,19 @@ angular.module('myApp.services', []).
   service('TicketService', [function() {
 
 	this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
+		var promise = $.Deferred();
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
   		eb.onopen = function() {
-
 	  	    eb.send('arende.skapalog', {id: _id, username: _user, subject: _subject, body: _body},
 		      function(reply) {
-		      	console.log('TicketService::addLogMessage processing reply', reply);
-		      	fnDone.call(this, "ok", reply);
+		      	if (reply.status == "ok") {
+			      	promise.resolve(reply);
+			    } else {
+			    	promise.reject(reply);
+			    }
 		      });
 		};
+		return promise;
 	};
 
 	this.addFile = function(_id, _file, _user, fnDone) {

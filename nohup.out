@@ -861,3 +861,25 @@ Thu Apr  3 00:24:04.127 [signalProcessingThread] shutdown: going to close socket
 Thu Apr  3 00:24:04.127 [signalProcessingThread] shutdown: waiting for fs preallocator...
 Thu Apr  3 00:24:04.127 [signalProcessingThread] shutdown: lock for final commit...
 Thu Apr  3 00:24:04.127 [signalProcessingThread] shutdown: final commit...
+Thu Apr 10 13:59:12.009 [initandlisten] MongoDB starting : pid=372 port=27017 dbpath=/Users/swanmo/mongodb/db/ 64-bit host=Bjorns-MacBook-Pro.local
+Thu Apr 10 13:59:12.012 [initandlisten] 
+Thu Apr 10 13:59:12.012 [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+Thu Apr 10 13:59:12.012 [initandlisten] db version v2.4.9
+Thu Apr 10 13:59:12.013 [initandlisten] git version: nogitversion
+Thu Apr 10 13:59:12.013 [initandlisten] build info: Darwin minimavericks.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST 2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+Thu Apr 10 13:59:12.013 [initandlisten] allocator: tcmalloc
+Thu Apr 10 13:59:12.013 [initandlisten] options: { dbpath: "/Users/swanmo/mongodb/db/" }
+Thu Apr 10 13:59:12.015 [initandlisten] journal dir=/Users/swanmo/mongodb/db/journal
+Thu Apr 10 13:59:12.015 [initandlisten] recover : no journal files present, no recovery needed
+Thu Apr 10 13:59:12.237 [websvr] admin web console waiting for connections on port 28017
+Thu Apr 10 13:59:12.238 [initandlisten] waiting for connections on port 27017
+Thu Apr 10 13:59:17.598 [initandlisten] connection accepted from 127.0.0.1:49178 #1 (1 connection now open)
+Thu Apr 10 13:59:17.642 [initandlisten] connection accepted from 127.0.0.1:49179 #2 (2 connections now open)
+Thu Apr 10 13:59:17.650 [initandlisten] connection accepted from 127.0.0.1:49180 #3 (3 connections now open)
+Thu Apr 10 13:59:17.650 [initandlisten] connection accepted from 127.0.0.1:49181 #4 (4 connections now open)
+Thu Apr 10 13:59:17.650 [initandlisten] connection accepted from 127.0.0.1:49182 #5 (5 connections now open)
+Thu Apr 10 13:59:17.650 [initandlisten] connection accepted from 127.0.0.1:49183 #6 (6 connections now open)
+Thu Apr 10 13:59:17.651 [initandlisten] connection accepted from 127.0.0.1:49184 #7 (7 connections now open)
+Thu Apr 10 13:59:17.652 [initandlisten] connection accepted from 127.0.0.1:49185 #8 (8 connections now open)
+Thu Apr 10 13:59:17.652 [initandlisten] connection accepted from 127.0.0.1:49186 #9 (9 connections now open)
+Thu Apr 10 13:59:17.653 [initandlisten] connection accepted from 127.0.0.1:49187 #10 (10 connections now open)

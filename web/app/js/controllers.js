@@ -131,9 +131,18 @@ angular.module('myApp.controllers', []).
       }
 
       $scope.showFieldsForNew = false;
-      ts.addLogMessage($scope.ticket._id, _subject, _body, _user, function() {
-        console.log("skapalog done");
-      });
+      $.when(
+      ts.addLogMessage($scope.ticket._id, _subject, _body, _user))
+        .done(
+          function(reply) {
+            console.log('addLogMessage ok', reply);
+          }
+        ).fail(
+          function(reply) {
+            console.log('addLogMessage ERROR', reply);
+            alert("Något gick fel vid skapandet av ditt meddelande:" + reply.status);
+          }
+        );
 
       $scope.subject = null;
       $scope.body = null;
