@@ -50,7 +50,17 @@ angular.module('myApp.controllers', []).
     }
 
     $scope.login = function() {
-      loginService.login($scope.username, $scope.password, loggedIn);
+      $.when(
+        loginService.login($scope.username, $scope.password, loggedIn)
+      ).done(
+        function() {
+          window.location.href="#/list";
+        }
+      ).fail(
+        function() {
+          alert("Bad username or password");
+        }
+      )
     };
 
     $scope.logout = function() {

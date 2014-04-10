@@ -163,15 +163,16 @@ angular.module('myApp.services', []).
 
   service('LoginService', ['EventBus', function(eb) {
   	this.login = function(username, password, fn) {
+  		var promise = $.Deferred();
       	eb.login(username, password,
       		function (reply) {
 		    	if (reply.status === 'ok') {
-					fn.call(null, "ok");
+		    		promise.resolve();
 		    	} else {
-		    		console.log("Login failed for: " + username);
-		    		fn.call(reply.status, "failure");
+		    		promise.reject();
 				}
 		});
+		return promise;
   	}
   }]).
   service('SearchLogService', ['EventBus', function(eb){
