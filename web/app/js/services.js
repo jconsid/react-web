@@ -161,6 +161,34 @@ angular.module('myApp.services', []).
     return globalService;
 }).
 
+	service('TimeDisplayService', [function() {
+	  	this.timeSince = function(date) {
+	      var seconds = Math.floor((new Date() - date) / 1000);
+	      var interval = Math.floor(seconds / 31536000);
+
+	      if (interval > 1) {
+	          return interval + " år";
+	      }
+	      interval = Math.floor(seconds / 2592000);
+	      if (interval > 1) {
+	          return interval + " månader";
+	      }
+	      interval = Math.floor(seconds / 86400);
+	      if (interval > 1) {
+	          return interval + " dagar";
+	      }
+	      interval = Math.floor(seconds / 3600);
+	      if (interval > 1) {
+	          return interval + " timmar";
+	      }
+	      interval = Math.floor(seconds / 60);
+	      if (interval > 1) {
+	          return interval + " minuter";
+	      }
+	      return Math.floor(seconds) + " sekunder";
+	  	}
+  }]).
+
   service('LoginService', ['EventBus', function(eb) {
   	this.login = function(username, password, fn) {
   		var promise = $.Deferred();

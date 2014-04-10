@@ -69,7 +69,7 @@ angular.module('myApp.controllers', []).
   }])
 
 
-  .controller('TicketCtrl', ['$scope', 'TicketService', '$routeParams', 'global', function($scope, ts, $routeParams, global) {
+  .controller('TicketCtrl', ['$scope', 'TicketService', 'TimeDisplayService', '$routeParams', 'global', function($scope, ts, displayTime, $routeParams, global) {
     $scope.userMessages = [];
     $scope.showFieldsForNew = false;
     $scope.isLoggedIn = false;
@@ -81,49 +81,7 @@ angular.module('myApp.controllers', []).
     var openingTime = new Date();
     var latestLogMessageLogTime = 0;
 
-    var formatted = function(unix_timestamp) {
-      // create a new javascript Date object based on the timestamp
-      // multiplied by 1000 so that the argument is in milliseconds, not seconds
-      var date = new Date(unix_timestamp);
-      // hours part from the timestamp
-      var hours = date.getHours();
-      // minutes part from the timestamp
-      var minutes = date.getMinutes();
-      // seconds part from the timestamp
-      var seconds = date.getSeconds();
-
-      // will display time in 10:30:23 format
-      var formattedTime = hours + ':' + minutes + ':' + seconds;
-      return formattedTime;
-    }
-
-    function timeSince(date) {
-
-      var seconds = Math.floor((new Date() - date) / 1000);
-
-      var interval = Math.floor(seconds / 31536000);
-
-      if (interval > 1) {
-          return interval + " år";
-      }
-      interval = Math.floor(seconds / 2592000);
-      if (interval > 1) {
-          return interval + " månader";
-      }
-      interval = Math.floor(seconds / 86400);
-      if (interval > 1) {
-          return interval + " dagar";
-      }
-      interval = Math.floor(seconds / 3600);
-      if (interval > 1) {
-          return interval + " timmar";
-      }
-      interval = Math.floor(seconds / 60);
-      if (interval > 1) {
-          return interval + " minuter";
-      }
-      return Math.floor(seconds) + " sekunder";
-  }
+    
 
     var msgCount = 0;
     
@@ -203,7 +161,7 @@ angular.module('myApp.controllers', []).
                 if (user == $scope.loggedInUser) {
                   user = "Du";
                 }
-                $scope.userMessages.push({messageNumer: msgCount++, logTime: reply.usage[i].logTime, text: user + " tittade på anmälan för " + timeSince(messageTime) + " sedan."});
+                $scope.userMessages.push({messageNumer: msgCount++, logTime: reply.usage[i].logTime, text: user + " tittade på anmälan för " + displayTime.timeSince(messageTime) + " sedan."});
               }
             }
           }
