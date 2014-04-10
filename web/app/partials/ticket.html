@@ -133,11 +133,10 @@
 	</div>
 	<div class="col-sm-4">
 		<div class="partial">
-
 			<div class="panel-body">
-				<ul class="list-group">
-					<li ng-repeat="msg in userMessages"
-					class="list-group-item list-animation">{{msg.text}}</li>
+				<ul class="list-group" id="userMessagesUl">
+					<li ng-repeat="msg in userMessages | orderBy: 'messageNumer':true"
+					class="list-group-item">{{msg.text}}</li>
 				</ul>
 			</div>
 		</div>
