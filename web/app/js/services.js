@@ -174,19 +174,27 @@ angular.module('myApp.services', []).
 	          return interval + " månader";
 	      }
 	      interval = Math.floor(seconds / 86400);
-	      if (interval > 1) {
+	      if (interval == 1) {
+			return "en dag";
+	      } else if (interval > 1) {
 	          return interval + " dagar";
 	      }
 	      interval = Math.floor(seconds / 3600);
-	      if (interval > 1) {
+	      if (interval == 1) {
+	          return "en timme";
+	      } else if (interval > 1) {
 	          return interval + " timmar";
 	      }
 	      interval = Math.floor(seconds / 60);
-	      if (interval > 1) {
+	      if (interval == 1) {
+	          return "en minut";
+	      } else if (interval > 1) {
 	          return interval + " minuter";
 	      }
 	      var seconds = Math.floor(seconds);
-	      if (seconds == 0) {
+	      if (seconds == 1) {
+	      	return "en sekund";
+	      } else if (seconds == 0) {
 	      	return null;
 	      } else {
 	      	return seconds + " sekunder";
