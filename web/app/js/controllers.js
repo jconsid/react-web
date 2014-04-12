@@ -33,27 +33,28 @@ angular.module('myApp.controllers', []).
 
 
 
-  .controller('LoginCtrl', ['$scope', 'global', 'LoginService', function($scope, global, loginService) {
+  .controller('LoginCtrl', ['$scope', 'global', 'LoginService',
+      function($scope, global, loginService) {
+
     $scope.username = global.getUser();
     $scope.userLoggedIn = false;
 
-    var loggedIn=function(error, results) {
-      if (error == "ok") {
-        $scope.userLoggedIn = true;
-        global.setUser($scope.username);
-        $scope.$apply();
-      } else {
-        alert(error);
-      }
+    var loggedIn=function() {
+
+      $scope.userLoggedIn = true;
+      global.setUser($scope.username);
+      $scope.$apply();
+
       $scope.username = global.getUser();
       $scope.$apply();
     }
 
     $scope.login = function() {
       $.when(
-        loginService.login($scope.username, $scope.password, loggedIn)
+        loginService.login($scope.username, $scope.password)
       ).done(
         function() {
+          loggedIn();
           window.location.href="#/list";
         }
       ).fail(

@@ -203,7 +203,7 @@ angular.module('myApp.services', []).
   }]).
 
   service('LoginService', ['EventBus', function(eb) {
-  	this.login = function(username, password, fn) {
+  	this.login = function(username, password) {
   		var promise = $.Deferred();
       	eb.login(username, password,
       		function (reply) {
