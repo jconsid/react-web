@@ -77,13 +77,13 @@ angular.module('myApp.services', []).
          console.log('myfile sent!');
 	};
 
-	this.findOne = function(id, _user, fnOpen, fnOpenedByUser, fnLogCreated) {
+	this.findOne = function(id, _user, fnOpen) {
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
 		console.log("Öppnar buss...");
   		eb.onopen = function() {
 			console.log("Buss öppen!");
 
-	  	    eb.send('arende.oppna', {id: id, username: _user},
+	  	    eb.send('test.mongodb', {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id}},
 		      function(reply) {
 		      	console.log('TicketService::findOne processing reply', reply);
 		      	fnOpen.call(this, "ok", reply);
@@ -93,26 +93,14 @@ angular.module('myApp.services', []).
 		            ticketArray[i] = reply.results[i];
 		          }
 		          fnOpen.call(this, "ok", ticketArray);
-		        } else {
-		          console.error('Failed to retrieve tickets: ' + reply.message);
-		          fnOpen.call("error", null);
 		        }*/
 		      });
 
-
-	  	    eb.registerHandler('arende.oppnat',
-		      function(reply) {
-		      	console.log('TicketService::findOne arende.oppnat reply', reply);
-		      	fnOpenedByUser.call(this, "ok", reply);
-		      });
-
-			eb.registerHandler('arende.logskapad',
+			eb.registerHandler('anmalan.uppdaterad',
 		      function(reply) {
 		      	console.log('TicketService::findOne arende.logskapad reply', reply);
-		      	fnLogCreated.call(this, "ok", reply);
-		      });
-
-	  	    
+		      	// fnLogCreated.call(this, "ok", reply);
+		      });  
 		};
 	};
 

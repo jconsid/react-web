@@ -4,12 +4,22 @@
 
 angular.module('myApp.controllers', []).
   controller('RegisterCtrl', [ '$scope', function($scope) {
+    $scope.ticket = {
+      reporter:"",
+      subject:"",
+      gadget:"",
+      currentPriceSEK:"",
+      description:""
+    };
     
       $scope.setup = function() {
-
         $('.FlowupLabels').FlowupLabels({
             feature_onInitLoad: false
           });
+      }
+
+      $scope.saveTicket = function(ticket) {
+        console.log("save", ticket);
       }
   }])
 
@@ -70,15 +80,13 @@ angular.module('myApp.controllers', []).
   }])
 
 
-  .controller('TicketCtrl', ['$scope', 'TicketService', 'TimeDisplayService', '$routeParams', 'global', function($scope, ts, displayTime, $routeParams, global) {
-    $scope.userMessages = [];
+  .controller('TicketCtrl', ['$scope', 'TicketService', '$routeParams', 'global', function($scope, ts, $routeParams, global) {
     $scope.showFieldsForNew = false;
     $scope.isLoggedIn = false;
     $scope.ticket = {};
-    $scope.logMessages;
     $scope.showFieldsForNewFile = false;
     $scope.newfile;
-    var ONE_HOUR = 60 * 60 * 1000;
+
     var openingTime = new Date();
     var latestLogMessageLogTime = 0;
     var msgCount = 0;
@@ -87,17 +95,12 @@ angular.module('myApp.controllers', []).
       $scope.isLoggedIn = true;
       $scope.loggedInUser = global.getUser();
     }
-    /*var setup = function() {
-      $("#userMessagesUl").addClass("anim");
-    }*/
+
     $scope.startNew = function() {
       $scope.showFieldsForNew = true;
       $scope.showFieldsForNewFile = false;
     }
     $scope.saveNew = function(_subject, _body, _user) {
-      if (!$scope.logMessages) {
-        $scope.logMessages = [];
-      }
 
       $scope.showFieldsForNew = false;
       $.when(
@@ -141,57 +144,16 @@ angular.module('myApp.controllers', []).
     }
     $scope.findTicket = function() {
       var ticketCall = function(status, reply) {
-        $scope.ticket = reply;
+        console.log("reply", reply);
+        $scope.ticket = reply.results[0];
         $scope.logMessages = reply.loggar;
         $scope.$apply();
       };
 
-      var concurrentUserCall = function(status, reply) {
-        console.log("TicketCtrl::another user: ", status, reply.query.matcher._id);
-        if (!$scope.ticket._id || reply.query.matcher._id != $scope.ticket._id) {
-          return;
-        }
 
-        for(var i = 0; i < reply.usage.length; i++) {
-          if (reply.usage[i].logTime > latestLogMessageLogTime) {
-            latestLogMessageLogTime = reply.usage[i].logTime;
-            var messageTime = new Date(reply.usage[i].logTime);
-            if (((new Date) - messageTime) < ONE_HOUR) {
-              if (messageTime <= openingTime ||
-                  reply.usage[i].username != $scope.loggedInUser) {
-                var user = reply.usage[i].username;
-                if (user == $scope.loggedInUser) {
-                  user = "Du";
-                }
-                var time = displayTime.timeSince(messageTime);
-                var userMsg;
-                if (!time) {
-                  userMsg = user + " tittar på anmälan nu.";
-                } else {
-                  userMsg = user + " tittade på anmälan för " + displayTime.timeSince(messageTime) + " sedan.";
-                }
-                $scope.userMessages.push({messageNumer: msgCount++, logTime: reply.usage[i].logTime, text: userMsg});
-              }
-            }
-          }
-        }
-
-        $scope.$apply();
-      };
-
-      var logMessageCreated = function(status, reply) {
-        console.log("TicketCtrl::another log message: ", status, reply);
-
-        $scope.logMessages.push(reply);
-        
-        $scope.$apply();
-      };
-
-      var s = ts.findOne($routeParams.ticketId,
+      var s = ts.findOne(parseInt($routeParams.ticketId),
         $scope.loggedInUser,
-        ticketCall,
-        concurrentUserCall,
-        logMessageCreated
+        ticketCall
         );
     };
     $scope.findTicket();

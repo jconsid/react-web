@@ -1015,3 +1015,135 @@ Sat Apr 12 18:28:41.208 [conn18] end connection 127.0.0.1:52267 (9 connections n
 Sat Apr 12 18:28:41.208 [conn12] end connection 127.0.0.1:52261 (9 connections now open)
 Sat Apr 12 18:28:41.208 [conn13] end connection 127.0.0.1:52262 (9 connections now open)
 Sat Apr 12 18:28:41.208 [conn20] end connection 127.0.0.1:52269 (9 connections now open)
+Sat Apr 12 18:31:12.207 [signalProcessingThread] got signal 15 (Terminated: 15), will terminate after current cmd ends
+Sat Apr 12 18:31:12.207 [signalProcessingThread] now exiting
+Sat Apr 12 18:31:12.207 dbexit: 
+Sat Apr 12 18:31:12.207 [signalProcessingThread] shutdown: going to close listening sockets...
+Sat Apr 12 18:31:12.207 [signalProcessingThread] closing listening socket: 10
+Sat Apr 12 18:31:12.208 [signalProcessingThread] closing listening socket: 11
+Sat Apr 12 18:31:12.208 [signalProcessingThread] closing listening socket: 12
+Sat Apr 12 18:31:12.208 [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+Sat Apr 12 18:31:12.208 [signalProcessingThread] shutdown: going to flush diaglog...
+Sat Apr 12 18:31:12.208 [signalProcessingThread] shutdown: going to close sockets...
+Sat Apr 12 18:31:12.208 [signalProcessingThread] shutdown: waiting for fs preallocator...
+Sat Apr 12 18:31:12.208 [signalProcessingThread] shutdown: lock for final commit...
+Sat Apr 12 18:31:12.208 [signalProcessingThread] shutdown: final commit...
+Sat Apr 12 18:31:12.209 [signalProcessingThread] shutdown: closing all files...
+Sat Apr 12 18:31:12.209 [signalProcessingThread] closeAllFiles() finished
+Sat Apr 12 18:31:12.209 [signalProcessingThread] journalCleanup...
+Sat Apr 12 18:31:12.209 [signalProcessingThread] removeJournalFiles
+Sat Apr 12 18:31:12.209 [signalProcessingThread] shutdown: removing fs lock...
+Sat Apr 12 18:31:12.209 dbexit: really exiting now
+Tue Apr 15 23:20:54.761 [initandlisten] MongoDB starting : pid=535 port=27017 dbpath=/Users/swanmo/mongodb/db/ 64-bit host=Bjorns-MacBook-Pro.local
+Tue Apr 15 23:20:54.763 [initandlisten] 
+Tue Apr 15 23:20:54.764 [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+Tue Apr 15 23:20:54.764 [initandlisten] db version v2.4.9
+Tue Apr 15 23:20:54.764 [initandlisten] git version: nogitversion
+Tue Apr 15 23:20:54.764 [initandlisten] build info: Darwin minimavericks.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST 2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+Tue Apr 15 23:20:54.764 [initandlisten] allocator: tcmalloc
+Tue Apr 15 23:20:54.764 [initandlisten] options: { dbpath: "/Users/swanmo/mongodb/db/" }
+Tue Apr 15 23:20:54.766 [initandlisten] journal dir=/Users/swanmo/mongodb/db/journal
+Tue Apr 15 23:20:54.766 [initandlisten] recover : no journal files present, no recovery needed
+Tue Apr 15 23:20:54.980 [websvr] admin web console waiting for connections on port 28017
+Tue Apr 15 23:20:54.980 [initandlisten] waiting for connections on port 27017
+Tue Apr 15 23:20:59.664 [initandlisten] connection accepted from 127.0.0.1:50962 #1 (1 connection now open)
+Tue Apr 15 23:20:59.696 [initandlisten] connection accepted from 127.0.0.1:50963 #2 (2 connections now open)
+Tue Apr 15 23:20:59.705 [initandlisten] connection accepted from 127.0.0.1:50964 #3 (3 connections now open)
+Tue Apr 15 23:20:59.705 [initandlisten] connection accepted from 127.0.0.1:50965 #4 (4 connections now open)
+Tue Apr 15 23:20:59.705 [initandlisten] connection accepted from 127.0.0.1:50966 #5 (5 connections now open)
+Tue Apr 15 23:20:59.705 [initandlisten] connection accepted from 127.0.0.1:50967 #6 (6 connections now open)
+Tue Apr 15 23:20:59.706 [initandlisten] connection accepted from 127.0.0.1:50968 #7 (7 connections now open)
+Tue Apr 15 23:20:59.707 [initandlisten] connection accepted from 127.0.0.1:50969 #8 (8 connections now open)
+Tue Apr 15 23:20:59.708 [initandlisten] connection accepted from 127.0.0.1:50970 #9 (9 connections now open)
+Tue Apr 15 23:20:59.708 [initandlisten] connection accepted from 127.0.0.1:50971 #10 (10 connections now open)
+Tue Apr 15 23:52:36.290 [conn1] end connection 127.0.0.1:50962 (9 connections now open)
+Tue Apr 15 23:52:36.290 [conn8] end connection 127.0.0.1:50969 (9 connections now open)
+Tue Apr 15 23:52:36.290 [conn6] end connection 127.0.0.1:50967 (9 connections now open)
+Tue Apr 15 23:52:36.290 [conn10] end connection 127.0.0.1:50971 (9 connections now open)
+Tue Apr 15 23:52:36.291 [conn7] end connection 127.0.0.1:50968 (9 connections now open)
+Tue Apr 15 23:52:36.291 [conn4] end connection 127.0.0.1:50965 (9 connections now open)
+Tue Apr 15 23:52:36.291 [conn5] end connection 127.0.0.1:50966 (9 connections now open)
+Tue Apr 15 23:52:36.291 [conn9] end connection 127.0.0.1:50970 (9 connections now open)
+Tue Apr 15 23:52:36.291 [conn3] end connection 127.0.0.1:50964 (9 connections now open)
+Tue Apr 15 23:52:36.291 [conn2] end connection 127.0.0.1:50963 (9 connections now open)
+Tue Apr 15 23:52:59.373 [signalProcessingThread] got signal 15 (Terminated: 15), will terminate after current cmd ends
+Tue Apr 15 23:52:59.373 [signalProcessingThread] now exiting
+Tue Apr 15 23:52:59.373 dbexit: 
+Tue Apr 15 23:52:59.373 [signalProcessingThread] shutdown: going to close listening sockets...
+Tue Apr 15 23:52:59.373 [signalProcessingThread] closing listening socket: 10
+Tue Apr 15 23:52:59.373 [signalProcessingThread] closing listening socket: 11
+Tue Apr 15 23:52:59.373 [signalProcessingThread] closing listening socket: 12
+Tue Apr 15 23:52:59.373 [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+Tue Apr 15 23:52:59.376 [signalProcessingThread] shutdown: going to flush diaglog...
+Tue Apr 15 23:52:59.376 [signalProcessingThread] shutdown: going to close sockets...
+Tue Apr 15 23:52:59.376 [signalProcessingThread] shutdown: waiting for fs preallocator...
+Tue Apr 15 23:52:59.376 [signalProcessingThread] shutdown: lock for final commit...
+Tue Apr 15 23:52:59.376 [signalProcessingThread] shutdown: final commit...
+Tue Apr 15 23:52:59.376 [signalProcessingThread] shutdown: closing all files...
+Tue Apr 15 23:52:59.376 [signalProcessingThread] closeAllFiles() finished
+Tue Apr 15 23:52:59.376 [signalProcessingThread] journalCleanup...
+Tue Apr 15 23:52:59.377 [signalProcessingThread] removeJournalFiles
+Tue Apr 15 23:52:59.377 [signalProcessingThread] shutdown: removing fs lock...
+Tue Apr 15 23:52:59.377 dbexit: really exiting now
+Tue May 20 23:23:26.599 [initandlisten] MongoDB starting : pid=2948 port=27017 dbpath=/Users/swanmo/mongodb/db/ 64-bit host=Bjorns-MacBook-Pro.local
+Tue May 20 23:23:26.602 [initandlisten] 
+Tue May 20 23:23:26.603 [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+Tue May 20 23:23:26.603 [initandlisten] db version v2.4.9
+Tue May 20 23:23:26.603 [initandlisten] git version: nogitversion
+Tue May 20 23:23:26.603 [initandlisten] build info: Darwin minimavericks.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST 2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+Tue May 20 23:23:26.603 [initandlisten] allocator: tcmalloc
+Tue May 20 23:23:26.603 [initandlisten] options: { dbpath: "/Users/swanmo/mongodb/db/" }
+Tue May 20 23:23:26.606 [initandlisten] journal dir=/Users/swanmo/mongodb/db/journal
+Tue May 20 23:23:26.606 [initandlisten] recover begin
+Tue May 20 23:23:26.607 [initandlisten] recover lsn: 3475380
+Tue May 20 23:23:26.607 [initandlisten] recover /Users/swanmo/mongodb/db/journal/j._0
+Tue May 20 23:23:26.610 [initandlisten] recover skipping application of section seq:0 < lsn:3475380
+Tue May 20 23:23:26.714 [initandlisten] recover cleaning up
+Tue May 20 23:23:26.714 [initandlisten] removeJournalFiles
+Tue May 20 23:23:26.717 [initandlisten] recover done
+Tue May 20 23:23:26.849 [websvr] admin web console waiting for connections on port 28017
+Tue May 20 23:23:26.849 [initandlisten] waiting for connections on port 27017
+Tue May 20 23:33:04.903 [initandlisten] connection accepted from 127.0.0.1:49854 #1 (1 connection now open)
+Tue May 20 23:33:04.933 [initandlisten] connection accepted from 127.0.0.1:49855 #2 (2 connections now open)
+Tue May 20 23:33:04.944 [initandlisten] connection accepted from 127.0.0.1:49856 #3 (3 connections now open)
+Tue May 20 23:33:04.944 [initandlisten] connection accepted from 127.0.0.1:49857 #4 (4 connections now open)
+Tue May 20 23:33:04.944 [initandlisten] connection accepted from 127.0.0.1:49858 #5 (5 connections now open)
+Tue May 20 23:33:04.944 [initandlisten] connection accepted from 127.0.0.1:49859 #6 (6 connections now open)
+Tue May 20 23:33:04.944 [initandlisten] connection accepted from 127.0.0.1:49860 #7 (7 connections now open)
+Tue May 20 23:33:04.944 [initandlisten] connection accepted from 127.0.0.1:49861 #8 (8 connections now open)
+Tue May 20 23:33:04.945 [initandlisten] connection accepted from 127.0.0.1:49862 #9 (9 connections now open)
+Tue May 20 23:33:04.952 [initandlisten] connection accepted from 127.0.0.1:49863 #10 (10 connections now open)
+Tue May 20 23:44:04.289 [initandlisten] connection accepted from 127.0.0.1:50041 #11 (11 connections now open)
+Tue May 20 23:49:00.278 [conn11] end connection 127.0.0.1:50041 (10 connections now open)
+Tue May 20 23:49:02.446 [initandlisten] connection accepted from 127.0.0.1:50052 #12 (11 connections now open)
+Tue May 20 23:52:46.973 [conn2] end connection 127.0.0.1:49855 (10 connections now open)
+Tue May 20 23:52:46.973 [conn7] end connection 127.0.0.1:49860 (10 connections now open)
+Tue May 20 23:52:46.973 [conn8] end connection 127.0.0.1:49861 (10 connections now open)
+Tue May 20 23:52:46.973 [conn6] end connection 127.0.0.1:49859 (10 connections now open)
+Tue May 20 23:52:46.973 [conn4] end connection 127.0.0.1:49857 (10 connections now open)
+Tue May 20 23:52:46.973 [conn5] end connection 127.0.0.1:49858 (10 connections now open)
+Tue May 20 23:52:46.973 [conn3] end connection 127.0.0.1:49856 (10 connections now open)
+Tue May 20 23:52:46.973 [conn9] end connection 127.0.0.1:49862 (10 connections now open)
+Tue May 20 23:52:46.973 [conn1] end connection 127.0.0.1:49854 (10 connections now open)
+Tue May 20 23:52:46.974 [conn10] end connection 127.0.0.1:49863 (10 connections now open)
+Tue May 20 23:52:50.315 [initandlisten] connection accepted from 127.0.0.1:50112 #13 (2 connections now open)
+Tue May 20 23:52:50.347 [initandlisten] connection accepted from 127.0.0.1:50113 #14 (3 connections now open)
+Tue May 20 23:52:50.353 [initandlisten] connection accepted from 127.0.0.1:50114 #15 (4 connections now open)
+Tue May 20 23:52:50.353 [initandlisten] connection accepted from 127.0.0.1:50115 #16 (5 connections now open)
+Tue May 20 23:52:50.354 [initandlisten] connection accepted from 127.0.0.1:50116 #17 (6 connections now open)
+Tue May 20 23:52:50.354 [initandlisten] connection accepted from 127.0.0.1:50117 #18 (7 connections now open)
+Tue May 20 23:52:50.354 [initandlisten] connection accepted from 127.0.0.1:50118 #19 (8 connections now open)
+Tue May 20 23:52:50.355 [initandlisten] connection accepted from 127.0.0.1:50119 #20 (9 connections now open)
+Tue May 20 23:52:50.356 [initandlisten] connection accepted from 127.0.0.1:50120 #21 (10 connections now open)
+Tue May 20 23:52:50.356 [initandlisten] connection accepted from 127.0.0.1:50121 #22 (11 connections now open)
+Wed May 21 00:07:03.691 [conn12] end connection 127.0.0.1:50052 (10 connections now open)
+Wed May 21 00:07:07.102 [conn16] end connection 127.0.0.1:50115 (9 connections now open)
+Wed May 21 00:07:07.102 [conn13] end connection 127.0.0.1:50112 (9 connections now open)
+Wed May 21 00:07:07.102 [conn15] end connection 127.0.0.1:50114 (9 connections now open)
+Wed May 21 00:07:07.102 [conn14] end connection 127.0.0.1:50113 (9 connections now open)
+Wed May 21 00:07:07.102 [conn20] end connection 127.0.0.1:50119 (9 connections now open)
+Wed May 21 00:07:07.102 [conn17] end connection 127.0.0.1:50116 (9 connections now open)
+Wed May 21 00:07:07.102 [conn19] end connection 127.0.0.1:50118 (9 connections now open)
+Wed May 21 00:07:07.102 [conn18] end connection 127.0.0.1:50117 (9 connections now open)
+Wed May 21 00:07:07.103 [conn21] end connection 127.0.0.1:50120 (9 connections now open)
+Wed May 21 00:07:07.103 [conn22] end connection 127.0.0.1:50121 (9 connections now open)

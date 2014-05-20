@@ -40,19 +40,10 @@ var webServerConf = {
   inbound_permitted: [
     // Allow calls to login and authorise
     {
-      address: 'arende.oppna'
-    },
-    {
-      address: 'arende.oppnat'
-    },
-    {
-      address: 'arende.skapalog'
+      address: 'skapaLoggmeddelande'
     },
     {
       address: 'vertx.basicauthmanager.login'
-    },
-    {
-          address: 'Consid.SearchLog'
     },
     // Tillåt meddelanden för att komma åt anmalningar
     {
@@ -61,10 +52,6 @@ var webServerConf = {
         action : 'find',
         collection : 'anmalningar'
       }
-    },
-    // Test
-    {
-      address : 'ping-address'
     }
   ],
 

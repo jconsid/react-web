@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-6 col-sm-10">
+	<div class="col-md-8 col-sm-10">
 		<div class="partial">
 			<div class="well">
 				<form role="form" class="FlowupLabels">
@@ -25,11 +25,13 @@
 						<label class='fl_label' for='rf_phone'>Beskrivning av händelse:</label>
 						<textarea ng-model="ticket.description" class='fl_input' rows="8" id='rf_phone'></textarea>
 					</div>
+					<div class='fl_wrap' style='clear:both'></div>
 					<div class='fl_wrap' style='clear:both'>
+						<button type="button" class="btn btn-primary" ng-click="saveTicket(ticket)">
+	                        <span class="glyphicon glyphicon-save"></span> Spara
+	                    </button>
 					</div>
-					
-					<div class='fl_wrap' style='clear:both'>
-					</div>
+
 				</form>
 
 				<ANY ng-init="setup()"/>
