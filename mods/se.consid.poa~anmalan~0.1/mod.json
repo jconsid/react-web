@@ -1,0 +1,17 @@
+{
+
+  // Java verticle
+  "main":"se.consid.poa.SkapaLoggmeddelande",
+
+  // If your module is going to be registered in the Vert.x module registry you will also need the following
+  // mandatory fields
+  "description":"Module for managing anmalan",
+  "licenses": ["The Apache Software License Version 2.0"],
+  "author": "Consid",
+
+  // Optional fields
+  "developers": ["swanmo", "anders-johansson-121", "mmalmberg", "johan-hanson"],
+  "homepage": "ec2-54-186-38-229.us-west-2.compute.amazonaws.com/app/index.html",
+
+  "auto-redeploy": true
+}
