@@ -86,8 +86,8 @@ angular.module('myApp.controllers', []).
     $scope.ticket = {};
     $scope.showFieldsForNewFile = false;
     $scope.newfile;
+    $scope.logMessages = [];
 
-    var openingTime = new Date();
     var latestLogMessageLogTime = 0;
     var msgCount = 0;
 
@@ -108,6 +108,7 @@ angular.module('myApp.controllers', []).
         .done(
           function(reply) {
             console.log('addLogMessage ok', reply);
+            $scope.findTicket();
           }
         ).fail(
           function(reply) {
@@ -144,9 +145,8 @@ angular.module('myApp.controllers', []).
     }
     $scope.findTicket = function() {
       var ticketCall = function(status, reply) {
-        console.log("reply", reply);
         $scope.ticket = reply.results[0];
-        $scope.logMessages = reply.loggar;
+        $scope.logMessages = reply.results[0].loggar;
         $scope.$apply();
       };
 
