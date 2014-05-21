@@ -40,7 +40,7 @@ var webServerConf = {
   inbound_permitted: [
     // Allow calls to login and authorise
     {
-      address: 'skapaLoggmeddelande'
+      address: 'skapa.loggmeddelande'
     },
     {
       address: 'vertx.basicauthmanager.login'
@@ -88,11 +88,10 @@ container.deployModule('io.vertx~mod-auth-mgr~2.0.0-final', {"persistor_address"
 
 container.deployModule('io.vertx~mod-web-server~2.0.0-final', webServerConf);
 
-container.deployModule('com.consid.react~reactive-module~0.1');
-
-container.deployModule('se.consid.reactive~OppnaAnmalan~0.1');
-
-container.deployModule('se.consid.reactive~SearchLogger~0.1');
+container.deployModule('se.consid.poa~anmalan~0.1');
+// container.deployModule('com.consid.react~reactive-module~0.1');
+// container.deployModule('se.consid.reactive~OppnaAnmalan~0.1');
+// container.deployModule('se.consid.reactive~SearchLogger~0.1');
 
 
 

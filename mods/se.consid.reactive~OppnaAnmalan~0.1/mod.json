@@ -1,7 +1,0 @@
-{
-
-  // Java verticle
-  "main":"se.consid.reactive.OppnaAnmalan",
-
-  "auto-redeploy": true
-}
