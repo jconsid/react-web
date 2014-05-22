@@ -149,11 +149,17 @@ angular.module('myApp.controllers', []).
   
   .controller('ListCtrl', ['$scope', 'TicketService', "SearchLogService", function($scope, ts, sls) {
     $scope.tickets = [];
+    $scope.systemEvents = [];
     $scope.update = function() {
       var s = ts.findAll(function(status, reply) {
         console.log("ListCtrl::reply status: ", status);
         // console.log("ListCtrl::reply body: ", reply);
         $scope.tickets = reply;
+        $scope.$apply();
+      }, function(status, anmalanEvent) {
+        console.log("callback", status, anmalanEvent);
+        $scope.systemEvents.push(anmalanEvent);
+        console.log("callback", $scope.systemEvents);
         $scope.$apply();
       });
     };

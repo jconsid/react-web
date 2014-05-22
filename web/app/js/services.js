@@ -95,20 +95,14 @@ angular.module('myApp.services', []).
 		          fnOpen.call(this, "ok", ticketArray);
 		        }*/
 		      });
-
-			eb.registerHandler('anmalan.uppdaterad',
-		      function(reply) {
-		      	console.log('TicketService::findOne arende.logskapad reply', reply);
-		      	// fnLogCreated.call(this, "ok", reply);
-		      });  
 		};
 	};
 
 
-  	this.findAll = function(fn) {
+  	this.findAll = function(fn, fnUpdated) {
   		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
   		eb.onopen = function() {
-
+  			console.log("Buss open");
 	  	    eb.send('test.mongodb', {action: 'find', collection: 'anmalningar', matcher: {} },
 		      function(reply) {
 		      	console.log('TicketService::processing reply', reply);
@@ -122,8 +116,16 @@ angular.module('myApp.services', []).
 		          console.error('Failed to retrieve tickets: ' + reply.message);
 		          fn.call("error", null);
 		        }
-		      });
+		    });
+			eb.registerHandler('anmalan.uppdaterad',
+		      function(updatedEvent) {
+		      	console.log('TicketService::findAll anmalan.uppdaterad', updatedEvent);
+		      	fnUpdated.call(this, "ok", updatedEvent);	
+		      	
+			  }
+			);
 		};
+		console.log("Events are set up.");
   	}
   }]).
 

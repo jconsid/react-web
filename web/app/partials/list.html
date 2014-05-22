@@ -39,4 +39,15 @@
 </div>
 
 	</div>
+	<div class="col-sm-4">
+		<div class="list-group">
+
+	  		<a ng-repeat="ev in systemEvents | limitTo:5 | orderBy:'_id' "
+	  			href="#/ticket/{{ev.id}}" class="list-group-item">
+	    		<h5 class="list-group-item-heading">Anmälan uppdaterad av {{ev.username}}</h5>
+	    		<p class="list-group-item-text">Titel: {{ev.subject}}</p>
+	  		</a>
+
+		</div>
+	</div>
 </div>

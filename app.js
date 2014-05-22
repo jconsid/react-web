@@ -43,6 +43,9 @@ var webServerConf = {
       address: 'skapa.loggmeddelande'
     },
     {
+      address: 'anmalan.uppdaterad'
+    },
+    {
       address: 'vertx.basicauthmanager.login'
     },
     // Tillåt meddelanden för att komma åt anmalningar
