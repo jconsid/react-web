@@ -10,27 +10,8 @@ angular.module('myApp.services', []).
 
 	return eb;
   }).
-  service('ReceiverSampleService', [function() {
-  	this.ping = function(fn) {
-  		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
-
-  		eb.onopen = function() {
-	  	    eb.send('ping-address', {action: 'ping' },
-		      function(reply) {
-		        if (reply.results === 'ok') {
-		          fn.call(this, null, reply.results);
-		        } else {
-		          console.error('Failed to retrieve ping response: ' + reply.message);
-		          fn.call("error", null);
-		        }
-		        eb.close();
-		      });
-		};
-  	}
-  }]).
 
   service('TicketService', [function() {
-
 	this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
 		var promise = $.Deferred();
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
@@ -79,21 +60,12 @@ angular.module('myApp.services', []).
 
 	this.findOne = function(id, _user, fnOpen) {
 		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
-		console.log("Öppnar buss...");
   		eb.onopen = function() {
-			console.log("Buss öppen!");
-
 	  	    eb.send('test.mongodb', {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id}},
 		      function(reply) {
 		      	console.log('TicketService::findOne processing reply', reply);
 		      	fnOpen.call(this, "ok", reply);
-		        /*if (reply.status === 'ok') {
-		          var ticketArray = [];
-		          for (var i = 0; i < reply.results.length; i++) {
-		            ticketArray[i] = reply.results[i];
-		          }
-		          fnOpen.call(this, "ok", ticketArray);
-		        }*/
+		      	eb.close();
 		      });
 		};
 	};
@@ -129,7 +101,7 @@ angular.module('myApp.services', []).
   	}
   }]).
 
-	service('global', function($cookieStore, $location, $filter) {
+   service('global', function($cookieStore, $location, $filter) {
     var globalService = {};
     globalService.user = null;
     globalService.isAuth = function (){
@@ -206,11 +178,4 @@ angular.module('myApp.services', []).
 		});
 		return promise;
   	}
-  }]).
-  service('SearchLogService', ['EventBus', function(eb){
-    this.sendSearchLog = function(searchString){
-    		var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
-    		eb.onopen = function() {
-  	            eb.send('Consid.SearchLog', "{'search': '" + searchString +"'}",null);
-  }}}])
-  ;
+  }]);

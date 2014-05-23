@@ -143,11 +143,8 @@ angular.module('myApp.controllers', []).
     $scope.findTicket();
     
   }])
-
-
-
   
-  .controller('ListCtrl', ['$scope', 'TicketService', "SearchLogService", function($scope, ts, sls) {
+  .controller('ListCtrl', ['$scope', 'TicketService', function($scope, ts) {
     $scope.tickets = [];
     $scope.systemEvents = [];
     $scope.update = function() {
@@ -164,10 +161,5 @@ angular.module('myApp.controllers', []).
       });
     };
 
-    $scope.logSearch = function(){
-        var searchString = $scope.query;
-        console.log("Sökte efter: " + searchString);
-        sls.sendSearchLog(searchString);
-    }
     $scope.update();
   }]);
