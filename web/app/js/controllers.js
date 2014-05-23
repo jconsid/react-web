@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('RegisterCtrl', [ '$scope', function($scope) {
+  controller('RegisterCtrl', [ '$scope', 'TicketService', function($scope, ts) {
       $scope.ticket = {
         reporter:"",
         subject:"",
@@ -18,8 +18,9 @@ angular.module('myApp.controllers', []).
           });
       }
 
-      $scope.saveTicket = function(ticket) {
-        console.log("save", ticket);
+      $scope.saveAnmalan = function(anmalan) {
+        console.log("save", anmalan);
+        ts.save(anmalan);
       }
     }
   ])

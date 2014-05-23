@@ -52,6 +52,13 @@ var webServerConf = {
     {
       address : 'test.mongodb',
       match : {
+        action : 'save',
+        collection : 'anmalningar'
+      }
+    },
+    {
+      address : 'test.mongodb',
+      match : {
         action : 'find',
         collection : 'anmalningar'
       }

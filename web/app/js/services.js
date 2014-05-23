@@ -27,6 +27,17 @@ angular.module('myApp.services', []).
       return promise;
     };
 
+    this.save = function(anmalan) {
+      var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+      eb.onopen = function() {
+        eb.send('test.mongodb', {'action': 'save', 'collection': 'anmalningar', 'document': anmalan},
+        function(reply) {
+          console.log('TicketService::save processing reply', reply);
+          eb.close();
+        });
+      };
+    };
+
     this.addFile = function(_id, _file, _user, fnDone) {
       //https://github.com/vert-x/vertx-examples/tree/master/src/raw/java/upload
       //UploadClient

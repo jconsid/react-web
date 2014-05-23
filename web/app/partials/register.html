@@ -2,34 +2,37 @@
 	<div class="col-md-8 col-sm-10">
 		<div class="partial">
 			<div class="well">
-				<form role="form" class="FlowupLabels">
+				<form role="form" name="regFrm" class="FlowupLabels">
 					<div class='fl_wrap'>
-						<label class='fl_label' for='reporter'>Ditt namn:</label>
-						<input ng-model="ticket.reporter" class='fl_input' type='text' id='reporter' />
+						<label class='fl_label' for='reporter'>Ditt namn*:</label>
+						<input ng-model="ticket.reporter" class='fl_input' type='text' id='reporter' required />
 					</div>
 
 					<div class='fl_wrap'>
-						<label class='fl_label' for='subject'>Anmälans titel:</label>
-						<input ng-model="ticket.subject" class='fl_input' type='text' id='subject' />
+						<label class='fl_label' for='subject'>Anmälans titel*:</label>
+						<input ng-model="ticket.subject" class='fl_input' type='text' id='subject' required />
 					</div>
 					
 					<div class='fl_wrap'>
-						<label class='fl_label' for='gadget'>Benämning på försvunnet objekt:</label>
-						<input ng-model="ticket.gadget" class='fl_input' type='text' id='gadget' />
+						<label class='fl_label' for='gadget'>Benämning på försvunnet objekt*:</label>
+						<input ng-model="ticket.gadget" class='fl_input' type='text' id='gadget' required />
 					</div>
 					<div class='fl_wrap'>
 						<label class='fl_label' for='price'>Värde i SEK:</label>
 						<input ng-model="ticket.currentPriceSEK" class='fl_input' type='text' id='price' />
 					</div>
 					<div class='fl_wrap'>
-						<label class='fl_label' for='rf_phone'>Beskrivning av händelse:</label>
-						<textarea ng-model="ticket.description" class='fl_input' rows="8" id='rf_phone'></textarea>
+						<label class='fl_label' for='rf_phone'>Beskrivning av händelse*:</label>
+						<textarea ng-model="ticket.description" class='fl_input' rows="8" id='rf_phone' required></textarea>
 					</div>
 					<div class='fl_wrap' style='clear:both'></div>
 					<div class='fl_wrap' style='clear:both'>
-						<button type="button" class="btn btn-primary" ng-click="saveTicket(ticket)">
+						<button type="button" class="btn btn-primary" ng-click="saveAnmalan(ticket)"ng-disabled="regFrm.$invalid">
 	                        <span class="glyphicon glyphicon-save"></span> Spara
 	                    </button>
+	                    <div class='fl_wrap'>
+							<p>Fält markerade med * är obligatoriska</p>
+						</div>
 					</div>
 
 				</form>
