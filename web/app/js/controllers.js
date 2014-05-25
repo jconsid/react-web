@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('RegisterCtrl', [ '$scope', 'TicketService', function($scope, ts) {
+  controller('RegisterCtrl', [ '$scope', 'AnmalanService', function($scope, anmalanService) {
       $scope.ticket = {
         reporter:"",
         subject:"",
@@ -19,8 +19,7 @@ angular.module('myApp.controllers', []).
       }
 
       $scope.saveAnmalan = function(anmalan) {
-        console.log("save", anmalan);
-        ts.save(anmalan);
+        anmalanService.save(anmalan);
       }
     }
   ])
@@ -66,8 +65,8 @@ angular.module('myApp.controllers', []).
   }])
 
 
-  .controller('TicketCtrl', ['$scope', 'TicketService', '$routeParams', 'global',
-    function($scope, ts, $routeParams, global) {
+  .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'global',
+    function($scope, anmalanService, $routeParams, global) {
       $scope.showFieldsForNew = false;
       $scope.isLoggedIn = false;
       $scope.ticket = {};
@@ -91,11 +90,11 @@ angular.module('myApp.controllers', []).
 
         $scope.showFieldsForNew = false;
         $.when(
-            ts.addLogMessage($scope.ticket._id, _subject, _body, _user))
+            anmalanService.addLogMessage($scope.ticket._id, _subject, _body, _user))
           .done(
             function(reply) {
               console.log('addLogMessage ok', reply);
-              $scope.findTicket();
+              $scope.findAnmalan();
             }
           ).fail(
             function(reply) {
@@ -120,7 +119,7 @@ angular.module('myApp.controllers', []).
       $scope.saveNewFile = function(_user) {
         $scope.showFieldsForNewFile = false;
 
-        ts.addFile($scope.ticket._id, $scope.newfile, _user, function() {
+        anmalanService.addFile($scope.ticket._id, $scope.newfile, _user, function() {
           console.log("ladda upp fil done");
         });
 
@@ -130,29 +129,28 @@ angular.module('myApp.controllers', []).
       $scope.abortNewFile = function() {
         $scope.showFieldsForNewFile = false;
       }
-      $scope.findTicket = function() {
+      $scope.findAnmalan = function() {
         var ticketCall = function(status, reply) {
           $scope.ticket = reply.results[0];
           $scope.logMessages = reply.results[0].loggar;
           $scope.$apply();
         };
 
-        var s = ts.findOne(parseInt($routeParams.ticketId),
+        var s = anmalanService.findOne(parseInt($routeParams.anmalanId),
           $scope.loggedInUser,
           ticketCall
         );
       };
-      $scope.findTicket();
+      $scope.findAnmalan();
     }
   ])
   
-  .controller('ListCtrl', ['$scope', 'TicketService', function($scope, ts) {
+  .controller('ListCtrl', ['$scope', 'AnmalanService', function($scope, anmalanService) {
     $scope.tickets = [];
     $scope.systemEvents = [];
     $scope.update = function() {
-      var s = ts.findAll(function(status, reply) {
+      var s = anmalanService.findAll(function(status, reply) {
         console.log("ListCtrl::reply status: ", status);
-        // console.log("ListCtrl::reply body: ", reply);
         $scope.tickets = reply;
         $scope.$apply();
       }, function(status, anmalanEvent) {

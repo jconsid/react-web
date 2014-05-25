@@ -10,7 +10,7 @@ angular.module('myApp.services', []).
     return eb;
   }).
 
-  service('TicketService', [function() {
+  service('AnmalanService', [function() {
     this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
       var promise = $.Deferred();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
@@ -32,7 +32,7 @@ angular.module('myApp.services', []).
       eb.onopen = function() {
         eb.send('test.mongodb', {'action': 'save', 'collection': 'anmalningar', 'document': anmalan},
         function(reply) {
-          console.log('TicketService::save processing reply', reply);
+          console.log('AnmalanService::save processing reply', reply);
           eb.close();
         });
       };
@@ -73,7 +73,7 @@ angular.module('myApp.services', []).
       eb.onopen = function() {
         eb.send('test.mongodb', {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id}},
         function(reply) {
-          console.log('TicketService::findOne processing reply', reply);
+          console.log('AnmalanService::findOne processing reply', reply);
           fnOpen.call(this, "ok", reply);
           eb.close();
         });
@@ -86,13 +86,13 @@ angular.module('myApp.services', []).
         console.log("Buss open");
         eb.send('test.mongodb', {action: 'find', collection: 'anmalningar', matcher: {} },
           function(reply) {
-            console.log('TicketService::processing reply', reply);
+            console.log('AnmalanService::processing reply', reply);
             if (reply.status === 'ok') {
-              var ticketArray = [];
+              var anmalanArray = [];
               for (var i = 0; i < reply.results.length; i++) {
-                ticketArray[i] = reply.results[i];
+                anmalanArray[i] = reply.results[i];
               }
-              fn.call(this, "ok", ticketArray);
+              fn.call(this, "ok", anmalanArray);
             } else {
               console.error('Failed to retrieve tickets: ' + reply.message);
               fn.call("error", null);
@@ -101,7 +101,7 @@ angular.module('myApp.services', []).
         );
         eb.registerHandler('anmalan.uppdaterad',
           function(updatedEvent) {
-            console.log('TicketService::findAll anmalan.uppdaterad', updatedEvent);
+            console.log('AnmalanService::findAll anmalan.uppdaterad', updatedEvent);
             fnUpdated.call(this, "ok", updatedEvent); 
           }
         );
