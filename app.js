@@ -100,7 +100,10 @@ container.deployModule('io.vertx~mod-web-server~2.0.0-final', webServerConf);
 
 var poaConf = {
 
-    "skapaLoggmeddelande": {}
+    "skapaLoggmeddelande": {},
+    "skickaTillPolisen":{
+        "email": "johan.hanson@consid.se"
+    }
 
 }
 container.deployModule('se.consid.poa~anmalan~0.1', poaConf);
