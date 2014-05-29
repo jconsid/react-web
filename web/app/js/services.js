@@ -27,6 +27,29 @@ angular.module('myApp.services', []).
       return promise;
     };
 
+    this.skickaTillPolisen = function(_id, _subject, _body, _user, fnDone) {
+      console.log('skicka till polisen service : '+_id);
+      console.log('skicka till polisen service: '+_subject);
+      console.log('skicka till polisen service: '+_body);
+      console.log('skicka till polisen service: '+_user);
+      var promise = $.Deferred();
+      var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+      eb.onopen = function() {
+      console.log('skicka till polisen till eventbus');
+        eb.send('skicka.till.polisen', {id: _id, username: _user, subject: _subject, body: _body},
+        function(reply) {
+          if (reply.status == "ok") {
+      console.log('skicka till polisen reply ok');
+            promise.resolve(reply);
+          } else {
+      console.log('skicka till polisen reply : '+reply.status);
+            promise.reject(reply);
+          }
+        });
+       };
+       return promise;
+    };
+
     this.save = function(anmalan) {
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       eb.onopen = function() {

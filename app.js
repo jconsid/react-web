@@ -98,11 +98,25 @@ container.deployModule('io.vertx~mod-auth-mgr~2.0.0-final', {"persistor_address"
 
 container.deployModule('io.vertx~mod-web-server~2.0.0-final', webServerConf);
 
+var mailerConf = {
+    "address": "test.my_mailer",
+    "host": "smtp.googlemail.com",
+    "port": 465,
+    "ssl": true,
+    "auth": true,
+    "username": "johan.joshua.hansson@gmail.com",
+    "password": "hanjo1234"
+ }
+
+// https://github.com/vert-x/mod-mailer
+container.deployModule('io.vertx~mod-mailer~2.0.0-final', mailerConf);
+
 var poaConf = {
 
     "skapaLoggmeddelande": {},
     "skickaTillPolisen":{
-        "email": "johan.hanson@consid.se"
+        "address": "test.my_mailer",
+        "fromEmail": "johan.hanson@consid.se"
     }
 
 }
