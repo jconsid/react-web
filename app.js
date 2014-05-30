@@ -43,6 +43,9 @@ var webServerConf = {
       address: 'skapa.loggmeddelande'
     },
     {
+      address: 'skicka.till.polisen'
+    },
+    {
       address: 'anmalan.uppdaterad'
     },
     {
@@ -104,8 +107,8 @@ var mailerConf = {
     "port": 465,
     "ssl": true,
     "auth": true,
-    "username": "johan.joshua.hansson@gmail.com",
-    "password": "hanjo1234"
+    "username": "<username>",
+    "password": "secret"
  }
 
 // https://github.com/vert-x/mod-mailer
