@@ -101,6 +101,10 @@
 			</div>
 
             <button ng-show="isLoggedIn" type="button" class="btn btn-primary"
+                    ng-click="skickaTillPolisen(loggedInUser)">
+                <span class="glyphicon glyphicon-envelope"></span> Skicka till Polisen
+            </button>
+            <!--button ng-show="isLoggedIn" type="button" class="btn btn-primary"
                     ng-click="startNewFile()"
                     ng-hide="showFieldsForNewFile">
                 <span class="glyphicon glyphicon-plus-sign"></span> Ladda upp bilaga
@@ -114,8 +118,8 @@
                         <div class="form-group">
                             <input ng-model="uploadfile" onchange="angular.element(this).scope().setNewFile(this)" type="file" class="form-control" />
                         </div>
-                        <!-- http://jsfiddle.net/vishalvasani/4hqVu/ -->
-                        <!--div id="dropbox" class="dropbox" ng-class="dropClass"><span>Drop files here...</span></div-->
+                        !-- http://jsfiddle.net/vishalvasani/4hqVu/ --
+                        !--div id="dropbox" class="dropbox" ng-class="dropClass"><span>Drop files here...</span></div--
                     </form>
 
                     <button type="button" class="btn btn-primary" ng-click="saveNewFile(uploadfile, loggedInUser)">
@@ -126,7 +130,7 @@
                         <span class="glyphicon glyphicon-remove"></span> Avbryt
                     </button>
                 </div>
-            </div>
+            </div-->
 
 			<br /><br />
 		</div>

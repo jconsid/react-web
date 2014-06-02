@@ -43,6 +43,9 @@ var webServerConf = {
       address: 'skapa.loggmeddelande'
     },
     {
+      address: 'skicka.till.polisen'
+    },
+    {
       address: 'anmalan.uppdaterad'
     },
     {
@@ -98,7 +101,29 @@ container.deployModule('io.vertx~mod-auth-mgr~2.0.0-final', {"persistor_address"
 
 container.deployModule('io.vertx~mod-web-server~2.0.0-final', webServerConf);
 
-container.deployModule('se.consid.poa~anmalan~0.1');
+var mailerConf = {
+    "address": "test.my_mailer",
+    "host": "smtp.googlemail.com",
+    "port": 465,
+    "ssl": true,
+    "auth": true,
+    "username": "<username>",
+    "password": "secret"
+ }
+
+// https://github.com/vert-x/mod-mailer
+container.deployModule('io.vertx~mod-mailer~2.0.0-final', mailerConf);
+
+var poaConf = {
+
+    "skapaLoggmeddelande": {},
+    "skickaTillPolisen":{
+        "address": "test.my_mailer",
+        "fromEmail": "johan.hanson@consid.se"
+    }
+
+}
+container.deployModule('se.consid.poa~anmalan~0.1', poaConf);
 // container.deployModule('com.consid.react~reactive-module~0.1');
 // container.deployModule('se.consid.reactive~OppnaAnmalan~0.1');
 // container.deployModule('se.consid.reactive~SearchLogger~0.1');

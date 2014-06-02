@@ -111,6 +111,18 @@ eb.send(pa, {action: 'delete', collection: 'anmalningar', matcher: {}}, function
       }
     });
 
+    eb.send(pa, {
+      action: 'save',
+      collection: 'users',
+      document: {
+        firstname: 'Johan',
+        lastname: 'Hanson',
+        email: 'johan.hanson@consid.se',
+        username: 'jhanso',
+        password: 'password'
+      }
+    });
+
   });
 });
 
