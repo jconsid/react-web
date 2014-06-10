@@ -3,7 +3,11 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('RegisterCtrl', [ '$scope', 'AnmalanService', function($scope, anmalanService) {
+  controller("MsgCtrl", function($scope, $location, flash) {
+    $scope.flash = flash;
+    $scope.message = "Hello World";
+  }).
+  controller('RegisterCtrl', [ '$scope', '$location', 'AnmalanService', 'flash', function($scope, $location, anmalanService, flash) {
       $scope.ticket = {
         reporter:"",
         subject:"",
@@ -19,8 +23,21 @@ angular.module('myApp.controllers', []).
       }
 
       $scope.saveAnmalan = function(anmalan) {
-        console.log(anmalan);
-        anmalanService.save(anmalan);
+        $.when(
+          anmalanService.save(anmalan)
+        ).done(
+          function(newId) {
+            flash.setMessage("Anmälan sparad");
+            $location.path("/anmalan/" + newId);
+            $scope.$apply();
+            // window.location.href="#/anmalan/" + newId;
+          }
+        ).fail(
+          function(reply) {
+            alert("Kunde inte spara anmälan\n" + reply);
+          }
+        )
+        
       }
     }
   ])
@@ -29,8 +46,8 @@ angular.module('myApp.controllers', []).
 
   }])
 
-  .controller('LoginCtrl', ['$scope', 'global', 'LoginService',
-    function($scope, global, loginService) {
+  .controller('LoginCtrl', ['$scope', 'global', 'LoginService', '$location', 'flash',
+    function($scope, global, loginService, $location, flash) {
 
       $scope.username = global.getUser();
       $scope.userLoggedIn = false;
@@ -51,7 +68,9 @@ angular.module('myApp.controllers', []).
         ).done(
           function() {
             loggedIn();
-            window.location.href="#/list";
+            flash.setMessage("Du är inloggad som " + $scope.username);
+            $location.path("/list");
+            $scope.$apply();
           }
         ).fail(
           function() {

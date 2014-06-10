@@ -3,6 +3,27 @@
 /* Services */
 
 angular.module('myApp.services', []).
+
+
+factory("flash", function($rootScope) {
+  var queue = [];
+  var currentMessage = "";
+
+  $rootScope.$on("$routeChangeSuccess", function() {
+    currentMessage = queue.shift() || "";
+  });
+
+  return {
+    setMessage: function(message) {
+      queue.push(message);
+    },
+    getMessage: function() {
+      return currentMessage;
+    }
+  };
+}).
+
+
   value('version', '0.1').
 
   service('EventBus', function() {
@@ -45,13 +66,20 @@ angular.module('myApp.services', []).
 
     this.save = function(anmalan) {
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+      var promise = $.Deferred();
       eb.onopen = function() {
         eb.send('test.mongodb', {'action': 'save', 'collection': 'anmalningar', 'document': anmalan},
         function(reply) {
+          if (reply.status == "ok") {
+            promise.resolve(reply._id);
+          } else {
+            promise.reject(reply);
+          }
           console.log('AnmalanService::save processing reply', reply);
           eb.close();
         });
       };
+      return promise;
     };
 
     this.addFile = function(_id, _file, _user, fnDone) {

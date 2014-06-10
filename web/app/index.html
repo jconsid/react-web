@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myApp" ng-controller="MsgCtrl">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,8 +31,11 @@
       </div>
     </div>
   </div>
-  
   <div class="container">
+    <div class="alert alert-success" ng-show="flash.getMessage()" style="margin-top:.3em">
+      <b>{{flash.getMessage()}}</b>
+    </div>
+
     <div ng-view></div>
   </div>
 
