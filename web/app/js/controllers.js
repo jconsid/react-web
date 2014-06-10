@@ -19,6 +19,7 @@ angular.module('myApp.controllers', []).
       }
 
       $scope.saveAnmalan = function(anmalan) {
+        console.log(anmalan);
         anmalanService.save(anmalan);
       }
     }
@@ -149,11 +150,14 @@ angular.module('myApp.controllers', []).
       $scope.findAnmalan = function() {
         var ticketCall = function(status, reply) {
           $scope.ticket = reply.results[0];
-          $scope.logMessages = reply.results[0].loggar;
+          console.log("reply", reply);
+          if (reply.results[0].loggar) {
+            $scope.logMessages = reply.results[0].loggar;
+          }
           $scope.$apply();
         };
 
-        var s = anmalanService.findOne(parseInt($routeParams.anmalanId),
+        var s = anmalanService.findOne($routeParams.anmalanId,
           $scope.loggedInUser,
           ticketCall
         );

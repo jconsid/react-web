@@ -87,7 +87,7 @@ angular.module('myApp.services', []).
     this.findOne = function(id, _user, fnOpen) {
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       eb.onopen = function() {
-        eb.send('test.mongodb', {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id}},
+        eb.send('test.mongodb', {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id + ""}},
         function(reply) {
           console.log('AnmalanService::findOne processing reply', reply);
           fnOpen.call(this, "ok", reply);

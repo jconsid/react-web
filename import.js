@@ -6,7 +6,7 @@ var pa = 'test.mongodb';
 
 var anmalningar = [
   {
-    _id: 1,
+    _id: '1',
     reporter: 'Léon Bourgeois',
     gadget: 'Black & decker planslip DUOSAND',
     subject: 'Stulen planslip',
@@ -14,7 +14,7 @@ var anmalningar = [
     currentPriceSEK: 450
   },
   {
-    _id: 2,
+    _id: '2',
     reporter: 'Aung San Suu Kyi',
     gadget: 'Motorsåg Husqvarna 536 Li XP',
     subject: 'Motorsåg plockad ur vertygsskjul',
@@ -22,7 +22,7 @@ var anmalningar = [
     currentPriceSEK: 7500
   },
   {
-    _id: 3,
+    _id: '3',
     reporter: 'Martti Ahtisaari',
     gadget: 'Motorkap Husqvarna K760',
     subject: 'Besindriven motorkap försvunnen',
@@ -30,7 +30,7 @@ var anmalningar = [
     currentPriceSEK: 6000
   },
   {
-    _id: 4,
+    _id: '4',
     reporter: 'Liu Xiaobo',
     gadget: 'Husqvarna 440 såg, 2,1 kW',
     subject: 'Motorsåg försvunnen...',
@@ -38,7 +38,7 @@ var anmalningar = [
     currentPriceSEK: 5500
   },
   {
-    _id: 5,
+    _id: '5',
     reporter: 'Wangari Maathai',
     gadget: 'Husqvarna RT422 Rider',
     subject: 'Gräsklippare på rymmen!',
@@ -46,7 +46,7 @@ var anmalningar = [
     currentPriceSEK: 89000
   },
   {
-    _id: 6,
+    _id: '6',
     reporter: 'Nelson M',
     gadget: 'Festool betongslip',
     subject: 'Borta eller bortslarvad',
@@ -54,7 +54,7 @@ var anmalningar = [
     currentPriceSEK: 4000
   },
   {
-    _id: 7,
+    _id: '7',
     reporter: 'Desmond Tutu ',
     gadget: 'Peltor hörselkåpor',
     subject: 'Hörselkåpor försvunna på Smirres',
@@ -62,7 +62,7 @@ var anmalningar = [
     currentPriceSEK: 1500
   },
   {
-    _id: 8,
+    _id: '8',
     reporter: 'Ellen Johnson-Sirleaf',
     gadget: 'Makita borrhammare',
     subject: 'En borrhammare av okänd modell stulen',
