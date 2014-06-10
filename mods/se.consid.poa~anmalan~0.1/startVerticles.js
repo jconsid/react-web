@@ -5,6 +5,7 @@ var container = require('vertx/container');
 var appConfig = container.config;
 
 container.deployVerticle('se.consid.poa.SkapaLoggmeddelande', appConfig.skapaLoggmeddelande);
+container.deployVerticle('se.consid.poa.SkickaTillPolisenController', appConfig.skickaTillPolisenController);
 container.deployVerticle('se.consid.poa.SkickaTillPolisen', appConfig.skickaTillPolisen);
 
 //container.deployVerticle('se.consid.reactive.ListenerTwo', appConfig.verticle2Config);
