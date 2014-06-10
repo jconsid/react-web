@@ -150,7 +150,6 @@ angular.module('myApp.controllers', []).
       $scope.findAnmalan = function() {
         var ticketCall = function(status, reply) {
           $scope.ticket = reply.results[0];
-          console.log("reply", reply);
           if (reply.results[0].loggar) {
             $scope.logMessages = reply.results[0].loggar;
           }
@@ -171,13 +170,11 @@ angular.module('myApp.controllers', []).
     $scope.systemEvents = [];
     $scope.update = function() {
       var s = anmalanService.findAll(function(status, reply) {
-        console.log("ListCtrl::reply status: ", status);
         $scope.tickets = reply;
         $scope.$apply();
       }, function(status, anmalanEvent) {
         console.log("callback", status, anmalanEvent);
         $scope.systemEvents.push(anmalanEvent);
-        console.log("callback", $scope.systemEvents);
         $scope.$apply();
       });
     };
