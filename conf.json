@@ -1,0 +1,19 @@
+{
+	"mailerConf" : {
+		"address": "test.my_mailer",
+		"host": "smtp.googlemail.com",
+		"port": 465,
+		"ssl": true,
+		"auth": true,
+		"username": "<username>",
+		"password": "secret"
+	},
+	"poaConf" : {
+		"skapaLoggmeddelande": {},
+		"skickaTillPolisenController":{},
+		"skickaTillPolisen":{
+			"address": "test.my_mailer",
+			"fromEmail": "johan.hanson@consid.se"
+		}
+	}
+}
