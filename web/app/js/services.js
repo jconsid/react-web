@@ -68,7 +68,7 @@ factory("flash", function($rootScope) {
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       var promise = $.Deferred();
       eb.onopen = function() {
-        eb.send('test.mongodb', {'action': 'save', 'collection': 'anmalningar', 'document': anmalan},
+        eb.send('skapa.anmalan', anmalan,
         function(reply) {
           if (reply.status == "ok") {
             promise.resolve(reply._id);
