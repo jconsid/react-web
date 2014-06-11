@@ -19,19 +19,22 @@
 
 			<dl class="dl-horizontal">
 			  <dt><h4 class="list-group-item-heading">Anmälan:</h4></dt>
-			  <dd><h4 class="list-group-item-heading">{{ticket.subject}} (id: {{ticket._id}})</h4></dd>
+			  <dd><h4 class="list-group-item-heading">{{ticket.titel}}</h4><span class="label label-default pull-right">{{ticket.anmalningsstatus}}</span></dd>
 
-			  <dt>Rapporterat av:</dt>
-			  <dd>{{ticket.reporter}}</dd>
+			  <dt>Anmälare:</dt>
+			  <dd>{{ticket.anmalare.firstname}} {{ticket.anmalare.lastname}}</dd>
 
-			  <dt>Pryl:</dt>
-			  <dd>{{ticket.gadget}}</dd>
+			  <dt>Målsägare:</dt>
+			  <dd>{{ticket.malsagare.organisation.namn}}</dd>
+
+			  <dt>Stulet objekt:</dt>
+			  <dd>{{ticket.stulnaObjekt.namn}} &nbsp;</dd>
 
 			  <dt>Beskrivning av händelse:</dt>
-			  <dd>{{ticket.description}}</dd>
+			  <dd>{{ticket.forlopp}} &nbsp;</dd>
 
-			  <dt>Pryl:</dt>
-			  <dd>{{ticket.gadget}}</dd>
+			  <dt>id:</dt>
+			  <dd style="color:#aaa">{{ticket._id}}</dd>			  
 			</dl>
 
 		</a>

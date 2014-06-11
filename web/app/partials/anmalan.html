@@ -2,49 +2,162 @@
 	<div class="col-sm-8">
 
 		<div class="partial">
-
-			<div class="well">
 				<div class="row">
 					<div class="col-md-3">
 						<h4>Anmälan:</h4>
 					</div>
 					<div class="col-md-9">
-						<h4>{{ticket.subject}}</h4>
+						<h4>{{ticket.titel}}</h4>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">
-						Rapporterat av:
+						Status:
 					</div>
 					<div class="col-md-9">
-						{{ticket.reporter}}
+						<span class="label label-default">{{ticket.anmalningsstatus}}</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">
-						Pryl:
+						Anmälare:
 					</div>
 					<div class="col-md-9">
-						{{ticket.gadget}}
+						{{ticket.anmalare.firstname}} {{ticket.anmalare.lastname}} ({{ticket.anmalare.email}})
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default" style="margin-top:.6em">
+  							<div class="panel-body">
+  								<b>Målsägare</b>
+  								<div class="row">
+									<div class="col-md-3">
+										Namn:
+									</div>
+									<div class="col-md-9">
+										{{ticket.malsagare.organisation.namn}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										Adress:
+									</div>
+									<div class="col-md-9">
+										{{ticket.malsagare.organisation.adress}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										Postnummer:
+									</div>
+									<div class="col-md-9">
+										{{ticket.malsagare.organisation.postnummer}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										Organisationsnummer:
+									</div>
+									<div class="col-md-9">
+										{{ticket.malsagare.organisation.orgnr}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										E-post:
+									</div>
+									<div class="col-md-9">
+										{{ticket.malsagare.organisation.epost}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										Försäkringsbolag:
+									</div>
+									<div class="col-md-9">
+										{{ticket.malsagare.organisation.forsakringsbolag}}
+									</div>
+								</div>
+
+
+  							</div>
+  						</div>
+					</div>
+				</div>
+
+				<div class="row" ng-repeat="so in ticket.stulnaObjekt">
+					<div class="col-md-12">
+						<div class="panel panel-default" style="margin-top:.6em">
+  							<div class="panel-body">
+  								<b>Stulet objekt</b>
+  								<div class="row">
+									<div class="col-md-3">
+										Namn:
+									</div>
+									<div class="col-md-9">
+										{{so.namn}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										Beskrivning:
+									</div>
+									<div class="col-md-9">
+										{{so.beskrivning}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										Typ:
+									</div>
+									<div class="col-md-9">
+										{{so.typ}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										Stöldmärkning:
+									</div>
+									<div class="col-md-9">
+										{{so.stoldmarkning}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										Maskin-id:
+									</div>
+									<div class="col-md-9">
+										{{so.maskinId}}
+									</div>
+								</div>
+  							</div>
+  						</div>
+					</div>
+				</div>
+
 				<div class="row">
 					<div class="col-md-3">
-						Beskrivning av händelse:
+						Förlopp:
 					</div>
 					<div class="col-md-9">
-						{{ticket.description}}
+						{{ticket.forlopp}}
 					</div>
 				</div>
+
+
+
+
 				<div class="row">
 					<div class="col-md-3">
-						Värde (SEK):
+						Stulet objekt:
 					</div>
 					<div class="col-md-9">
-						{{ticket.currentPriceSEK}}
+						{{ticket.stulnaObjekt.namn}}
 					</div>
 				</div>
-			</div>
+			
 
 			<div ng-show="logMessages.length" class="list-group">
 				<div class="list-group-item active" style="background:#f2f2f2">
