@@ -6,9 +6,10 @@ var pa = 'test.mongodb';
 
 var anmalningar = [
 	{
-		anmalningsstatus: '',
+    titel: 'Försvunnen borrhammare',
+		anmalningsstatus: 'SKAPAD',
 		ovrigastatusar: '',
-		ovrigt: '',
+		ovrigt: 'övrigt',
 		anmalare: {
 			firstname: 'Johan',
 			lastname: 'Johansson',
@@ -28,11 +29,11 @@ var anmalningar = [
 		},
 		stulnaObjekt: [
 			{
-				namn: '',
-				beskrivning: '',
-				typ: '',
-				stoldmarkning: '',
-				maskinId: ''
+				namn: 'Makita borrhammare',
+				beskrivning: 'blå å fin',
+				typ: 'HKJ2',
+				stoldmarkning: 'Nej',
+				maskinId: '3287642'
 			}
 		],
 		tidOchPlats: {
@@ -41,11 +42,11 @@ var anmalningar = [
 			adress: '',
 			postnr: ''
 		},
-		forlopp: '',
+		forlopp: 'Förlopp här',
 		loggbok: [
 			{
-				rubrik: '',
-				meddelande: '',
+				rubrik: 'Hej',
+				meddelande: 'test-meddelande',
 				tid: '',
 				person: {
 					firstname: 'Johan',
