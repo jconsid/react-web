@@ -59,11 +59,11 @@ factory("flash", function($rootScope) {
       return promise;
     };
 
-    this.skickaTillPolisen = function(_id, _subject, _body, _user, fnDone) {
+    this.skickaTillPolisen = function(_id, _title, _user, fnDone) {
       var promise = $.Deferred();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       eb.onopen = function() {
-        eb.send('skicka.till.polisen', {id: _id, username: _user, subject: _subject, body: _body},
+        eb.send('skicka.till.polisen', {id: _id, username: _user, title: _title},
         function(reply) {
           if (reply.status == "ok") {
             promise.resolve(reply);

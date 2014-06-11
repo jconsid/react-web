@@ -129,14 +129,14 @@ angular.module('myApp.controllers', []).
       $scope.abortNew = function() {
         $scope.showFieldsForNew = false;
       }
-      $scope.skickaTillPolisen = function(_user) {
+      $scope.skickaTillPolisen = function( _user) {
             console.log("Skicka till polisen");
           $.when(
-              ts.skickaTillPolisen($scope.ticket._id, $scope.ticket.subject, $scope.ticket.description, _user))
+              anmalanService.skickaTillPolisen($scope.ticket._id, $scope.ticket.titel, _user))
             .done(
               function(reply) {
                 console.log('skickaTillPolisen ok', reply);
-                $scope.findTicket();
+                $scope.findAnmalan();
               }
             ).fail(
               function(reply) {
