@@ -31,7 +31,17 @@ factory("flash", function($rootScope) {
     return eb;
   }).
 
-  service('AnmalanService', [function() {
+  service('AuthService', [function() {
+    this.getPerson = function() {
+      return {
+        firstname: "(Walle)",
+        lastname: "(Web)",
+        email: "ww@www.org"
+      };
+    }
+  }]).
+
+  service('AnmalanService', ['AuthService', function(authService) {
     this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
       var promise = $.Deferred();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
@@ -64,11 +74,11 @@ factory("flash", function($rootScope) {
        return promise;
     };
 
-    this.save = function(anmalan) {
+    this.save = function(_anmalan) {
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       var promise = $.Deferred();
       eb.onopen = function() {
-        eb.send('skapa.anmalan', anmalan,
+        eb.send('skapa.anmalan', {skapadAv: authService.getPerson(), anmalan: _anmalan},
         function(reply) {
           if (reply.status == "ok") {
             promise.resolve(reply._id);

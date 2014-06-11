@@ -169,7 +169,8 @@ angular.module('myApp.controllers', []).
       $scope.findAnmalan = function() {
         var ticketCall = function(status, reply) {
           $scope.ticket = reply.results[0];
-          if (reply.results[0].loggar) {
+          if (reply.results[0].loggbok) {
+            console.log("kolla loggbok", reply.results[0]);
             $scope.logMessages = reply.results[0].loggbok;
           }
           $scope.$apply();
