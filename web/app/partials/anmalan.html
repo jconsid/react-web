@@ -165,7 +165,8 @@
 				</div>
 				<div ng-repeat="log in logMessages"
 					class="list-group-item list-animation">
-					<h4>{{log.meddelande}}</h4>
+					<h4>{{log.rubrik}}</h4>
+					<p>{{log.meddelande}} <span style="color:#999">av {{log.person.firstname}} {{log.person.lastname}}</span></p>
 				</div>
 				
 			</div>
