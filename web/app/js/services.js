@@ -32,9 +32,10 @@ factory("flash", function($rootScope) {
   }).
 
   service('AuthService', [function() {
-    this.getPerson = function() {
+    this.getPerson = function(username) {
+      username = username || "(Walle)";
       return {
-        firstname: "(Walle)",
+        firstname: username,
         lastname: "(Web)",
         email: "ww@www.org"
       };
@@ -46,7 +47,7 @@ factory("flash", function($rootScope) {
       var promise = $.Deferred();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
         eb.onopen = function() {
-            eb.send('skapa.loggmeddelande', {id: _id, username: _user, subject: _subject, body: _body},
+            eb.send('skapa.loggmeddelande', {id: _id, skapadAv: authService.getPerson(_user), subject: _subject, body: _body},
             function(reply) {
               if (reply.status == "ok") {
                 promise.resolve(reply);
