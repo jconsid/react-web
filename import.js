@@ -4,7 +4,7 @@ var eb = vertx.eventBus;
 
 var pa = 'test.mongodb';
 
-var tickets = [
+var anmalningar = [
 	{
 		anmalningsstatus: '',
 		ovrigastatusar: '',
@@ -44,6 +44,7 @@ var tickets = [
 		forlopp: '',
 		loggbok: [
 			{
+				rubrik: '',
 				meddelande: '',
 				tid: '',
 				person: {
@@ -143,15 +144,15 @@ var organisations = [
 
 // First delete everything
 
-eb.send(pa, {action: 'delete', collection: 'tickets', matcher: {}}, function(reply) {
+eb.send(pa, {action: 'delete', collection: 'anmalningar', matcher: {}}, function(reply) {
 	eb.send(pa, {action: 'delete', collection: 'users', matcher: {}}, function(reply) {
 		eb.send(pa, {action: 'delete', collection: 'organisations', matcher: {}}, function(reply) {
 			// Insert albums - in real life price would probably be stored in a different collection, but, hey, this is a demo.
-			for (var i = 0; i < tickets.length; i++) {
+			for (var i = 0; i < anmalningar.length; i++) {
 				eb.send(pa, {
 					action: 'save',
-					collection: 'tickets',
-					document: tickets[i]
+					collection: 'anmalningar',
+					document: anmalningar[i]
 				});
 			}
 			
