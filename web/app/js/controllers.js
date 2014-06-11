@@ -170,7 +170,7 @@ angular.module('myApp.controllers', []).
         var ticketCall = function(status, reply) {
           $scope.ticket = reply.results[0];
           if (reply.results[0].loggar) {
-            $scope.logMessages = reply.results[0].loggar;
+            $scope.logMessages = reply.results[0].loggbok;
           }
           $scope.$apply();
         };
