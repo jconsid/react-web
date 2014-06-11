@@ -170,7 +170,6 @@ angular.module('myApp.controllers', []).
         var ticketCall = function(status, reply) {
           $scope.ticket = reply.results[0];
           if (reply.results[0].loggbok) {
-            console.log("kolla loggbok", reply.results[0]);
             $scope.logMessages = reply.results[0].loggbok;
           }
           $scope.$apply();
@@ -188,13 +187,30 @@ angular.module('myApp.controllers', []).
   .controller('ListCtrl', ['$scope', 'AnmalanService', function($scope, anmalanService) {
     $scope.tickets = [];
     $scope.systemEvents = [];
+    $scope.toPresentation = function(anmalan) {
+      var lasthandelse = anmalan.handelser[anmalan.handelser.length - 1];
+      var typDesc = "uppdaterad";
+      if (lasthandelse.typ == "logg") {
+        typDesc += " med loggmeddelande"
+      } else if (lasthandelse.typ == "skapad") {
+        typDesc = " skapad"
+      }
+      return {
+        titel: anmalan.titel,
+        av: lasthandelse.person.firstname + " " + lasthandelse.person.lastname,
+        anmalanId: anmalan._id,
+        typ: typDesc
+      }
+    }
     $scope.update = function() {
       var s = anmalanService.findAll(function(status, reply) {
         $scope.tickets = reply;
         $scope.$apply();
       }, function(status, anmalanEvent) {
-        console.log("callback", status, anmalanEvent);
-        $scope.systemEvents.push(anmalanEvent);
+        var h = $scope.toPresentation(anmalanEvent)
+        console.log("callback handelse", status, anmalanEvent, h);
+
+        $scope.systemEvents.push(h);
         $scope.$apply();
       });
     };
