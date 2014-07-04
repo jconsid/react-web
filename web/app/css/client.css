@@ -1,9 +1,17 @@
- textarea:focus, input:focus{
+body {
+  padding-top: 80px;
+}
+textarea:focus, input:focus{
     outline: 0;
 }
 *:focus {
     outline: 0;
 }
+
+.well.poa-form {
+  border-radius: 2px;  
+}
+
 
 /* app css stylesheet */
 div.top-nav {
