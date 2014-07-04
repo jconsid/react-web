@@ -1,0 +1,83 @@
+<form role="form">
+  <div class="well poa-form">
+    <fieldset>
+    <legend>Anmälare</legend>
+	<div class="form-group">
+    	<label for="exampleInputEmail1">Email address</label>
+    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  	</div>
+  	</fieldset>
+  </div>
+
+  <div class="well poa-form">
+    <fieldset>
+	    <legend>Målsägare</legend>
+		<div class="form-group">
+	    	<label>Namn</label><br>
+	    	{{anmalan.malsagare.organisation.namn}}
+		</div>
+		<div class="form-group">
+	    	<label>Adress</label><br>
+	    	{{anmalan.malsagare.organisation.adress}}
+		</div>
+		<div class="form-group">
+	    	<label>Postnummer</label><br>
+	    	{{anmalan.malsagare.organisation.postnr}}
+	    </div>
+		<div class="form-group">
+	    	<label>Organisationsnummer</label><br>
+	    	{{anmalan.malsagare.organisation.orgnr}}
+		</div>
+		<div class="form-group">
+	    	<label>E-post</label><br>
+	    	{{anmalan.malsagare.organisation.epost}}
+	  	</div>
+	  	<div class="form-group">
+	    	<label>Försäkringsbolag</label><br>
+	    	<input type="text" class="form-control" id="forl" ng-model="anmalan.malsagare.forsakringsbolag">
+	  	</div>
+	  	<div class="form-group">
+	    	<label>Forsäkringsnummer</label><br>
+	    	<input type="text" class="form-control" id="forl" ng-model="anmalan.malsagare.forsakringsnummer">
+	  	</div>
+  	</fieldset>
+  </div>
+
+  <div class="well poa-form">
+    <fieldset>
+    <legend>Information</legend>
+	<div class="form-group">
+    	<label for="forl">Förlopp</label>
+    	<input type="text" class="form-control" id="forl" ng-model="anmlan.forlopp">
+  	</div>
+  	</fieldset>
+  </div>
+
+  <div class="well poa-form">
+    <fieldset>
+    <legend>Stulet objekt</legend>
+	<div class="form-group">
+    	<label for="exampleInputEmail1">Email address</label>
+    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  	</div>
+  	</fieldset>
+  </div>
+
+  <div class="well poa-form">
+    <fieldset>
+    <legend>Mer information</legend>
+	<div class="form-group">
+    	<label for="exampleInputEmail1">Förlopp</label>
+    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  	</div>
+  	</fieldset>
+  </div>
+
+<button type="button" class="btn btn-primary" ng-click="saveAnmalan(anmalan)">
+<span class="glyphicon glyphicon-save"></span> Spara
+</button>
+<div class='fl_wrap'>
+  <p>Fält markerade med * är obligatoriska</p>
+</div>
+
+</form>

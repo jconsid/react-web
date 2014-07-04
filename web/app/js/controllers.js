@@ -8,23 +8,36 @@ angular.module('myApp.controllers', []).
     $scope.message = "Hello World";
   }).
   controller('RegisterCtrl', [ '$scope', '$location', 'AnmalanService', 'flash', 'PersonService', function($scope, $location, anmalanService, flash, personService) {
-      $scope.person = personService.getPerson();
-
-      $scope.ticket = {
-        reporter:"",
-        subject:"",
-        gadget:"",
-        currentPriceSEK:"",
-        description:""
-      };
-    
-      $scope.setup = function() {
-        $('.FlowupLabels').FlowupLabels({
-            feature_onInitLoad: false
-          });
+      $scope.userLoggedIn = personService.isInitialized();
+      if (!$scope.userLoggedIn) {
+        flash.setMessage("Logga först, för att skapa en anmälan");
+        $location.path("/login/");
+        $scope.$apply();
+        return;
       }
 
+      $scope.anmalan = anmalanService.newAnmalanInstance(
+        personService.getPerson(),
+        personService.getOrganisation()
+      );
+      
+    
+      $scope.setupNewStuletObjekt = function (){
+        $scope.newStuletObjekt = {
+          namn: null,
+          beskrivning: null,
+          typ: null,
+          stoldmarkning: 'Nej',
+          maskinId: null
+        }
+        $scope.anmalan.stulnaObjekt.push($scope.newStuletObjekt);
+      }
+
+      $scope.setupNewStuletObjekt();
+
       $scope.saveAnmalan = function(anmalan) {
+        alert(JSON.stringify(anmalan));
+        return;
         $.when(
           anmalanService.save(anmalan)
         ).done(
@@ -37,15 +50,10 @@ angular.module('myApp.controllers', []).
           function(reply) {
             alert("Kunde inte spara anmälan\n" + reply);
           }
-        )
-        
+        );
       }
     }
   ])
-
-  .controller('AdminLogCtrl', [function() {
-
-  }])
 
   .controller('LoginCtrl', ['$scope', 'LoginService', '$location', 'flash', 'PersonService',
     function($scope, loginService, $location, flash, personService) {
@@ -74,7 +82,7 @@ angular.module('myApp.controllers', []).
       };
 
       $scope.logout = function() {
-        global.setUser(null);
+        personService.kill();
       };    
   }])
 

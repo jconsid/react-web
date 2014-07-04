@@ -32,6 +32,109 @@ factory("flash", function($rootScope) {
   }).
 
   service('AnmalanService', ['PersonService', function(personService) {
+    this.newAnmalanInstance = function(person, _organisation) {
+      var emptyInstance = {
+        titel: 'Försvunnen borrhammare',
+        anmalningsstatus: 'NY',
+        ovrigastatusar: null,
+        ovrigt: null,
+        forlopp: null,
+        anmalare: {
+          firstname: person.firstname,
+          lastname: person.lastname,
+          email: person.email
+        },
+        malsagare: {
+          organisation: {
+            _id: _organisation._id,
+            namn: _organisation.namn,
+            adress: _organisation.adress,
+            postnr: _organisation.postnr,
+            orgnr: _organisation.orgnr,
+            epost: _organisation.epost
+          },
+          forsakringsbolag: null,
+          forsakringsnummer: null
+        },
+        stulnaObjekt: [],
+        tidOchPlats: {
+          tid: null,
+          tidSenastLamnad: null,
+          adress: null,
+          postnr: null
+        },
+        loggbok: [],
+        handelser: []
+      }
+
+  /*
+  {
+      titel: 'Försvunnen borrhammare',
+      anmalningsstatus: 'SKAPAD',
+      ovrigastatusar: '',
+      ovrigt: 'övrigt',
+      anmalare: {
+        firstname: 'Johan',
+        lastname: 'Johansson',
+        email: 'jj@ncc.se'
+      },
+      malsagare: {
+        organisation: {
+          _id: 1,
+          namn: 'NCC Construction Sverige AB',
+          adress: 'Klubbhusgatan 15',
+          postnr: '553 03 Jönköping',
+          orgnr: '123456789',
+          epost: 'info@ncc.se'
+        },
+        forsakringsbolag: '',
+        forsakringsnummer: ''
+      },
+      stulnaObjekt: [
+        {
+          namn: 'Makita borrhammare',
+          beskrivning: 'blå å fin',
+          typ: 'HKJ2',
+          stoldmarkning: 'Nej',
+          maskinId: '3287642'
+        }
+      ],
+      tidOchPlats: {
+        tid: '',
+        tidSenastLamnad: '',
+        adress: '',
+        postnr: ''
+      },
+      forlopp: 'Förlopp här',
+      loggbok: [
+        {
+          rubrik: 'Hej',
+          meddelande: 'test-meddelande',
+          tid: '',
+          person: {
+            firstname: 'Johan',
+            lastname: 'Johansson',
+            email: 'jj@ncc.se',
+          }
+        }
+      ],
+      handelser: [
+        {
+          typ: '',
+          tid: '',
+          person: {
+            firstname: 'Johan',
+            lastname: 'Johansson',
+            email: 'jj@ncc.se'
+          }
+        }
+      ]
+    }
+  */
+      return emptyInstance;
+    }
+
+
     this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
       var promise = $.Deferred();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
@@ -228,6 +331,9 @@ factory("flash", function($rootScope) {
           return null;
         }
         return persistentStorage.get('personAggr').organisation;
+      };
+      this.kill = function() {
+        persistentStorage.get('personAggr', null);
       };
       this.isInitialized = function() {
         return persistentStorage.get('personAggr') != null;
