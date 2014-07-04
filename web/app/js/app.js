@@ -16,7 +16,6 @@ angular.module('myApp', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/list', {templateUrl: 'partials/list.html', controller: 'ListCtrl'});
   $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: 'RegisterCtrl'});
-  $routeProvider.when('/loglist', {templateUrl: 'partials/loglist.html', controller: 'AdminLogCtrl'});
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
   $routeProvider.when('/anmalan/:anmalanId', {templateUrl: 'partials/anmalan.html', controller: 'AnmalanCtrl'});
   $routeProvider.otherwise({redirectTo: '/list'});
