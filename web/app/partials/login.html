@@ -1,30 +1,30 @@
-<div class="row" ng-hide="userLoggedIn">
-	<div class="col-md-offset-2 col-md-6">
-		<div class="login-panel" id="logPnl1" >
-	      <form role="form">
-	        <div class="form-group">
-
-	          <input type="text" ng-model="username" class="form-control" id="uname" placeholder="Användarnamn" />
-
-	        </div>
-	        <div class="form-group">
-
-	          <input type="password" ng-model="password"
-	          	class="form-control" id="passwd" placeholder="Lösenord" />
-	        </div>
-	        <div class="form-group" style="text-align:center">
-	          <button type="button" class="btn btn-default" ng-click="login()"
-	          style="width:100%; margin-bottom:2em">Ok</button>
-	          <a href="#" ng-click="logout()" style="color:white">Log out</button>
-	        </div>
-	      </form>
-    	</div>
-    </div>
+<div class="alert alert-info" ng-show="userLoggedIn">
+    <strong>Du är redan inloggad</strong><p>Du är inloggad som {{fullName}} ({{username}}) och behöver inte logga in igen, men kan göra så om du vill byta användare.</p>
 </div>
-<div class="row" ng-show="userLoggedIn">
-	<div class="col-md-offset-3 col-md-4">
-	    <div class="login-panel">
-		      <p>Du är inloggad</p>
+
+<div class="well poa-form">
+	<form class="form-horizontal">
+	  <fieldset>
+	    <legend>Logga in</legend>
+	    <div class="form-group">
+	      <label for="inputEmail" class="col-lg-2 control-label">Användarnamn</label>
+	      <div class="col-lg-10">
+	      	<input type="text" ng-model="username" class="form-control" id="uname" />
+	      </div>
 	    </div>
-    </div>
+	    <div class="form-group">
+	      <label for="inputPassword" class="col-lg-2 control-label">Lösenord</label>
+	      <div class="col-lg-10">
+	      	<input type="password" ng-model="password" class="form-control" id="passwd" />
+	      </div>
+	    </div>
+	    
+	    <div class="form-group">
+	      <div class="col-lg-10 col-lg-offset-2">
+	        <button type="submit" class="btn btn-primary" ng-click="login()">Ok</button>
+		    <button type="button" class="btn btn-default" ng-click="logout()">Logga ut</button>
+	      </div>
+	    </div>
+	  </fieldset>
+	</form>
 </div>

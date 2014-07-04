@@ -7,8 +7,8 @@ angular.module('myApp.controllers', []).
     $scope.flash = flash;
     $scope.message = "Hello World";
   }).
-  controller('RegisterCtrl', [ '$scope', '$location', 'AnmalanService', 'flash', 'AuthService', function($scope, $location, anmalanService, flash, authService) {
-      $scope.person = authService.getPerson();
+  controller('RegisterCtrl', [ '$scope', '$location', 'AnmalanService', 'flash', 'PersonService', function($scope, $location, anmalanService, flash, personService) {
+      $scope.person = personService.getPerson();
 
       $scope.ticket = {
         reporter:"",
@@ -32,7 +32,6 @@ angular.module('myApp.controllers', []).
             flash.setMessage("Anmälan sparad");
             $location.path("/anmalan/" + newId);
             $scope.$apply();
-            // window.location.href="#/anmalan/" + newId;
           }
         ).fail(
           function(reply) {
@@ -48,31 +47,24 @@ angular.module('myApp.controllers', []).
 
   }])
 
-  .controller('LoginCtrl', ['$scope', 'global', 'LoginService', '$location', 'flash',
-    function($scope, global, loginService, $location, flash) {
-
-      $scope.username = global.getUser();
-      $scope.userLoggedIn = false;
-
-      var loggedIn=function() {
-
-        $scope.userLoggedIn = true;
-        global.setUser($scope.username);
-        $scope.$apply();
-
-        $scope.username = global.getUser();
-        $scope.$apply();
+  .controller('LoginCtrl', ['$scope', 'LoginService', '$location', 'flash', 'PersonService',
+    function($scope, loginService, $location, flash, personService) {
+      $scope.username = personService.getUsername();
+      $scope.userLoggedIn = personService.isInitialized();
+      if($scope.userLoggedIn) {
+        $scope.fullName = personService.getPerson().firstname + " " + personService.getPerson().lastname; 
       }
+      console.log($scope.username, $scope.fullName);
 
       $scope.login = function() {
         $.when(
           loginService.login($scope.username, $scope.password)
         ).done(
-          function() {
-            loggedIn();
-            flash.setMessage("Du är inloggad som " + $scope.username);
-            $location.path("/list");
-            $scope.$apply();
+          function(person) {
+            flash.setMessage("Du är inloggad som " + person.firstname + " " + person.lastname + "(" + $scope.username + ")");
+            console.log("Inloggad", person);
+            // $location.path("/list");
+            // $scope.$apply();
           }
         ).fail(
           function() {
@@ -87,8 +79,8 @@ angular.module('myApp.controllers', []).
   }])
 
 
-  .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'global',
-    function($scope, anmalanService, $routeParams, global) {
+  .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'PersonService',
+    function($scope, anmalanService, $routeParams, personService) {
       $scope.showFieldsForNew = false;
       $scope.isLoggedIn = false;
       $scope.ticket = {};
@@ -99,9 +91,9 @@ angular.module('myApp.controllers', []).
       var latestLogMessageLogTime = 0;
       var msgCount = 0;
 
-      if (global.isAuth()) {
+      if (personService.isInitialized()) {
         $scope.isLoggedIn = true;
-        $scope.loggedInUser = global.getUser();
+        $scope.loggedInUser = personService.getUsername();
       }
 
       $scope.startNew = function() {

@@ -31,23 +31,12 @@ factory("flash", function($rootScope) {
     return eb;
   }).
 
-  service('AuthService', [function() {
-    this.getPerson = function(username) {
-      username = username || "(Walle)";
-      return {
-        firstname: username,
-        lastname: "(Web)",
-        email: "ww@www.org"
-      };
-    }
-  }]).
-
-  service('AnmalanService', ['AuthService', function(authService) {
+  service('AnmalanService', ['PersonService', function(personService) {
     this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
       var promise = $.Deferred();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
         eb.onopen = function() {
-            eb.send('skapa.loggmeddelande', {id: _id, skapadAv: authService.getPerson(_user), subject: _subject, body: _body},
+            eb.send('skapa.loggmeddelande', {id: _id, skapadAv: personService.getUsername(), subject: _subject, body: _body},
             function(reply) {
               if (reply.status == "ok") {
                 promise.resolve(reply);
@@ -63,7 +52,7 @@ factory("flash", function($rootScope) {
       var promise = $.Deferred();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       eb.onopen = function() {
-        eb.send('skicka.till.polisen', {id: _id, skapadAv: authService.getPerson(_user), title: _title},
+        eb.send('skicka.till.polisen', {id: _id, skapadAv: personService.getUsername(), title: _title},
         function(reply) {
           if (reply.status == "ok") {
             promise.resolve(reply);
@@ -79,7 +68,7 @@ factory("flash", function($rootScope) {
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       var promise = $.Deferred();
       eb.onopen = function() {
-        eb.send('skapa.anmalan', {skapadAv: authService.getPerson(), anmalan: _anmalan},
+        eb.send('skapa.anmalan', {skapadAv: personService.getUsername(), anmalan: _anmalan},
         function(reply) {
           if (reply.status == "ok") {
             promise.resolve(reply._id);
@@ -165,26 +154,19 @@ factory("flash", function($rootScope) {
       }
     }]).
 
-    service('global', function($cookieStore, $location, $filter) {
-      var globalService = {};
-      globalService.user = null;
-      globalService.isAuth = function (){
-        if (globalService.user == null) {
-          globalService.user = $cookieStore.get('user');
+    service('PersistentStorage', function($cookieStore) {
+      var storage = {};
+      storage.set = function(_attr, value) {
+        if (value == null) {
+          $cookieStore.remove(_attr);
+        } else {
+          $cookieStore.put(_attr, value);
         }
-        return (globalService.user != null);
       };
-      globalService.setUser = function(newUser) {
-        globalService.user = newUser;
-        if (globalService.user == null)
-          $cookieStore.remove('user');
-        else
-          $cookieStore.put('user', globalService.user);
+      storage.get = function(_attr) {
+        return $cookieStore.get(_attr);
       };
-      globalService.getUser = function() {
-        return globalService.user;
-      };
-      return globalService;
+      return storage;
     }).
 
     service('TimeDisplayService', [function() {
@@ -228,18 +210,85 @@ factory("flash", function($rootScope) {
       }
     }]).
 
-    service('LoginService', ['EventBus', function(eb) {
+    service('PersonService', ['PersistentStorage', function(persistentStorage) {
+      this.getUsername = function() {
+        if (!this.isInitialized()) {
+          return null;
+        }
+        return persistentStorage.get('personAggr').username;
+      };
+      this.getPerson = function() {
+        if (!this.isInitialized()) {
+          return null;
+        }
+        return persistentStorage.get('personAggr').person;
+      };
+      this.getOrganisation = function() {
+        if (!this.isInitialized()) {
+          return null;
+        }
+        return persistentStorage.get('personAggr').organisation;
+      };
+      this.isInitialized = function() {
+        return persistentStorage.get('personAggr') != null;
+      };
+      this.initPersonData = function(_username, eventbus) {
+        var personAggregate = {};
+        personAggregate['username'] = _username;
+        var promise = $.Deferred();
+        console.log('PersonService::findPersonData requesting', _username);
+
+        eventbus.send('test.mongodb', {'action': 'find', 'collection': 'users', matcher: {'username': _username}},
+          function(reply) {
+            console.log('PersonService::findPersonData processing person', reply);
+            if (reply.results.length === 1) {
+              var organisationId = reply.results[0].organisationId;
+              personAggregate['person'] = reply.results[0];
+              if (!organisationId)  {
+                console.log('PersonService::findPersonData processing organisation', reply);
+                promise.reject("Person saknar organisationskoppling");
+              } else {
+
+                eventbus.send('test.mongodb', {'action': 'find', 'collection': 'organisations', matcher: {'_id': organisationId}},
+                  function(reply) {
+                    console.log('PersonService::findPersonData processing organisation', reply);
+                    personAggregate['organisation'] = reply.results[0];
+                    persistentStorage.set('personAggr', personAggregate);
+                    promise.resolve(personAggregate);
+                    eventbus.close();
+                  });
+              }
+
+            } else {
+              promise.reject("Person existerar inte");
+            }
+          });
+          return promise;
+        }
+      }
+    ]).
+    service('LoginService', ['EventBus', 'PersonService', function(eb, personService) {
       this.login = function(username, password) {
-      var promise = $.Deferred();
-      eb.login(username, password,
-        function (reply) {
-          if (reply.status === 'ok') {
-            promise.resolve();
-          } else {
-            promise.reject();
-          }
-        });
-      return promise;
+        var promise = $.Deferred();
+        eb.login(username, password,
+          function (reply) {
+            if (reply.status === 'ok') {
+              $.when(
+                personService.initPersonData(username, eb)
+              ).done(
+                function(personAggregate) {
+                  promise.resolve(personAggregate);
+                }
+              ).fail(
+                function(msg) {
+                  promise.reject(msg);
+                }
+              );
+            } else {
+              promise.reject("Ogiltigt användarnamn eller lösenord");
+            }
+          });
+        return promise;
       }
     }
   ]);
