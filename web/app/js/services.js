@@ -63,7 +63,7 @@ factory("flash", function($rootScope) {
       var promise = $.Deferred();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       eb.onopen = function() {
-        eb.send('skicka.till.polisen', {id: _id, username: _user, title: _title},
+        eb.send('skicka.till.polisen', {id: _id, skapadAv: authService.getPerson(_user), title: _title},
         function(reply) {
           if (reply.status == "ok") {
             promise.resolve(reply);
