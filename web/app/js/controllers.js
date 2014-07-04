@@ -20,9 +20,9 @@ angular.module('myApp.controllers', []).
         personService.getPerson(),
         personService.getOrganisation()
       );
-      
+      $scope.username = personService.getUsername();
     
-      $scope.setupNewStuletObjekt = function (){
+      $scope.setupNewStuletObjekt = function () {
         $scope.newStuletObjekt = {
           namn: null,
           beskrivning: null,
@@ -36,8 +36,7 @@ angular.module('myApp.controllers', []).
       $scope.setupNewStuletObjekt();
 
       $scope.saveAnmalan = function(anmalan) {
-        alert(JSON.stringify(anmalan));
-        return;
+        
         $.when(
           anmalanService.save(anmalan)
         ).done(

@@ -1,13 +1,27 @@
 <form role="form">
   <div class="well poa-form">
-    <fieldset>
-    <legend>Anmälare</legend>
-	<div class="form-group">
-    	<label for="exampleInputEmail1">Email address</label>
-    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-  	</div>
-  	</fieldset>
-  </div>
+	    <fieldset>
+		    <legend>Skapa anmälan</legend>
+			<div class="form-group">
+		    	<label for="titl">Övergripande titel för anmälan</label><br>
+		    	<input type="text" class="form-control" id="titl" ng-model="anmalan.titel">
+			</div>
+		</fieldset>
+	</div>
+
+	<div class="well poa-form">
+	    <fieldset>
+		    <legend>Anmälare</legend>
+		    <div class="form-group">
+				<label>Namn</label><br>
+				{{anmalan.anmalare.firstname}} {{anmalan.anmalare.lastname}} <span style="color:#888">({{username}})</span>
+			</div>
+			<div class="form-group">
+				<label>E-post</label><br>
+				{{anmalan.anmalare.email}}
+			</div>
+	  	</fieldset>
+	  </div>
 
   <div class="well poa-form">
     <fieldset>
@@ -32,52 +46,103 @@
 	    	<label>E-post</label><br>
 	    	{{anmalan.malsagare.organisation.epost}}
 	  	</div>
+	  	<div class="row">
+	    	<div class="col-md-8">
+			  	<div class="form-group">
+			    	<label for="forsb">Försäkringsbolag</label><br>
+			    	<input type="text" class="form-control" id="forsb" ng-model="anmalan.malsagare.forsakringsbolag">
+			  	</div>
+			  	<div class="form-group">
+			    	<label for="fornr">Forsäkringsnummer</label><br>
+			    	<input type="text" class="form-control" id="fornr" ng-model="anmalan.malsagare.forsakringsnummer">
+			  	</div>
+	  		</div>
+	  	</div>
+  	</fieldset>
+  </div>
+
+  <div class="well poa-form">
+    <fieldset>
+	    <legend>Information om händelse</legend>
+		<div class="form-group">
+	    	<label for="forl">Förlopp</label>
+	    	<textarea ng-model="anmlan.forlopp" class="form-control"
+								id="forl"></textarea>
+	  	</div>
+		<div class="row">
+	      <div class="col-md-8">
+		  	<div class="form-group">
+		    	<label for="tid">Tidpunkt för händelse</label>
+		    	<input type="text" class="form-control" id="tid" ng-model="anmlan.tidOchPlats.tid">
+		  	</div>
+
+		  	<div class="form-group">
+		    	<label for="tsl">Tidpunkt då platsen lämnades (datum och klockslag)</label>
+		    	<input type="text" class="form-control" id="tsl" ng-model="anmlan.tidOchPlats.tidSenastLamnad">
+		  	</div>
+		  </div>
+		</div>
+
 	  	<div class="form-group">
-	    	<label>Försäkringsbolag</label><br>
-	    	<input type="text" class="form-control" id="forl" ng-model="anmalan.malsagare.forsakringsbolag">
+	    	<label for="tadr">Adress</label>
+	    	<textarea ng-model="anmlan.tidOchPlats.adress" class="form-control"
+								id="tadr"></textarea>
+	  	</div>
+
+		<div class="row">
+	      <div class="col-md-2 col-xs-6">
+		  	<div class="form-group">
+		    	<label for="tpnr">Postnummer</label>
+		    	<input type="text" class="form-control" id="tpnr" ng-model="anmlan.tidOchPlats.postnr">
+		  	</div>
+		  </div>
+		</div>
+
+		<div class="form-group">
+	    	<label for="ovr">Övrigt</label>
+	    	<textarea ng-model="anmlan.ovrigt" class="form-control"
+								id="ovr"></textarea>
+	  	</div>
+  	</fieldset>
+  </div>
+
+  <div class="well poa-form">
+    <fieldset>
+    	<div ng-repeat="so in anmalan.stulnaObjekt">
+		    <legend><span style="font-weight:bold" ng-show="anmalan.stulnaObjekt.length > 1">{{$index + 1}}:</span> Stulet objekt</legend>
+			<div class="form-group">
+		    	<label for="snamn{{$index}}">Namn</label>
+		    	<input type="text" class="form-control" id="snamn{{$index}}" ng-model="so.namn">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="sbe{{$index}}">Beskrivning (kännetecken och ev. skador)</label>
+		    	<textarea class="form-control" id="sbe{{$index}}" ng-model="so.beskrivning" />
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="styp{{$index}}">Typ</label>
+		    	<input type="text" class="form-control" id="styp{{$index}}" ng-model="so.typ">
+		  	</div>
+		  	<div class="form-group">
+		    	<label>Stöldmärkning</label><br/>
+		    	<label><input type="radio" ng-model="so.stoldmarkning" value="Ja"> Ja </label><br/>
+				<label><input type="radio" ng-model="so.stoldmarkning" value="Nej"> Nej </label>
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="smask{{$index}}">Maskin-ID</label>
+		    	<input type="text" class="form-control" id="smask{{$index}}" ng-model="so.maskinId">
+		  	</div>
 	  	</div>
 	  	<div class="form-group">
-	    	<label>Forsäkringsnummer</label><br>
-	    	<input type="text" class="form-control" id="forl" ng-model="anmalan.malsagare.forsakringsnummer">
+	    	<button class="btn btn-default" type="button" ng-click="setupNewStuletObjekt()">Registrera ett stulet objekt till</button>
 	  	</div>
   	</fieldset>
   </div>
 
-  <div class="well poa-form">
-    <fieldset>
-    <legend>Information</legend>
-	<div class="form-group">
-    	<label for="forl">Förlopp</label>
-    	<input type="text" class="form-control" id="forl" ng-model="anmlan.forlopp">
-  	</div>
-  	</fieldset>
+  <button type="button" class="btn btn-primary" ng-click="saveAnmalan(anmalan)">
+  <span class="glyphicon glyphicon-save"></span> Spara
+  </button>
+  <div class='fl_wrap'>
+    <p>Fält markerade med * är obligatoriska</p>
   </div>
-
-  <div class="well poa-form">
-    <fieldset>
-    <legend>Stulet objekt</legend>
-	<div class="form-group">
-    	<label for="exampleInputEmail1">Email address</label>
-    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-  	</div>
-  	</fieldset>
-  </div>
-
-  <div class="well poa-form">
-    <fieldset>
-    <legend>Mer information</legend>
-	<div class="form-group">
-    	<label for="exampleInputEmail1">Förlopp</label>
-    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-  	</div>
-  	</fieldset>
-  </div>
-
-<button type="button" class="btn btn-primary" ng-click="saveAnmalan(anmalan)">
-<span class="glyphicon glyphicon-save"></span> Spara
-</button>
-<div class='fl_wrap'>
-  <p>Fält markerade med * är obligatoriska</p>
-</div>
 
 </form>

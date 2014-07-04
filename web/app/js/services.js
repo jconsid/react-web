@@ -34,7 +34,7 @@ factory("flash", function($rootScope) {
   service('AnmalanService', ['PersonService', function(personService) {
     this.newAnmalanInstance = function(person, _organisation) {
       var emptyInstance = {
-        titel: 'Försvunnen borrhammare',
+        titel: '',
         anmalningsstatus: 'NY',
         ovrigastatusar: null,
         ovrigt: null,
