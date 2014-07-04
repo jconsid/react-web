@@ -7,7 +7,9 @@ angular.module('myApp.controllers', []).
     $scope.flash = flash;
     $scope.message = "Hello World";
   }).
-  controller('RegisterCtrl', [ '$scope', '$location', 'AnmalanService', 'flash', function($scope, $location, anmalanService, flash) {
+  controller('RegisterCtrl', [ '$scope', '$location', 'AnmalanService', 'flash', 'AuthService', function($scope, $location, anmalanService, flash, authService) {
+      $scope.person = authService.getPerson();
+
       $scope.ticket = {
         reporter:"",
         subject:"",
