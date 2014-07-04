@@ -83,7 +83,7 @@ var users = [
 		firstname: 'Johan',
 		lastname: 'Johansson',
 		email: 'jj@byggkompaniet.se',
-		username: 'admin',
+		username: 'jojo',
 		password: 'password',
 		organisationId: 2,
 		roller: ['registrerad']
@@ -92,7 +92,7 @@ var users = [
 		firstname: 'Johan',
 		lastname: 'Johansson',
 		email: 'jj@peab.se',
-		username: 'admin',
+		username: 'johjoh',
 		password: 'password',
 		organisationId: 3,
 		roller: ['registrerad']
@@ -101,7 +101,7 @@ var users = [
 		firstname: 'Johan',
 		lastname: 'Johansson',
 		email: 'jj@skanska.se',
-		username: 'admin',
+		username: 'skanska-johan',
 		password: 'password',
 		organisationId: 4,
 		roller: ['registrerad']
