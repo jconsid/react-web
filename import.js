@@ -32,8 +32,15 @@ var anmalningar = [
 				namn: 'Makita borrhammare',
 				beskrivning: 'blå å fin',
 				typ: 'HKJ2',
-				stoldmarkning: 'Nej',
+				stoldmarkning: 'Ja',
 				maskinId: '3287642'
+			},
+			{
+				namn: 'Makita Universaldammsugare',
+				beskrivning: 'Två hjul trasiga...',
+				typ: '446LX',
+				stoldmarkning: 'Nej',
+				maskinId: ''
 			}
 		],
 		tidOchPlats: {
