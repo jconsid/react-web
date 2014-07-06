@@ -1,6 +1,9 @@
 'use strict';
 
-/* Controllers */
+/* Controllers 
+presentation av tid...
+presentation av anmalan-sida, som händelse-lista...
+*/
 
 angular.module('myApp.controllers', []).
   controller("MsgCtrl", function($scope, $location, flash) {
@@ -110,6 +113,7 @@ angular.module('myApp.controllers', []).
 
   .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'PersonService', '$location',
     function($scope, anmalanService, $routeParams, personService, $location) {
+      $scope.showLoggmeddelanden = true;
       $scope.showHandelser = false;
       $scope.showFieldsForNew = false;
       $scope.isLoggedIn = false;
@@ -128,8 +132,13 @@ angular.module('myApp.controllers', []).
       $scope.gotoEdit = function() {
         $location.path("/editera/" + $scope.ticket._id);
       }
-      $scope.toggleHandelser = function() {
-        $scope.showHandelser = !$scope.showHandelser;
+      $scope.displayHandelser = function() {
+        $scope.showHandelser = true;
+        $scope.showLoggmeddelanden = false;
+      }
+      $scope.displayLoggmeddelanden = function() {
+        $scope.showLoggmeddelanden = true;
+        $scope.showHandelser = false;
       }
       $scope.startNew = function() {
         $scope.showFieldsForNew = true;
