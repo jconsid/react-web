@@ -153,16 +153,40 @@
 					</div>
 				</div>
 
-
-
-
-				<div class="row">
-					<div class="col-md-3">
-						Stulet objekt:
+				<div class="row" ng-hide="showHandelser && ticket.handelser.length > 0">
+					<div class="col-md-12">
+						<a ng-click="toggleHandelser()" href="javscript:void()">Visa händelser <span class="badge">{{ticket.handelser.length}}</span></a><br><br>
 					</div>
-					<div class="col-md-9">
-						{{ticket.stulnaObjekt.namn}}
+				</div>
+
+				<div class="row" ng-show="showHandelser">
+					<div class="col-md-12">
+						<a ng-click="toggleHandelser()" href="javscript:void()">Dölj händelser</a>
 					</div>
+				</div>
+
+				<div class="row" ng-show="showHandelser">
+					<div class="col-md-12">
+						<table class="table table-striped table-hover ">
+						  <thead>
+						    <tr>
+						      <th>Typ</th>
+						      <th>Av</th>
+						      <th>Tid</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr ng-repeat="h in ticket.handelser">
+						      <td>
+								<span ng-show="h.typ == 'skapad'">Anmälan skapad</span>
+								<span ng-show="h.typ == 'logg'">Loggmeddelande skapat</span>
+						      </td>
+						      <td>{{h.person.firstname}} {{h.person.lastname}}</td>
+						      <td>{{h.tid}}</td>
+						    </tr>
+						</table>
+					</div>
+
 				</div>
 			
 

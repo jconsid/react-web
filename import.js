@@ -47,7 +47,7 @@ var anmalningar = [
 			{
 				rubrik: 'Hej',
 				meddelande: 'test-meddelande',
-				tid: '',
+				tid: '123456789',
 				person: {
 					firstname: 'Johan',
 					lastname: 'Johansson',
@@ -57,8 +57,17 @@ var anmalningar = [
 		],
 		handelser: [
 			{
-				typ: 'SKA',
-				tid: '',
+				typ: 'skapad',
+				tid: '1404660106190',
+				person: {
+					firstname: 'Johan',
+					lastname: 'Johansson',
+					email: 'jj@ncc.se'
+				}
+			},
+			{
+				typ: 'logg',
+				tid: '1404660126190',
 				person: {
 					firstname: 'Johan',
 					lastname: 'Johansson',

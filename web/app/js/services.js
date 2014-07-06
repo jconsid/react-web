@@ -139,7 +139,7 @@ factory("flash", function($rootScope) {
       var promise = $.Deferred();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
         eb.onopen = function() {
-            eb.send('skapa.loggmeddelande', {id: _id, skapadAv: personService.getUsername(), subject: _subject, body: _body},
+            eb.send('skapa.loggmeddelande', {id: _id, skapadAv: personService.getPersonToAttach(), subject: _subject, body: _body},
             function(reply) {
               if (reply.status == "ok") {
                 promise.resolve(reply);
@@ -180,12 +180,12 @@ factory("flash", function($rootScope) {
     }
     this.create = function(_anmalan) {
       _anmalan.anmalningsstatus = "skapad";
-      _anmalan.handelser.push(this.fabricateHandelse('Anmälan skapad', personService.getPerson()));
+      _anmalan.handelser.push(this.fabricateHandelse('Anmälan skapad', personService.getPersonToAttach()));
       return this.save(_anmalan);
     }
 
     this.save = function(_anmalan) {
-      var inloggadPerson = personService.getPerson();
+      var inloggadPerson = personService.getPersonToAttach();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       var promise = $.Deferred();
       eb.onopen = function() {
@@ -344,6 +344,18 @@ factory("flash", function($rootScope) {
           return null;
         }
         return persistentStorage.get('personAggr').person;
+      };
+      this.getPersonToAttach = function() {
+        if (!this.isInitialized()) {
+          return null;
+        }
+        var p = this.getPerson();
+        return {
+          firstname: p.firstname,
+          lastname: p.lastname,
+          email: p.email,
+          username: 'admin'
+        }
       };
       this.getOrganisation = function() {
         if (!this.isInitialized()) {

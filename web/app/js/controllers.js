@@ -39,7 +39,7 @@ angular.module('myApp.controllers', []).
       }
 
       $scope.anmalan = anmalanService.newAnmalanInstance(
-        personService.getPerson(),
+        personService.getPersonToAttach(),
         personService.getOrganisation()
       );
       $scope.username = personService.getUsername();
@@ -110,6 +110,7 @@ angular.module('myApp.controllers', []).
 
   .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'PersonService', '$location',
     function($scope, anmalanService, $routeParams, personService, $location) {
+      $scope.showHandelser = false;
       $scope.showFieldsForNew = false;
       $scope.isLoggedIn = false;
       $scope.ticket = {};
@@ -126,6 +127,9 @@ angular.module('myApp.controllers', []).
       }
       $scope.gotoEdit = function() {
         $location.path("/editera/" + $scope.ticket._id);
+      }
+      $scope.toggleHandelser = function() {
+        $scope.showHandelser = !$scope.showHandelser;
       }
       $scope.startNew = function() {
         $scope.showFieldsForNew = true;
