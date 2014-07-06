@@ -7,7 +7,29 @@ angular.module('myApp.controllers', []).
     $scope.flash = flash;
     $scope.message = "Hello World";
   }).
+  controller("EditAnmalanCtrl", ['$scope', '$routeParams', '$location', 'flash', 'AnmalanService', 'PersonService', function($scope, $routeParams, $location, flash, anmalanService, personService) {
+    $scope.isRegisterNew = false;
+    $scope.userLoggedIn = personService.isInitialized();
+    if (!$scope.userLoggedIn) {
+      flash.setMessage("Logga först, för att editera en anmälan");
+      $location.path("/login/");
+      $scope.$apply();
+      return;
+    }
+
+    var anmalanFetched = function(status, reply) {
+        $scope.anmalan = reply.results[0];
+        $scope.$apply();
+    };
+
+    anmalanService.findOne($routeParams.anmalanId, anmalanFetched);
+    $scope.saveAnmalan = function() {
+      alert('Ej implementerat (editera)');
+    };
+  }]).
+  
   controller('RegisterCtrl', [ '$scope', '$location', 'AnmalanService', 'flash', 'PersonService', function($scope, $location, anmalanService, flash, personService) {
+      $scope.isRegisterNew = true;
       $scope.userLoggedIn = personService.isInitialized();
       if (!$scope.userLoggedIn) {
         flash.setMessage("Logga först, för att skapa en anmälan");
@@ -36,9 +58,9 @@ angular.module('myApp.controllers', []).
       $scope.setupNewStuletObjekt();
 
       $scope.saveAnmalan = function(anmalan) {
-        
+
         $.when(
-          anmalanService.save(anmalan)
+          anmalanService.create(angular.copy(anmalan))
         ).done(
           function(newId) {
             flash.setMessage("Anmälan sparad");
@@ -86,8 +108,8 @@ angular.module('myApp.controllers', []).
   }])
 
 
-  .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'PersonService',
-    function($scope, anmalanService, $routeParams, personService) {
+  .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'PersonService', '$location',
+    function($scope, anmalanService, $routeParams, personService, $location) {
       $scope.showFieldsForNew = false;
       $scope.isLoggedIn = false;
       $scope.ticket = {};
@@ -102,7 +124,9 @@ angular.module('myApp.controllers', []).
         $scope.isLoggedIn = true;
         $scope.loggedInUser = personService.getUsername();
       }
-
+      $scope.gotoEdit = function() {
+        $location.path("/editera/" + $scope.ticket._id);
+      }
       $scope.startNew = function() {
         $scope.showFieldsForNew = true;
         $scope.showFieldsForNewFile = false;
@@ -176,10 +200,7 @@ angular.module('myApp.controllers', []).
           $scope.$apply();
         };
 
-        var s = anmalanService.findOne($routeParams.anmalanId,
-          $scope.loggedInUser,
-          ticketCall
-        );
+        var s = anmalanService.findOne($routeParams.anmalanId, ticketCall);
       };
       $scope.findAnmalan();
     }

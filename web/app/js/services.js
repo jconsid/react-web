@@ -167,15 +167,36 @@ factory("flash", function($rootScope) {
        return promise;
     };
 
+    this.fabricateHandelse = function(_typ, _person) {
+      return {
+        typ: _typ,
+        tid: (new Date()).getTime(),
+        person: {
+          firstname: _person.firstname,
+          lastname: _person.lastname,
+          email: _person.email
+        }
+      };
+    }
+    this.create = function(_anmalan) {
+      _anmalan.anmalningsstatus = "skapad";
+      _anmalan.handelser.push(this.fabricateHandelse('Anmälan skapad', personService.getPerson()));
+      return this.save(_anmalan);
+    }
+
     this.save = function(_anmalan) {
+      var inloggadPerson = personService.getPerson();
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       var promise = $.Deferred();
       eb.onopen = function() {
-        eb.send('skapa.anmalan', {skapadAv: personService.getUsername(), anmalan: _anmalan},
+        var payloadJson = {skapadAv: inloggadPerson, anmalan: _anmalan};
+        eb.send('skapa.anmalan', payloadJson,
         function(reply) {
           if (reply.status == "ok") {
+            console.log("SAVE OK");
             promise.resolve(reply._id);
           } else {
+            console.log("save nok");
             promise.reject(reply);
           }
           console.log('AnmalanService::save processing reply', reply);
@@ -215,7 +236,7 @@ factory("flash", function($rootScope) {
       console.log('myfile sent!');
     };
 
-    this.findOne = function(id, _user, fnOpen) {
+    this.findOne = function(id, fnOpen) {
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       eb.onopen = function() {
         eb.send('test.mongodb', {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id + ""}},
@@ -230,10 +251,8 @@ factory("flash", function($rootScope) {
     this.findAll = function(fn, fnUpdated) {
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
       eb.onopen = function() {
-        console.log("Buss open");
         eb.send('test.mongodb', {action: 'find', collection: 'anmalningar', matcher: {} },
           function(reply) {
-            console.log('AnmalanService::processing reply', reply);
             if (reply.status === 'ok') {
               var anmalanArray = [];
               for (var i = 0; i < reply.results.length; i++) {
@@ -350,6 +369,7 @@ factory("flash", function($rootScope) {
             if (reply.results.length === 1) {
               var organisationId = reply.results[0].organisationId;
               personAggregate['person'] = reply.results[0];
+              delete personAggregate['person'].password;
               if (!organisationId)  {
                 console.log('PersonService::findPersonData processing organisation', reply);
                 promise.reject("Person saknar organisationskoppling");

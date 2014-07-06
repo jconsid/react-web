@@ -77,10 +77,17 @@
 										Försäkringsbolag:
 									</div>
 									<div class="col-md-9">
-										{{ticket.malsagare.organisation.forsakringsbolag}}
+										{{ticket.malsagare.forsakringsbolag}}
 									</div>
 								</div>
-
+								<div class="row">
+									<div class="col-md-3">
+										Försäkringsnummer:
+									</div>
+									<div class="col-md-9">
+										{{ticket.malsagare.forsakringsnummer}}
+									</div>
+								</div>
 
   							</div>
   						</div>
@@ -213,10 +220,15 @@
 				</div>
 			</div>
 
-            <button ng-show="isLoggedIn" type="button" class="btn btn-primary"
+            <button ng-show="isLoggedIn" type="button" class="btn btn-default"
                     ng-click="skickaTillPolisen(loggedInUser)">
                 <span class="glyphicon glyphicon-envelope"></span> Skicka till Polisen
             </button>
+
+            <button ng-show="isLoggedIn" type="button" class="btn btn-primary"
+					ng-click="gotoEdit()">
+				Editera
+			</button>
             <!--button ng-show="isLoggedIn" type="button" class="btn btn-primary"
                     ng-click="startNewFile()"
                     ng-hide="showFieldsForNewFile">

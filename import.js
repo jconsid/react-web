@@ -24,8 +24,8 @@ var anmalningar = [
 				orgnr: '123456789',
 				epost: 'info@ncc.se'
 			},
-			forsakringsbolag: '',
-			forsakringsnummer: ''
+			forsakringsbolag: 'Folksam',
+			forsakringsnummer: '120222'
 		},
 		stulnaObjekt: [
 			{
@@ -39,8 +39,8 @@ var anmalningar = [
 		tidOchPlats: {
 			tid: '',
 			tidSenastLamnad: '',
-			adress: '',
-			postnr: ''
+			adress: 'Västra Långgatan 22',
+			postnr: '55318'
 		},
 		forlopp: 'Förlopp här',
 		loggbok: [
@@ -57,7 +57,7 @@ var anmalningar = [
 		],
 		handelser: [
 			{
-				typ: '',
+				typ: 'SKA',
 				tid: '',
 				person: {
 					firstname: 'Johan',

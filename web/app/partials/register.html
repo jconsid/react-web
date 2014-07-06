@@ -1,7 +1,8 @@
 <form role="form">
   <div class="well poa-form">
 	    <fieldset>
-		    <legend>Skapa anmälan</legend>
+		    <legend ng-show="isRegisterNew">Skapa anmälan</legend>
+		    <legend ng-hide="isRegisterNew">Editera anmälan</legend>
 			<div class="form-group">
 		    	<label for="titl">Övergripande titel för anmälan</label><br>
 		    	<input type="text" class="form-control" id="titl" ng-model="anmalan.titel">
@@ -14,7 +15,7 @@
 		    <legend>Anmälare</legend>
 		    <div class="form-group">
 				<label>Namn</label><br>
-				{{anmalan.anmalare.firstname}} {{anmalan.anmalare.lastname}} <span style="color:#888">({{username}})</span>
+				{{anmalan.anmalare.firstname}} {{anmalan.anmalare.lastname}}
 			</div>
 			<div class="form-group">
 				<label>E-post</label><br>
@@ -66,26 +67,26 @@
 	    <legend>Information om händelse</legend>
 		<div class="form-group">
 	    	<label for="forl">Förlopp</label>
-	    	<textarea ng-model="anmlan.forlopp" class="form-control"
+	    	<textarea ng-model="anmalan.forlopp" class="form-control"
 								id="forl"></textarea>
 	  	</div>
 		<div class="row">
 	      <div class="col-md-8">
 		  	<div class="form-group">
 		    	<label for="tid">Tidpunkt för händelse</label>
-		    	<input type="text" class="form-control" id="tid" ng-model="anmlan.tidOchPlats.tid">
+		    	<input type="text" class="form-control" id="tid" ng-model="anmalan.tidOchPlats.tid">
 		  	</div>
 
 		  	<div class="form-group">
 		    	<label for="tsl">Tidpunkt då platsen lämnades (datum och klockslag)</label>
-		    	<input type="text" class="form-control" id="tsl" ng-model="anmlan.tidOchPlats.tidSenastLamnad">
+		    	<input type="text" class="form-control" id="tsl" ng-model="anmalan.tidOchPlats.tidSenastLamnad">
 		  	</div>
 		  </div>
 		</div>
 
 	  	<div class="form-group">
 	    	<label for="tadr">Adress</label>
-	    	<textarea ng-model="anmlan.tidOchPlats.adress" class="form-control"
+	    	<textarea ng-model="anmalan.tidOchPlats.adress" class="form-control"
 								id="tadr"></textarea>
 	  	</div>
 
@@ -93,14 +94,14 @@
 	      <div class="col-md-2 col-xs-6">
 		  	<div class="form-group">
 		    	<label for="tpnr">Postnummer</label>
-		    	<input type="text" class="form-control" id="tpnr" ng-model="anmlan.tidOchPlats.postnr">
+		    	<input type="text" class="form-control" id="tpnr" ng-model="anmalan.tidOchPlats.postnr">
 		  	</div>
 		  </div>
 		</div>
 
 		<div class="form-group">
 	    	<label for="ovr">Övrigt</label>
-	    	<textarea ng-model="anmlan.ovrigt" class="form-control"
+	    	<textarea ng-model="anmalan.ovrigt" class="form-control"
 								id="ovr"></textarea>
 	  	</div>
   	</fieldset>

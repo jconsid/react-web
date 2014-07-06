@@ -52,6 +52,9 @@ var webServerConf = {
       address: 'anmalan.uppdaterad'
     },
     {
+      address: 'skapa.anmalan'
+    },
+    {
       address: 'vertx.basicauthmanager.login'
     },
     // Tillåt meddelanden för att komma åt anmalningar
