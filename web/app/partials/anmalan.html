@@ -246,29 +246,17 @@
 			<h4>{{log.rubrik}}</h4>
 			<p>{{log.meddelande}} <span style="color:#999">av {{log.person.firstname}} {{log.person.lastname}}</span></p>
 		</div>
+
+		<div class="list-group-item list-animation" ng-hide="isLoggedIn">
+			Logga in för att lägga till meddelanden
+		</div>
 		<div class="list-group-item list-animation" ng-hide="showFieldsForNew">
 			<a href="javascript:void()" ng-show="isLoggedIn"
 			ng-click="startNew()">
 		Lägg till nytt logg-meddelade</a>
 
 		</div>
-	</div>
-
-	<div ng-hide="isLoggedIn" class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">Ej inloggad</h3>
-		</div>
-		<div class="panel-body">
-			Du behöver logga in för att lägga till logg-meddelanden.
-		</div>
-	</div>
-	
-
-	<div class="panel panel-primary my-special-animation" ng-show="showFieldsForNew">
-		<div class="panel-heading">
-			<h3 class="panel-title">Skapa loggmeddelande (som <em>{{loggedInUser}}</em>)</h3>
-		</div>
-		<div class="panel-body">
+		<div class="list-group-item list-animation" ng-show="showFieldsForNew">
 			<form role="form">
 				<div class="form-group">
 					<label for="newSubject" class="sr-only">Rubrik</label>
@@ -280,17 +268,18 @@
 					<textarea ng-model="body" class="form-control"
 						id="newBody" placeholder="Skriv ditt meddelande här..."></textarea>
 				</div>
+				<button type="button" class="btn btn-primary" ng-click="saveNew(subject, body, loggedInUser)">
+					<span class="glyphicon glyphicon-save"></span> Spara
+				</button>
+
+				<button type="button" class="btn btn-default" ng-click="abortNew()">
+					<span class="glyphicon glyphicon-remove"></span> Avbryt
+				</button>
 			</form>
 
-			<button type="button" class="btn btn-primary" ng-click="saveNew(subject, body, loggedInUser)">
-				<span class="glyphicon glyphicon-save"></span> Spara
-			</button>
-
-			<button type="button" class="btn btn-default" ng-click="abortNew()">
-				<span class="glyphicon glyphicon-remove"></span> Avbryt
-			</button>
 		</div>
 	</div>
+
 </div>
 
             <button ng-show="isLoggedIn" type="button" class="btn btn-default"
@@ -306,3 +295,4 @@
 		</div>
 	</div>
 </div>
+<br><br>
