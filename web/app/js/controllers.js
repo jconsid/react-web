@@ -92,8 +92,8 @@ angular.module('myApp.controllers', []).
           function(person) {
             flash.setMessage("Du är inloggad som " + person.firstname + " " + person.lastname + "(" + $scope.username + ")");
             console.log("Inloggad", person);
-            // $location.path("/list");
-            // $scope.$apply();
+            $location.path("/list");
+            $scope.$apply();
           }
         ).fail(
           function() {
