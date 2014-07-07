@@ -10,10 +10,14 @@ factory("flash", function($rootScope) {
   var currentMessage = "";
 
   $rootScope.$on("$routeChangeSuccess", function() {
+    console.log("$routeChangeSuccess", currentMessage, queue);
     currentMessage = queue.shift() || "";
   });
 
   return {
+    setNotification: function(message) {
+      currentMessage = message;
+    },
     setMessage: function(message) {
       queue.push(message);
     },
@@ -365,7 +369,7 @@ factory("flash", function($rootScope) {
         return persistentStorage.get('personAggr').organisation;
       };
       this.kill = function() {
-        persistentStorage.get('personAggr', null);
+        persistentStorage.set('personAggr', null);
       };
       this.isInitialized = function() {
         return persistentStorage.get('personAggr') != null;
