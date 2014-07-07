@@ -13,7 +13,8 @@ var anmalningar = [
 		anmalare: {
 			firstname: 'Johan',
 			lastname: 'Johansson',
-			email: 'jj@ncc.se'
+			email: 'jj@ncc.se',
+			username: 'admin'
 		},
 		malsagare: {
 			organisation: {
@@ -57,8 +58,9 @@ var anmalningar = [
 				tid: '123456789',
 				person: {
 					firstname: 'Johan',
-					lastname: 'Johansson',
+					lastname: 'Johannesson',
 					email: 'jj@ncc.se',
+					username: 'jojo'
 				}
 			}
 		],
@@ -69,7 +71,8 @@ var anmalningar = [
 				person: {
 					firstname: 'Johan',
 					lastname: 'Johansson',
-					email: 'jj@ncc.se'
+					email: 'jj@ncc.se',
+					username: 'admin'
 				}
 			},
 			{
@@ -77,8 +80,9 @@ var anmalningar = [
 				tid: '1404660126190',
 				person: {
 					firstname: 'Johan',
-					lastname: 'Johansson',
-					email: 'jj@ncc.se'
+					lastname: 'Johannesson',
+					email: 'jj@ncc.se',
+					username: 'jojo'
 				}
 			}
 		]
@@ -97,7 +101,7 @@ var users = [
 	},
 	{
 		firstname: 'Johan',
-		lastname: 'Johansson',
+		lastname: 'Johannesson',
 		email: 'jj@byggkompaniet.se',
 		username: 'jojo',
 		password: 'password',
@@ -106,7 +110,7 @@ var users = [
 	},
 	{
 		firstname: 'Johan',
-		lastname: 'Johansson',
+		lastname: 'Johanzon',
 		email: 'jj@peab.se',
 		username: 'johjoh',
 		password: 'password',
@@ -115,7 +119,7 @@ var users = [
 	},
 	{
 		firstname: 'Johan',
-		lastname: 'Johansson',
+		lastname: 'Jotunheimsson',
 		email: 'jj@skanska.se',
 		username: 'skanska-johan',
 		password: 'password',
