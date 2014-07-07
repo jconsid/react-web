@@ -26,8 +26,19 @@ angular.module('myApp.controllers', []).
     };
 
     anmalanService.findOne($routeParams.anmalanId, anmalanFetched);
-    $scope.saveAnmalan = function() {
-      alert('Ej implementerat (editera)');
+    $scope.saveAnmalan = function(anmalan) {
+      $.when(
+        anmalanService.save(angular.copy(anmalan))
+      ).done(
+        function(newId) {
+          flash.setMessage("Anmälan uppdaterad");
+          $scope.$apply();
+        }
+      ).fail(
+        function(reply) {
+          alert("Kunde inte spara (uppdaterad) anmälan\n" + reply);
+        }
+      );
     };
   }]).
   

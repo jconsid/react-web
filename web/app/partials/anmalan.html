@@ -230,6 +230,7 @@
 	    <tr ng-repeat="h in ticket.handelser">
 	      <td>
 			<span ng-show="h.typ == 'skapad'">Anmälan skapad</span>
+			<span ng-show="h.typ == 'uppdaterad'">Anmälan uppdaterad</span>
 			<span ng-show="h.typ == 'logg'">Loggmeddelande skapat</span>
 	      </td>
 	      <td>{{h.person.firstname}} {{h.person.lastname}}</td>

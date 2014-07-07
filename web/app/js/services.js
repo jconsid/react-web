@@ -180,8 +180,8 @@ factory("flash", function($rootScope) {
       };
     }
     this.create = function(_anmalan) {
-      _anmalan.anmalningsstatus = "skapad";
-      _anmalan.handelser.push(this.fabricateHandelse('Anmälan skapad', personService.getPersonToAttach()));
+      _anmalan.anmalningsstatus = "SKAPAD";
+      // _anmalan.handelser.push(this.fabricateHandelse('Anmälan skapad', personService.getPersonToAttach()));
       return this.save(_anmalan);
     }
 
