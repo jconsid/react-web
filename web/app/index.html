@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PoA</title>
-  <!-- link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' / -->
+
   <link rel="stylesheet" href="css/client.css"/>
   <link rel="stylesheet" href="lib/bootstrap-3.1.1-dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="css/jquery.FlowupLabels.css"/>
@@ -42,14 +42,23 @@
           </ul>
 
         </div>
-        <div ng-show="flash.getMessage()" style="margin:0 0 .4em 0; color:white">
-          <b>{{flash.getMessage()}}</b>
+        <div class="alert alert-dismissable alert-success msg-anim"
+ng-show="flash.getMessage()" style="background:#999;border-color:#999;margin:0 0 .4em 0;">
+          <button type="button" class="close" ng-click="flash.setNotification(null)">×</button>
+          {{flash.getMessage()}}
         </div>
+
+
+        <!-- div ng-show="flash.getMessage()" style="color:#eef;margin:0 0 .4em 0; color:white" class="msg-anim">
+          <b>{{flash.getMessage()}}</b>
+        </div -->
       </div>
     </div>
 
   <div class="container">
-    <div ng-view></div>
+    <div ng-show="flash.getMessage()" style="margin:0 0 3em 0; color:white"></div>
+
+    <div ng-view class="reveal-animation"></div>
   </div>
 
 

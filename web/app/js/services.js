@@ -14,6 +14,11 @@ factory("flash", function($rootScope) {
     currentMessage = queue.shift() || "";
   });
 
+  /* Lägger till denna scroll-fix här, inte för att det är ett bra ställe - utan för att flash används överallt */
+  $rootScope.$on("$routeChangeSuccess", function(){
+     window.scrollTo(0,0);
+  });
+
   return {
     setNotification: function(message) {
       currentMessage = message;

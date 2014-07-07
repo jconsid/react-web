@@ -21,3 +21,4 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/anmalan/:anmalanId', {templateUrl: 'partials/anmalan.html', controller: 'AnmalanCtrl'});
   $routeProvider.otherwise({redirectTo: '/list'});
 }]);
+

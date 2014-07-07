@@ -5,6 +5,7 @@ presentation av tid...
 presentation av anmalan-sida, som händelse-lista...
 */
 
+
 angular.module('myApp.controllers', []).
   controller("MsgCtrl", function($scope, $location, flash) {
     $scope.flash = flash;
@@ -95,8 +96,13 @@ angular.module('myApp.controllers', []).
     function($scope, loginService, $location, flash, personService) {
       $scope.username = personService.getUsername();
       $scope.userLoggedIn = personService.isInitialized();
+      
       if($scope.userLoggedIn) {
         $scope.fullName = personService.getPerson().firstname + " " + personService.getPerson().lastname; 
+      }
+
+      if ($scope.userLoggedIn) {
+        flash.setNotification('Du är redan inloggad som ' + $scope.fullName + ' (' + $scope.username + ')');
       }
 
       $scope.login = function() {
@@ -104,14 +110,15 @@ angular.module('myApp.controllers', []).
           loginService.login($scope.username, $scope.password)
         ).done(
           function(personAggr) {
-            flash.setMessage("Du är inloggad som " + personAggr.person.firstname + " " + personAggr.person.lastname + "(" + $scope.username + ")");
+
+            flash.setMessage('Du är inloggad som ' + personAggr.person.firstname + ' ' + personAggr.person.lastname + ' (' + $scope.username + ')');
             console.log("Inloggad", personAggr);
             $location.path("/list");
             $scope.$apply();
           }
         ).fail(
           function() {
-            alert("Bad username or password");
+            flash.setNotification('Felaktigt användarnamn eller lösenord');
           }
         )
       };
@@ -119,6 +126,7 @@ angular.module('myApp.controllers', []).
       $scope.logout = function() {
         $scope.userLoggedIn = false;
         personService.kill();
+        flash.setNotification('Du är inte längre inloggad');
       };    
   }])
 
@@ -231,7 +239,7 @@ angular.module('myApp.controllers', []).
       };
       $scope.findAnmalan();
       if (!$scope.isLoggedIn) {
-        flash.setNotification("Du måste logga in för att kunna editera anmälan");
+        // flash.setNotification("Du måste logga in för att kunna editera anmälan");
       }
     }
   ])

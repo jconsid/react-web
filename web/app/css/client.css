@@ -1,5 +1,5 @@
 body {
-  padding-top: 90px;
+  padding-top: 80px;
 }
 textarea:focus, input:focus{
     outline: 0;
@@ -11,7 +11,6 @@ textarea:focus, input:focus{
 .well.poa-form {
   border-radius: 2px;  
 }
-
 
 /* app css stylesheet */
 div.top-nav {
@@ -68,7 +67,7 @@ div.partial {
   margin-top:1em;
 }
 
-ul.anim li.ng-enter {
+.anim.ng-enter {
   -webkit-transition:0.5s linear all;
   transition:.5s linear all;
 
@@ -76,7 +75,7 @@ ul.anim li.ng-enter {
 }
 
 /* destination animations */
-ul.anim li.ng-enter.ng-enter-active {
+.anim.ng-enter.ng-enter-active {
   background:transparent;
 }
 
@@ -85,35 +84,6 @@ ul.anim li.ng-enter.ng-enter-active {
 #formBody {
   font-weight: 300;
   font-size: 1.15em;
-}
-
-.rf_notice {
-  font-size:.8em;
-  text-align: center;
-}
-
-.FlowupLabels .fl_label {
-  cursor: text;
-}
-
-.rf_submit {
-  background:none;
-  border-radius: 4px;
-  border: 1px dotted #3dd585;
-  color: #3dd585;
-  font-size: 18px;
-  padding: 5px 25px;
-  display: block;
-  margin: auto;
-}
-.rf_submit:hover {
-  cursor:pointer;
-  background:#3dd585;
-  color: #555;
-}
-.rf_submit:focus {
-  outline:none;
-  border: 1px solid #3dd585;
 }
 
 #miscInfo {
@@ -126,9 +96,36 @@ ul.anim li.ng-enter.ng-enter-active {
 #miscInfo a {
   color:#999;
 }
-#ghBanner {
-  position: absolute; 
-  top: 0; 
-  right: 0; 
-  border: 0;
+
+.globalMsg {
+    -webkit-transition:all linear 2s;
+  transition:all linear 0.5s;
+}
+.globalMsg.ng-hide {
+  opacity:0;
+}
+
+.msg-anim.ng-hide-add,
+.msg-anim.ng-hide-remove {
+  -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
+
+  /* remember to add this */
+  display:block!important;
+  opacity:1;
+}
+.msg-anim.ng-hide {
+  opacity:0;
+}
+
+.reveal-animation.ng-enter {
+ -webkit-transition: .2s linear all; /* Safari/Chrome */
+ transition: .2s linear all; /* All other modern browsers and IE10+ */
+
+ /* The animation preparation code */
+ opacity: 0;
+}
+.reveal-animation.ng-enter.ng-enter-active {
+ /* The animation code itself */
+ opacity: 1;
 }
