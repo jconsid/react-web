@@ -31,7 +31,7 @@ angular.module('myApp.controllers', []).
         anmalanService.save(angular.copy(anmalan))
       ).done(
         function(newId) {
-          flash.setMessage("Anmälan uppdaterad");
+          flash.setNotification("Anmälan uppdaterad");
           $scope.$apply();
         }
       ).fail(
@@ -43,22 +43,7 @@ angular.module('myApp.controllers', []).
   }]).
   
   controller('RegisterCtrl', [ '$scope', '$location', 'AnmalanService', 'flash', 'PersonService', function($scope, $location, anmalanService, flash, personService) {
-      $scope.isRegisterNew = true;
-      $scope.userLoggedIn = personService.isInitialized();
-      if (!$scope.userLoggedIn) {
-        flash.setMessage("Logga först, för att skapa en anmälan");
-        $location.path("/login/");
-        $scope.$apply();
-        return;
-      }
-
-      $scope.anmalan = anmalanService.newAnmalanInstance(
-        personService.getPersonToAttach(),
-        personService.getOrganisation()
-      );
-      $scope.username = personService.getUsername();
-    
-      $scope.setupNewStuletObjekt = function () {
+    $scope.setupNewStuletObjekt = function () {
         $scope.newStuletObjekt = {
           namn: null,
           beskrivning: null,
@@ -69,7 +54,6 @@ angular.module('myApp.controllers', []).
         $scope.anmalan.stulnaObjekt.push($scope.newStuletObjekt);
       }
 
-      $scope.setupNewStuletObjekt();
 
       $scope.saveAnmalan = function(anmalan) {
 
@@ -87,6 +71,23 @@ angular.module('myApp.controllers', []).
           }
         );
       }
+
+      $scope.isRegisterNew = true;
+      $scope.userLoggedIn = personService.isInitialized();
+
+      if (!$scope.userLoggedIn) {
+        flash.setMessage("Logga först, för att skapa en anmälan");
+        flash.setMessage("Logga först, för att skapa en anmälan");
+        $location.path("/login/");
+      } else {
+        $scope.anmalan = anmalanService.newAnmalanInstance(
+          personService.getPersonToAttach(),
+          personService.getOrganisation()
+        );
+        $scope.username = personService.getUsername();
+
+        $scope.setupNewStuletObjekt();
+      }      
     }
   ])
 
@@ -97,15 +98,14 @@ angular.module('myApp.controllers', []).
       if($scope.userLoggedIn) {
         $scope.fullName = personService.getPerson().firstname + " " + personService.getPerson().lastname; 
       }
-      console.log($scope.username, $scope.fullName);
 
       $scope.login = function() {
         $.when(
           loginService.login($scope.username, $scope.password)
         ).done(
-          function(person) {
-            flash.setMessage("Du är inloggad som " + person.firstname + " " + person.lastname + "(" + $scope.username + ")");
-            console.log("Inloggad", person);
+          function(personAggr) {
+            flash.setMessage("Du är inloggad som " + personAggr.person.firstname + " " + personAggr.person.lastname + "(" + $scope.username + ")");
+            console.log("Inloggad", personAggr);
             $location.path("/list");
             $scope.$apply();
           }
@@ -117,13 +117,14 @@ angular.module('myApp.controllers', []).
       };
 
       $scope.logout = function() {
+        $scope.userLoggedIn = false;
         personService.kill();
       };    
   }])
 
 
-  .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'PersonService', '$location',
-    function($scope, anmalanService, $routeParams, personService, $location) {
+  .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'PersonService', '$location', 'flash',
+    function($scope, anmalanService, $routeParams, personService, $location, flash) {
       $scope.showLoggmeddelanden = true;
       $scope.showHandelser = false;
       $scope.showFieldsForNew = false;
@@ -229,6 +230,9 @@ angular.module('myApp.controllers', []).
         var s = anmalanService.findOne($routeParams.anmalanId, ticketCall);
       };
       $scope.findAnmalan();
+      if (!$scope.isLoggedIn) {
+        flash.setNotification("Du måste logga in för att kunna editera anmälan");
+      }
     }
   ])
   

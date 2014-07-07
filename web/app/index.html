@@ -42,14 +42,13 @@
           </ul>
 
         </div>
+        <div ng-show="flash.getMessage()" style="margin:0 0 .4em 0; color:white">
+          <b>{{flash.getMessage()}}</b>
+        </div>
       </div>
     </div>
 
   <div class="container">
-    <div class="alert alert-success" ng-show="flash.getMessage()" style="margin-top:.3em">
-      <b>{{flash.getMessage()}}</b>
-    </div>
-
     <div ng-view></div>
   </div>
 
