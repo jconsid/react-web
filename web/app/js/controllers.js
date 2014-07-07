@@ -210,6 +210,8 @@ angular.module('myApp.controllers', []).
           if (reply.results[0].loggbok) {
             $scope.logMessages = reply.results[0].loggbok;
           }
+          $scope.showFieldsForNew = $scope.logMessages.length == 0;
+          
           $scope.$apply();
         };
 

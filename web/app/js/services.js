@@ -42,7 +42,8 @@ factory("flash", function($rootScope) {
         anmalare: {
           firstname: person.firstname,
           lastname: person.lastname,
-          email: person.email
+          email: person.email,
+          username: person.username
         },
         malsagare: {
           organisation: {
