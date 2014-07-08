@@ -11,6 +11,9 @@ angular.module('myApp.controllers', []).
     $scope.flash = flash;
     $scope.message = "Hello World";
   }).
+  controller("AboutCtrl", function($scope) {
+
+  }).
   controller("EditAnmalanCtrl", ['$scope', '$routeParams', '$location', 'flash', 'AnmalanService', 'PersonService', function($scope, $routeParams, $location, flash, anmalanService, personService) {
     $scope.isRegisterNew = false;
     $scope.userLoggedIn = personService.isInitialized();

@@ -19,6 +19,7 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
   $routeProvider.when('/editera/:anmalanId', {templateUrl: 'partials/register.html', controller: 'EditAnmalanCtrl'});
   $routeProvider.when('/anmalan/:anmalanId', {templateUrl: 'partials/anmalan.html', controller: 'AnmalanCtrl'});
+  $routeProvider.when('/om', {templateUrl: 'partials/about.html', controller: 'AboutCtrl'});
   $routeProvider.otherwise({redirectTo: '/list'});
 }]);
 
