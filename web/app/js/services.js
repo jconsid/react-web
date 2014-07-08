@@ -75,74 +75,9 @@ factory("flash", function($rootScope) {
         },
         loggbok: [],
         handelser: []
-      }
-
-  /*
-  {
-      titel: 'Försvunnen borrhammare',
-      anmalningsstatus: 'SKAPAD',
-      ovrigastatusar: '',
-      ovrigt: 'övrigt',
-      anmalare: {
-        firstname: 'Johan',
-        lastname: 'Johansson',
-        email: 'jj@ncc.se'
-      },
-      malsagare: {
-        organisation: {
-          _id: 1,
-          namn: 'NCC Construction Sverige AB',
-          adress: 'Klubbhusgatan 15',
-          postnr: '553 03 Jönköping',
-          orgnr: '123456789',
-          epost: 'info@ncc.se'
-        },
-        forsakringsbolag: '',
-        forsakringsnummer: ''
-      },
-      stulnaObjekt: [
-        {
-          namn: 'Makita borrhammare',
-          beskrivning: 'blå å fin',
-          typ: 'HKJ2',
-          stoldmarkning: 'Nej',
-          maskinId: '3287642'
-        }
-      ],
-      tidOchPlats: {
-        tid: '',
-        tidSenastLamnad: '',
-        adress: '',
-        postnr: ''
-      },
-      forlopp: 'Förlopp här',
-      loggbok: [
-        {
-          rubrik: 'Hej',
-          meddelande: 'test-meddelande',
-          tid: '',
-          person: {
-            firstname: 'Johan',
-            lastname: 'Johansson',
-            email: 'jj@ncc.se',
-          }
-        }
-      ],
-      handelser: [
-        {
-          typ: '',
-          tid: '',
-          person: {
-            firstname: 'Johan',
-            lastname: 'Johansson',
-            email: 'jj@ncc.se'
-          }
-        }
-      ]
-    }
-  */
+      };
       return emptyInstance;
-    }
+    };
 
 
     this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
@@ -151,7 +86,7 @@ factory("flash", function($rootScope) {
         eb.onopen = function() {
             eb.send('skapa.loggmeddelande', {id: _id, skapadAv: personService.getPersonToAttach(), subject: _subject, body: _body},
             function(reply) {
-              if (reply.status == "ok") {
+              if (reply.status === "ok") {
                 promise.resolve(reply);
             } else {
               promise.reject(reply);
@@ -167,7 +102,7 @@ factory("flash", function($rootScope) {
       eb.onopen = function() {
         eb.send('skicka.till.polisen', {id: _id, skapadAv: personService.getUsername(), title: _title},
         function(reply) {
-          if (reply.status == "ok") {
+          if (reply.status === "ok") {
             promise.resolve(reply);
           } else {
             promise.reject(reply);
@@ -187,12 +122,12 @@ factory("flash", function($rootScope) {
           email: _person.email
         }
       };
-    }
+    };
     this.create = function(_anmalan) {
       _anmalan.anmalningsstatus = "SKAPAD";
       // _anmalan.handelser.push(this.fabricateHandelse('Anmälan skapad', personService.getPersonToAttach()));
       return this.save(_anmalan);
-    }
+    };
 
     this.save = function(_anmalan) {
       var inloggadPerson = personService.getPersonToAttach();
@@ -202,7 +137,7 @@ factory("flash", function($rootScope) {
         var payloadJson = {skapadAv: inloggadPerson, anmalan: _anmalan};
         eb.send('skapa.anmalan', payloadJson,
         function(reply) {
-          if (reply.status == "ok") {
+          if (reply.status === "ok") {
             console.log("SAVE OK");
             promise.resolve(reply._id);
           } else {
@@ -216,7 +151,7 @@ factory("flash", function($rootScope) {
       return promise;
     };
 
-    this.addFile = function(_id, _file, _user, fnDone) {
+    /*this.addFile = function(_id, _file, _user, fnDone) {
       //https://github.com/vert-x/vertx-examples/tree/master/src/raw/java/upload
       //UploadClient
       //console.log('myfile : '+_file);
@@ -244,7 +179,7 @@ factory("flash", function($rootScope) {
       xhr.open("POST", "http://localhost:8081/form");
       xhr.send(fd);
       console.log('myfile sent!');
-    };
+    };*/
 
     this.findOne = function(id, fnOpen) {
       var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
@@ -283,13 +218,13 @@ factory("flash", function($rootScope) {
         );
       };
       console.log("Events are set up.");
-      }
-    }]).
+    };
+  }]).
 
     service('PersistentStorage', function($cookieStore) {
       var storage = {};
       storage.set = function(_attr, value) {
-        if (value == null) {
+        if (value === null) {
           $cookieStore.remove(_attr);
         } else {
           $cookieStore.put(_attr, value);
@@ -314,32 +249,32 @@ factory("flash", function($rootScope) {
           return interval + " månader";
         }
         interval = Math.floor(seconds / 86400);
-        if (interval == 1) {
+        if (interval === 1) {
           return "en dag";
         } else if (interval > 1) {
           return interval + " dagar";
         }
         interval = Math.floor(seconds / 3600);
-        if (interval == 1) {
+        if (interval === 1) {
           return "en timme";
         } else if (interval > 1) {
           return interval + " timmar";
         }
         interval = Math.floor(seconds / 60);
-        if (interval == 1) {
+        if (interval === 1) {
           return "en minut";
         } else if (interval > 1) {
           return interval + " minuter";
         }
-        var seconds = Math.floor(seconds);
-        if (seconds == 1) {
+        interval = Math.floor(seconds);
+        if (interval === 1) {
           return "en sekund";
-        } else if (seconds == 0) {
+        } else if (interval === 0) {
           return null;
         } else {
-          return seconds + " sekunder";
+          return interval + " sekunder";
         }
-      }
+      };
     }]).
 
     service('PersonService', ['PersistentStorage', function(persistentStorage) {
@@ -365,7 +300,7 @@ factory("flash", function($rootScope) {
           lastname: p.lastname,
           email: p.email,
           username: 'admin'
-        }
+        };
       };
       this.getOrganisation = function() {
         if (!this.isInitialized()) {
@@ -377,11 +312,11 @@ factory("flash", function($rootScope) {
         persistentStorage.set('personAggr', null);
       };
       this.isInitialized = function() {
-        return persistentStorage.get('personAggr') != null;
+        return persistentStorage.get('personAggr') !== null;
       };
       this.initPersonData = function(_username, eventbus) {
         var personAggregate = {};
-        personAggregate['username'] = _username;
+        personAggregate.username = _username;
         var promise = $.Deferred();
         console.log('PersonService::findPersonData requesting', _username);
 
@@ -390,8 +325,8 @@ factory("flash", function($rootScope) {
             console.log('PersonService::findPersonData processing person', reply);
             if (reply.results.length === 1) {
               var organisationId = reply.results[0].organisationId;
-              personAggregate['person'] = reply.results[0];
-              delete personAggregate['person'].password;
+              personAggregate.person = reply.results[0];
+              delete personAggregate.person.password;
               if (!organisationId)  {
                 console.log('PersonService::findPersonData processing organisation', reply);
                 promise.reject("Person saknar organisationskoppling");
@@ -400,7 +335,7 @@ factory("flash", function($rootScope) {
                 eventbus.send('test.mongodb', {'action': 'find', 'collection': 'organisations', matcher: {'_id': organisationId}},
                   function(reply) {
                     console.log('PersonService::findPersonData processing organisation', reply);
-                    personAggregate['organisation'] = reply.results[0];
+                    personAggregate.organisation = reply.results[0];
                     persistentStorage.set('personAggr', personAggregate);
                     promise.resolve(personAggregate);
                     eventbus.close();
@@ -412,7 +347,7 @@ factory("flash", function($rootScope) {
             }
           });
           return promise;
-        }
+        };
       }
     ]).
     service('LoginService', ['EventBus', 'PersonService', function(eb, personService) {
@@ -437,6 +372,6 @@ factory("flash", function($rootScope) {
             }
           });
         return promise;
-      }
+      };
     }
   ]);

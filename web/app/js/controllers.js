@@ -37,7 +37,7 @@ angular.module('myApp.controllers', []).
         }
       ).fail(
         function(reply) {
-          alert("Kunde inte spara (uppdaterad) anmälan\n" + reply);
+          window.alert("Kunde inte spara (uppdaterad) anmälan\n" + reply);
         }
       );
     };
@@ -51,9 +51,9 @@ angular.module('myApp.controllers', []).
           typ: null,
           stoldmarkning: 'Nej',
           maskinId: null
-        }
+        };
         $scope.anmalan.stulnaObjekt.push($scope.newStuletObjekt);
-      }
+      };
 
 
       $scope.saveAnmalan = function(anmalan) {
@@ -68,10 +68,10 @@ angular.module('myApp.controllers', []).
           }
         ).fail(
           function(reply) {
-            alert("Kunde inte spara anmälan\n" + reply);
+            window.alert("Kunde inte spara anmälan\n" + reply);
           }
         );
-      }
+      };
 
       $scope.isRegisterNew = true;
       $scope.userLoggedIn = personService.isInitialized();
@@ -120,7 +120,7 @@ angular.module('myApp.controllers', []).
           function() {
             flash.setNotification('Felaktigt användarnamn eller lösenord');
           }
-        )
+        );
       };
 
       $scope.logout = function() {
@@ -139,7 +139,7 @@ angular.module('myApp.controllers', []).
       $scope.isLoggedIn = false;
       $scope.ticket = {};
       $scope.showFieldsForNewFile = false;
-      $scope.newfile;
+
       $scope.logMessages = [];
 
       var latestLogMessageLogTime = 0;
@@ -151,19 +151,19 @@ angular.module('myApp.controllers', []).
       }
       $scope.gotoEdit = function() {
         $location.path("/editera/" + $scope.ticket._id);
-      }
+      };
       $scope.displayHandelser = function() {
         $scope.showHandelser = true;
         $scope.showLoggmeddelanden = false;
-      }
+      };
       $scope.displayLoggmeddelanden = function() {
         $scope.showLoggmeddelanden = true;
         $scope.showHandelser = false;
-      }
+      };
       $scope.startNew = function() {
         $scope.showFieldsForNew = true;
         $scope.showFieldsForNewFile = false;
-      }
+      };
       $scope.saveNew = function(_subject, _body, _user) {
 
         $scope.showFieldsForNew = false;
@@ -177,40 +177,40 @@ angular.module('myApp.controllers', []).
           ).fail(
             function(reply) {
               console.log('addLogMessage ERROR', reply);
-              alert("Något gick fel vid skapandet av ditt meddelande:" + reply.status);
+              window.alert("Något gick fel vid skapandet av ditt meddelande:" + reply.status);
             }
           );
 
         $scope.subject = null;
         $scope.body = null;
-      }
+      };
       $scope.abortNew = function() {
         $scope.showFieldsForNew = false;
-      }
+      };
       $scope.skickaTillPolisen = function( _user) {
-            console.log("Skicka till polisen");
-          $.when(
-              anmalanService.skickaTillPolisen($scope.ticket._id, $scope.ticket.titel, _user))
-            .done(
-              function(reply) {
-                console.log('skickaTillPolisen ok', reply);
-                $scope.findAnmalan();
-              }
-            ).fail(
-              function(reply) {
-                console.log('skickaTillPolisen ERROR', reply);
-                alert("Något gick fel när anmälan skickades till polisen:" + reply.status);
-              }
-            );
-        }
+
+        $.when(
+            anmalanService.skickaTillPolisen($scope.ticket._id, $scope.ticket.titel, _user))
+          .done(
+            function(reply) {
+              console.log('skickaTillPolisen ok', reply);
+              $scope.findAnmalan();
+            }
+          ).fail(
+            function(reply) {
+              console.log('skickaTillPolisen ERROR', reply);
+              window.alert("Något gick fel när anmälan skickades till polisen:" + reply.status);
+            }
+          );
+      };
       //New file
       $scope.startNewFile = function() {
         $scope.showFieldsForNewFile = true;
         $scope.showFieldsForNew = false;
-      }
+      };
       $scope.setNewFile = function(_file) {
         $scope.newfile = _file;
-      }
+      };
       $scope.saveNewFile = function(_user) {
         $scope.showFieldsForNewFile = false;
 
@@ -220,23 +220,24 @@ angular.module('myApp.controllers', []).
 
         $scope.uploadfile = null;
         $scope.newfile = null;
-      }
+      };
       $scope.abortNewFile = function() {
         $scope.showFieldsForNewFile = false;
-      }
+      };
       $scope.findAnmalan = function() {
         var ticketCall = function(status, reply) {
           $scope.ticket = reply.results[0];
           if (reply.results[0].loggbok) {
             $scope.logMessages = reply.results[0].loggbok;
           }
-          $scope.showFieldsForNew = $scope.logMessages.length == 0;
+          $scope.showFieldsForNew = $scope.logMessages.length === 0;
           
           $scope.$apply();
         };
 
         var s = anmalanService.findOne($routeParams.anmalanId, ticketCall);
       };
+
       $scope.findAnmalan();
       if (!$scope.isLoggedIn) {
         // flash.setNotification("Du måste logga in för att kunna editera anmälan");
@@ -250,24 +251,24 @@ angular.module('myApp.controllers', []).
     $scope.toPresentation = function(anmalan) {
       var lasthandelse = anmalan.handelser[anmalan.handelser.length - 1];
       var typDesc = "uppdaterad";
-      if (lasthandelse.typ == "logg") {
-        typDesc += " med loggmeddelande"
-      } else if (lasthandelse.typ == "skapad") {
-        typDesc = " skapad"
+      if (lasthandelse.typ === "logg") {
+        typDesc += " med loggmeddelande";
+      } else if (lasthandelse.typ === "skapad") {
+        typDesc = " skapad";
       }
       return {
         titel: anmalan.titel,
         av: lasthandelse.person.firstname + " " + lasthandelse.person.lastname,
         anmalanId: anmalan._id,
         typ: typDesc
-      }
-    }
+      };
+    };
     $scope.update = function() {
       var s = anmalanService.findAll(function(status, reply) {
         $scope.tickets = reply;
         $scope.$apply();
       }, function(status, anmalanEvent) {
-        var h = $scope.toPresentation(anmalanEvent)
+        var h = $scope.toPresentation(anmalanEvent);
         console.log("callback handelse", status, anmalanEvent, h);
 
         $scope.systemEvents.push(h);
