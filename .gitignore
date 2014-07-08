@@ -1,4 +1,7 @@
 # Can ignore specific files
 .DS_Store
 nohup.out
+web/node_modules
+web/.grunt/*
+web/_SpecRunner.html
 ~             
