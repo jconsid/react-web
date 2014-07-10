@@ -7,12 +7,27 @@ module.exports = function (grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
         meta: {
             src: {
                 mainjs: 'app/js/',
                 test: 'test/',
             }
         },
+        uglify: {
+            options: {
+              banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+                '<%= grunt.template.today("yyyy-mm-dd") %>\nConsid 2014 */',
+              mangle: {
+                except: ['window','angular','vertx','$','jQuery','console','module','document']
+              }
+            },
+            minify: {
+              files: {
+                'app/min/controllers.min.js': ['app/js/controllers.js']
+              }
+            }
+          },
         watch: {
            js: {
                 files: [
@@ -74,8 +89,9 @@ module.exports = function (grunt) {
             }
             
        }
-
     });
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-karma');
     

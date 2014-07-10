@@ -7,10 +7,7 @@ presentation av anmalan-sida, som händelse-lista...
 
 
 angular.module('myApp.controllers', []).
-  controller("MsgCtrl", function($scope, $location, flash) {
-    $scope.flash = flash;
-    $scope.message = "Hello World";
-  }).
+  
   controller("AboutCtrl", function($scope) {
 
   }).
@@ -18,7 +15,7 @@ angular.module('myApp.controllers', []).
     $scope.isRegisterNew = false;
     $scope.userLoggedIn = personService.isInitialized();
     if (!$scope.userLoggedIn) {
-      flash.setMessage("Logga först, för att editera en anmälan");
+      flash.setMessage("Logga in först, för att editera en anmälan");
       $location.path("/login/");
       $scope.$apply();
       return;

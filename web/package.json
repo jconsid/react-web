@@ -1,13 +1,13 @@
 {
-  "name": "grunt-test-02",
-  "version": "0.0.0",
+  "name": "PoA",
+  "version": "0.1",
   "description": "",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "devDependencies": {
     "connect-livereload": "~0.4.0",
     "grunt-open": "~0.2.3",
@@ -21,8 +21,9 @@
     "karma": "~0.12.16",
     "grunt-karma": "~0.8.3",
     "karma-chrome-launcher": "~0.1.4",
-    "karma-firefox-launcher": "~0.1.3", 
+    "karma-firefox-launcher": "~0.1.3",
     "karma-phantomjs-launcher": "~0.1.4",
-    "karma-jasmine": "~0.2.2"
+    "karma-jasmine": "~0.2.2",
+    "grunt-contrib-uglify": "~0.5.0"
   }
 }
