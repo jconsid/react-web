@@ -1,4 +1,4 @@
-'use strict';
+
 
 /* Controllers 
 presentation av tid...
@@ -7,7 +7,9 @@ presentation av anmalan-sida, som händelse-lista...
 
 
 angular.module('myApp.controllers', []).
-  
+  controller("MsgCtrl", ['$scope', 'flash', function($scope, flash) {
+    $scope.flash = flash;
+  }]).
   controller("AboutCtrl", function($scope) {
 
   }).

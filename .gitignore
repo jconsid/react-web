@@ -4,4 +4,5 @@ nohup.out
 web/node_modules
 web/.grunt/*
 web/_SpecRunner.html
+web/dist/
 ~             

@@ -12,10 +12,18 @@ module.exports = function (grunt) {
             src: {
                 mainjs: 'app/js/',
                 test: 'test/',
-            }
+            },
+            dist: 'dist/'
+        },
+        useminPrepare: {
+          html: '<%=meta.dist %>app/index.html'
+        },
+        usemin: {
+          html: '<%=meta.dist %>app/index.html'
         },
         uglify: {
             options: {
+                beautify:true,
               banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
                 '<%= grunt.template.today("yyyy-mm-dd") %>\nConsid 2014 */',
               mangle: {
@@ -24,10 +32,21 @@ module.exports = function (grunt) {
             },
             minify: {
               files: {
-                'app/min/controllers.min.js': ['app/js/controllers.js']
+                '<%=meta.dist %>app/js/client.min.js': ['<%=meta.dist %>app/js/app.js','<%=meta.dist %>app/js/controllers.js', '<%=meta.dist %>app/js/services.js']
               }
             }
+        },
+        copy: {
+          main: {
+            src: 'app/**',
+            dest: '<%=meta.dist %>',
           },
+        },
+        clean: {
+          // js: ['<%=meta.dist %>app/js/app.js','<%=meta.dist %>app/js/controllers.js', '<%=meta.dist %>app/js/services.js'],
+          js: ['<%=meta.dist %>app/js/*.js','!<%=meta.dist %>app/js/client.min.js'],
+          dist: ["<%=meta.dist %>"]
+        },
         watch: {
            js: {
                 files: [
@@ -94,13 +113,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-karma');
-    
-    /*grunt.registerTask('server', function (target) {
 
-        grunt.task.run([
-            'less:server',
-            'jasmine:test',
-            'watch',
-        ]);
-    });*/
+    grunt.registerTask('build', [
+      'clean:dist',
+      'copy',
+      'useminPrepare',
+      'uglify:minify',
+      'clean:js',
+      'usemin'
+    ]);
 };

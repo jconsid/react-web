@@ -1,11 +1,10 @@
-'use strict';
 
 /* Services */
 
 angular.module('myApp.services', []).
 
 
-factory("flash", function($rootScope) {
+factory("flash", ['$rootScope', function($rootScope) {
   var queue = [];
   var currentMessage = "";
 
@@ -30,7 +29,7 @@ factory("flash", function($rootScope) {
       return currentMessage;
     }
   };
-}).
+}]).
 
 
   value('version', '0.1').
@@ -221,20 +220,20 @@ factory("flash", function($rootScope) {
     };
   }]).
 
-    service('PersistentStorage', function($cookieStore) {
+    service('PersistentStorage', ['$cookieStore', function(c) {
       var storage = {};
       storage.set = function(_attr, value) {
         if (value === null) {
-          $cookieStore.remove(_attr);
+          c.remove(_attr);
         } else {
-          $cookieStore.put(_attr, value);
+          c.put(_attr, value);
         }
       };
       storage.get = function(_attr) {
-        return $cookieStore.get(_attr);
+        return c.get(_attr);
       };
       return storage;
-    }).
+    }]).
 
     service('TimeDisplayService', [function() {
       this.timeSince = function(date) {
@@ -312,7 +311,11 @@ factory("flash", function($rootScope) {
         persistentStorage.set('personAggr', null);
       };
       this.isInitialized = function() {
-        return persistentStorage.get('personAggr') !== null;
+        if (persistentStorage.get('personAggr') === null || persistentStorage.get('personAggr') === undefined) {
+          return false;
+        } else {
+          return true;
+        }
       };
       this.initPersonData = function(_username, eventbus) {
         var personAggregate = {};
