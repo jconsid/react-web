@@ -5,4 +5,8 @@ web/node_modules
 web/.grunt/*
 web/_SpecRunner.html
 web/dist/
+web/.tmp/
+web/build.zip
+web/dest
+web/src
 ~             

@@ -21,18 +21,41 @@ module.exports = function (grunt) {
         usemin: {
           html: '<%=meta.dist %>app/index.html'
         },
+        cssmin: {
+          client: {
+            files: {
+              '<%=meta.dist %>app/css/client.min.css': ['<%=meta.dist %>app/css/client.css']
+            }
+          }
+        },
+        concat: {
+          options: {
+            stripBanners: true,
+            banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+              '<%= grunt.template.today("yyyy-mm-dd") %> */',
+          },
+          js: {
+            src: ['<%=meta.dist %>app/lib/angular/angular.js','<%=meta.dist %>app/lib/angular/angular-cookies.js','<%=meta.dist %>app/lib/angular/angular-route.js','<%=meta.dist %>app/lib/angular/animate.min.js'],
+            dest: '<%=meta.dist %>app/lib/angular/ng-all.min.js'
+          }
+        },
         uglify: {
             options: {
-                beautify:true,
+              beautify:true,
               banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
                 '<%= grunt.template.today("yyyy-mm-dd") %>\nConsid 2014 */',
               mangle: {
                 except: ['window','angular','vertx','$','jQuery','console','module','document']
               }
             },
-            minify: {
+            client: {
               files: {
                 '<%=meta.dist %>app/js/client.min.js': ['<%=meta.dist %>app/js/app.js','<%=meta.dist %>app/js/controllers.js', '<%=meta.dist %>app/js/services.js']
+              }
+            },
+            vertbus: {
+              files: {
+                '<%=meta.dist %>app/lib/vertxbus.min.js': ['<%=meta.dist %>app/lib/vertxbus.js']
               }
             }
         },
@@ -42,9 +65,22 @@ module.exports = function (grunt) {
             dest: '<%=meta.dist %>',
           },
         },
+        compress: {
+          dist: {
+            options: {
+              archive: 'build.zip'
+            },
+            files: [
+              {src: ['dist/**']} // includes files in path
+            ]
+          }
+        },
         clean: {
-          // js: ['<%=meta.dist %>app/js/app.js','<%=meta.dist %>app/js/controllers.js', '<%=meta.dist %>app/js/services.js'],
-          js: ['<%=meta.dist %>app/js/*.js','!<%=meta.dist %>app/js/client.min.js'],
+          js: ['<%=meta.dist %>app/js/*.js','!<%=meta.dist %>app/js/client.min.js',
+              '<%=meta.dist %>app/lib/**/*.js', '!<%=meta.dist %>app/lib/**/*.min.js',
+              '!<%=meta.dist %>app/lib/sockjs-min-0.3.4.js'],
+          css: ['<%=meta.dist %>app/css/*.css','!<%=meta.dist %>app/css/*.min.js',
+              '<%=meta.dist %>app/lib/**/*.css', '!<%=meta.dist %>app/lib/**/*.min.css'],
           dist: ["<%=meta.dist %>"]
         },
         watch: {
@@ -74,7 +110,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        less: {
+        /*less: {
             server: {
                 options: {
                     paths: ['app/components/bootstrap/less', 'app/styles']
@@ -83,7 +119,7 @@ module.exports = function (grunt) {
                     'app/styles/main.css': 'app/styles/main.less'
                 }
             }
-        },
+        },*/
         jshint: {
           files: ['Gruntfile.js', 'app/js/**/*.js'],
           options: {
@@ -110,7 +146,10 @@ module.exports = function (grunt) {
        }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-karma');
 
@@ -118,8 +157,12 @@ module.exports = function (grunt) {
       'clean:dist',
       'copy',
       'useminPrepare',
-      'uglify:minify',
+      'uglify:client',
+      'uglify:vertbus',
+      'cssmin:client',
       'clean:js',
-      'usemin'
+      'clean:css',
+      'usemin',
+      'compress:dist'
     ]);
 };

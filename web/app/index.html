@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PoA</title>
 
-  <link rel="stylesheet" href="css/client.css"/>
   <link rel="stylesheet" href="lib/bootstrap-3.1.1-dist/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="css/jquery.FlowupLabels.css"/>
+  <!-- build:css css/client.min.css -->
+  <link rel="stylesheet" href="css/client.css"/>
+  <!-- endbuild -->
 
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -70,12 +71,22 @@ ng-show="flash.getMessage()" style="background:#999;border-color:#999;margin:0 0
   -->
   <script src="lib/jquery-2.1.0.min.js"></script>
   <script src="lib/sockjs-min-0.3.4.js"></script>
+  <!-- build:js lib/vertxbus.min.js -->
   <script src="lib/vertxbus.js"></script>
-  
+  <!-- endbuild -->
+
+  <!-- build:js lib/angular/angular.min.js -->
   <script src="lib/angular/angular.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js lib/angular/angular-cookies.min.js -->
   <script src="lib/angular/angular-cookies.js"></script>
+  <!-- endbuild -->
+  <!-- build:js lib/angular/angular-route.min.js -->
   <script src="lib/angular/angular-route.js"></script>
+  <!-- endbuild -->
   <script src="lib/angular/angular-animate.min.js"></script>
+  
   <script src="lib/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
   <!-- build:js js/client.min.js -->
   <script src="js/app.js"></script>
