@@ -86,6 +86,97 @@ var anmalningar = [
 				}
 			}
 		]
+	},
+	{
+    titel: 'Inbrott i redskapsbod, helgen v 38',
+		anmalningsstatus: 'SKAPAD',
+		ovrigastatusar: '',
+		ovrigt: null,
+		anmalare: {
+			firstname: 'Johan',
+			lastname: 'Jotunheimsson',
+			email: 'jj@skanska.se',
+			username: 'skanska-johan'
+		},
+		malsagare: {
+			organisation: {
+				_id: 2,
+				namn: 'Byggkompaniet AB',
+				adress: 'Granitvägen 1',
+				postnr: '553 03	 Jönköping',
+				orgnr: '123456789',
+				epost: 'info@byggkompaniet.se',
+			},
+			forsakringsbolag: 'Folksam',
+			forsakringsnummer: '120222-2'
+		},
+		stulnaObjekt: [
+			{
+				namn: 'Milwaukee Kabelklippare M12CC',
+				beskrivning: 'Röd, tejpad med silvertejp kring handtaget...',
+				typ: 'M12CC',
+				stoldmarkning: 'Ja',
+				maskinId: '234A789F'
+			},
+			{
+				namn: 'Makita gersåg',
+				beskrivning: 'Batteridriven kap- och geringssåg på 18V i nyskick (inklusive laddare och tre extrabatteri)',
+				typ: 'BLS713Z 18 volt',
+				stoldmarkning: 'Nej',
+				maskinId: ''
+			},
+			{
+				namn: 'Bosch GML byggplatsradio',
+				beskrivning: 'Nyskick',
+				typ: 'GML 20',
+				stoldmarkning: 'Nej',
+				maskinId: ''
+			},
+			{
+				namn: 'Festtool dammsugare',
+				beskrivning: 'Trasig sladdvinda, något repig - annars i bra skick',
+				typ: 'CTL midi',
+				stoldmarkning: 'Ja',
+				maskinId: '3408-3422-2342-2343'
+			},
+			{
+				namn: 'Festtool skruvautomat',
+				beskrivning: 'Skruvautomat inkl. bits och 3-4 paket skruv',
+				typ: null,
+				stoldmarkning: 'Nej',
+				maskinId: null
+			}
+		],
+		tidOchPlats: {
+			tid: 'helgen v 38',
+			tidSenastLamnad: 'fredag v38',
+			adress: 'Lasarettsgatan 2B',
+			postnr: '55318'
+		},
+		forlopp: 'Redskapsbod hittades måndag morgon v39 uppbruten.',
+		loggbok: [],
+		handelser: [
+			{
+				typ: 'skapad',
+				tid: '1404510106190',
+				person: {
+					firstname: 'Johan',
+					lastname: 'Jotunheimsson',
+					email: 'jj@skanska.se',
+					username: 'skanska-johan'
+				}
+			},
+			{
+				typ: 'uppdaterad',
+				tid: '1404590106190',
+				person: {
+					firstname: 'Johan',
+					lastname: 'Jotunheimsson',
+					email: 'jj@skanska.se',
+					username: 'skanska-johan'
+				}
+			}
+		]
 	}
 ];
 
