@@ -1,0 +1,66 @@
+@import "bootstrap.less";
+@import "swatch/variables.less";
+@import "swatch/bootswatch-flatly.less";
+@import "utilities.less";
+
+.form-radius() {
+  border-radius: 2px;  
+}
+
+body {
+  padding-top: 80px;
+}
+textarea:focus, input:focus{
+    outline: 0;
+}
+*:focus {
+    outline: 0;
+}
+
+
+
+.poa-alert {
+  .alert;
+  .alert-dismissable;
+  .alert-success;
+}
+
+.poa-alert.ng-hide-add,
+.poa-alert.ng-hide-remove {
+  -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
+
+  /* remember to add this */
+  display:block!important;
+  opacity:1;
+}
+.poa-alert.ng-hide {
+  opacity:0;
+}
+
+.well.poa-form {
+  .form-radius();
+}
+
+/* message */
+.globalMsg {
+    -webkit-transition:all linear 2s;
+  transition:all linear 0.5s;
+}
+.globalMsg.ng-hide {
+  opacity:0;
+}
+
+
+
+.reveal-animation.ng-enter {
+ -webkit-transition: .2s linear all; /* Safari/Chrome */
+ transition: .2s linear all; /* All other modern browsers and IE10+ */
+
+ /* The animation preparation code */
+ opacity: 0;
+}
+.reveal-animation.ng-enter.ng-enter-active {
+ /* The animation code itself */
+ opacity: 1;
+}

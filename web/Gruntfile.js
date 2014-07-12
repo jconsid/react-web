@@ -22,9 +22,10 @@ module.exports = function (grunt) {
           html: '<%=meta.dist %>app/index.html'
         },
         cssmin: {
+          /* Kör less med cleancss:true ist */
           client: {
             files: {
-              '<%=meta.dist %>app/css/client.min.css': ['<%=meta.dist %>app/css/client.css']
+              '<%=meta.dist %>app/style/css/client.min.css': ['<%=meta.dist %>app/style/css/client.css']
             }
           }
         },
@@ -79,8 +80,9 @@ module.exports = function (grunt) {
           js: ['<%=meta.dist %>app/js/*.js','!<%=meta.dist %>app/js/client.min.js',
               '<%=meta.dist %>app/lib/**/*.js', '!<%=meta.dist %>app/lib/**/*.min.js',
               '!<%=meta.dist %>app/lib/sockjs-min-0.3.4.js'],
-          css: ['<%=meta.dist %>app/css/*.css','!<%=meta.dist %>app/css/*.min.js',
-              '<%=meta.dist %>app/lib/**/*.css', '!<%=meta.dist %>app/lib/**/*.min.css'],
+          css: ['<%=meta.dist %>app/lib/**/*.css'],
+          less: ['<%=meta.dist %>app/style/**/*.less', '<%=meta.dist %>app/lib/**/*.less'],
+          fonts: ['<%=meta.dist %>app/lib/bootstrap-3.1.1-dist/fonts/*'],
           dist: ["<%=meta.dist %>"]
         },
         watch: {
@@ -95,20 +97,31 @@ module.exports = function (grunt) {
                 spawn: false
             },
             less: {
-                files: ['app/styles/*.less'],
-                tasks: ['less:server']
-            },
+                files: ['app/style/less/*.less'],
+                tasks: ['less:compileClient']
+            }/*,
             livereload: {
                 options: {
                     livereload: LIVERELOAD_PORT
                 },
                 files: [
                     'app/*.html',
-                    'app/styles/{,*/}*.css',
-                    'app/scripts/{,*/}*.js',
-                    'app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+                    'app/styles/{,*remove/}*.css',
+                    'app/scripts/{,*remove/}*.js',
+                    'app/images/{,*remove/}*.{png,jpg,jpeg,gif,webp,svg}',
                 ]
+            }*/
+        },
+        less: {
+          compileClient: {
+            options: {
+              paths: ['app/lib/bootstrap-3.1.1-dist/less', 'app/lib/bootstrap-3.1.1-dist/less/mixins', 'app/lib/bootstrap-3.1.1-dist/less/swatch'],
+              cleancss:true
+            },
+            files: {
+              'app/style/css/client.css': 'app/style/less/client.less'
             }
+          }
         },
         /*less: {
             server: {
@@ -146,6 +159,7 @@ module.exports = function (grunt) {
        }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -153,15 +167,22 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-karma');
 
+    grunt.registerTask('clean-build', [
+      'clean:js',
+      'clean:css',
+      'clean:less',
+      'clean:fonts'
+
+    ]);
+
     grunt.registerTask('build', [
       'clean:dist',
       'copy',
       'useminPrepare',
+      'less:compileClient',
       'uglify:client',
       'uglify:vertbus',
-      'cssmin:client',
-      'clean:js',
-      'clean:css',
+      'clean-build',
       'usemin',
       'compress:dist'
     ]);

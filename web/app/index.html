@@ -6,10 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PoA</title>
 
-  <link rel="stylesheet" href="lib/bootstrap-3.1.1-dist/css/bootstrap.min.css"/>
-  <!-- build:css css/client.min.css -->
-  <link rel="stylesheet" href="css/client.css"/>
-  <!-- endbuild -->
+  <link rel="stylesheet" href="style/css/client.css"/>
 
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -46,7 +43,7 @@
           </ul>
 
         </div>
-        <div class="alert alert-dismissable alert-success msg-anim"
+        <div class="poa-alert"
 ng-show="flash.getMessage()" style="background:#999;border-color:#999;margin:0 0 .4em 0;">
           <button type="button" class="close" ng-click="flash.setNotification(null)">×</button>
           {{flash.getMessage()}}&nbsp;
