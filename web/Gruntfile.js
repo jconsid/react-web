@@ -51,7 +51,7 @@ module.exports = function (grunt) {
             },
             client: {
               files: {
-                '<%=meta.dist %>app/js/client.min.js': ['<%=meta.dist %>app/js/app.js','<%=meta.dist %>app/js/controllers.js', '<%=meta.dist %>app/js/services.js']
+                '<%=meta.dist %>app/js/client.min.js': ['<%=meta.dist %>app/js/app.js','<%=meta.dist %>app/js/anmalanController.js','<%=meta.dist %>app/js/controllers.js', '<%=meta.dist %>app/js/services.js']
               }
             },
             vertbus: {

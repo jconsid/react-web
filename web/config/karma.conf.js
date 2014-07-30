@@ -7,7 +7,11 @@ module.exports = function(config){
       'app/lib/angular/angular-*.js',
       'test/lib/angular/angular-mocks.js',
       'app/lib/jquery-2.1.0.min.js',
-      'app/js/**/*.js',
+      'app/js/app.js',
+      'app/js/services.js',
+
+      'app/js/controllers.js',
+      'app/js/anmalanController.js',
       'test/unit/**/*.js'
     ],
 
