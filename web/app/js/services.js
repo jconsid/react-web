@@ -1,45 +1,54 @@
 
 /* Services */
 
-angular.module('myApp.services', []).
 
 
-factory("flash", ['$rootScope', function($rootScope) {
-  var queue = [];
-  var currentMessage = "";
+(function () {
+angular.module('myApp.services').
+  factory("flash", ['$rootScope', function($rootScope) {
+    var queue = [];
+    var currentMessage = "";
 
-  $rootScope.$on("$routeChangeSuccess", function() {
-    console.log("$routeChangeSuccess", currentMessage, queue);
-    currentMessage = queue.shift() || "";
-  });
+    $rootScope.$on("$routeChangeSuccess", function() {
+      console.log("$routeChangeSuccess", currentMessage, queue);
+      currentMessage = queue.shift() || "";
+    });
 
-  /* Lägger till denna scroll-fix här, inte för att det är ett bra ställe - utan för att flash används överallt */
-  $rootScope.$on("$routeChangeSuccess", function(){
-     window.scrollTo(0,0);
-  });
+    /* Lägger till denna scroll-fix här, inte för att det är ett bra ställe - utan för att flash används överallt */
+    $rootScope.$on("$routeChangeSuccess", function(){
+       window.scrollTo(0,0);
+    });
 
-  return {
-    setNotification: function(message) {
-      currentMessage = message;
-    },
-    setMessage: function(message) {
-      queue.push(message);
-    },
-    getMessage: function() {
-      return currentMessage;
-    }
-  };
-}]).
+    return {
+      setNotification: function(message) {
+        currentMessage = message;
+      },
+      setMessage: function(message) {
+        queue.push(message);
+      },
+      getMessage: function() {
+        return currentMessage;
+      }
+    };
+  }]);
+})();
 
+(function () {
+angular.module('myApp.services')
+  .value('version', '0.1');
+})();
 
-  value('version', '0.1').
-
-  service('EventBus', function() {
+(function () {
+angular.module('myApp.services')
+  .service('EventBus', function() {
     var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
     return eb;
-  }).
+  });
+})();
 
-  service('AnmalanService', ['PersonService', function(personService) {
+(function () {
+angular.module('myApp.services')
+  .service('AnmalanService', ['PersonService', function(personService) {
     this.newAnmalanInstance = function(person, _organisation) {
       var emptyInstance = {
         titel: '',
@@ -218,9 +227,12 @@ factory("flash", ['$rootScope', function($rootScope) {
       };
       console.log("Events are set up.");
     };
-  }]).
+  }]);
+})();
 
-    service('PersistentStorage', ['$cookieStore', function(c) {
+(function () {
+angular.module('myApp.services')
+  .service('PersistentStorage', ['$cookieStore', function(c) {
       var storage = {};
       storage.set = function(_attr, value) {
         if (value === null) {
@@ -233,9 +245,12 @@ factory("flash", ['$rootScope', function($rootScope) {
         return c.get(_attr);
       };
       return storage;
-    }]).
+    }]);
+})();
 
-    service('TimeDisplayService', [function() {
+(function () {
+  angular.module('myApp.services')
+    .service('TimeDisplayService', [function() {
       this.timeSince = function(date) {
         var seconds = Math.floor((new Date() - date) / 1000);
         var interval = Math.floor(seconds / 31536000);
@@ -274,9 +289,12 @@ factory("flash", ['$rootScope', function($rootScope) {
           return interval + " sekunder";
         }
       };
-    }]).
+    }]);
+})();
 
-    service('PersonService', ['PersistentStorage', function(persistentStorage) {
+(function () {
+  angular.module('myApp.services')
+    .service('PersonService', ['PersistentStorage', function(persistentStorage) {
       this.getUsername = function() {
         if (!this.isInitialized()) {
           return null;
@@ -352,7 +370,11 @@ factory("flash", ['$rootScope', function($rootScope) {
           return promise;
         };
       }
-    ]).
+    ]);
+})();
+
+(function () {
+  angular.module('myApp.services').
     service('LoginService', ['EventBus', 'PersonService', function(eb, personService) {
       this.login = function(username, password) {
         var promise = $.Deferred();
@@ -378,3 +400,4 @@ factory("flash", ['$rootScope', function($rootScope) {
       };
     }
   ]);
+})();
