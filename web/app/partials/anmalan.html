@@ -211,7 +211,7 @@
 
 <ul class="nav nav-pills" style="margin-bottom:.7em">
   <li ng-class="{true: 'active', false: ''}[showLoggmeddelanden]"><a ng-click="displayLoggmeddelanden()" href="javscript:void()">Loggmeddelanden<span class="badge" ng-show="logMessages.length">{{logMessages.length}}</span></a></li>
-  <li ng-class="{true: 'active', false: ''}[showHandelser]"><a ng-click="displayHandelser()" href="javscript:void()">Händelser <span class="badge">{{ticket.handelser.length}}</span></a></li>
+  <li ng-class="{true: 'active', false: ''}[showHandelser]"><a ng-click="viewCtrl.displayHandelser()" href="javscript:void()">Händelser <span class="badge">{{ticket.handelser.length}}</span></a></li>
   <li class="disabled"><a href="javscript:void()">Uppladdade filer</a></li>
 </ul>
 
@@ -289,7 +289,7 @@
             </button>
 
             <button ng-show="isLoggedIn" type="button" class="btn btn-primary"
-					ng-click="gotoEdit()">
+					ng-click="viewCtrl.gotoEdit()">
 				Editera
 			</button>
 

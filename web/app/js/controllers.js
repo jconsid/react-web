@@ -139,7 +139,7 @@ angular.module('myApp.controllers', []).
       $scope.showHandelser = false;
       $scope.showFieldsForNew = false;
       $scope.isLoggedIn = false;
-      $scope.ticket = {};
+      $scope.ticket = $scope.ticket || {};
       $scope.showFieldsForNewFile = false;
 
       $scope.logMessages = [];
@@ -151,7 +151,9 @@ angular.module('myApp.controllers', []).
         $scope.isLoggedIn = true;
         $scope.loggedInUser = personService.getUsername();
       }
-      $scope.gotoEdit = function() {
+
+      this.gotoEdit = function() {
+        console.log('$scope:', $scope.ticket);
         $location.path("/editera/" + $scope.ticket._id);
       };
       $scope.displayHandelser = function() {
@@ -237,7 +239,7 @@ angular.module('myApp.controllers', []).
           $scope.$apply();
         };
 
-        var s = anmalanService.findOne($routeParams.anmalanId, ticketCall);
+        anmalanService.findOne($routeParams.anmalanId, ticketCall);
       };
 
       $scope.findAnmalan();
