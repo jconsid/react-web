@@ -14,9 +14,9 @@
 
 		    var timeoutGuard = setTimeout(function() {
 		      		if (!isOpen) {
-						promise.reject("The eventbus could no be opened within " + TIMEOUT_MS + " ms.");
+						promise.reject("Applikationen misslyckades med att öppna meddelandekanal inom " + (TIMEOUT_MS/1000) + " s.");
 		      		} else if (!isReplied) {
-						promise.reject("The application failed to reply within " + TIMEOUT_MS + " ms.");
+						promise.reject("Applikationen svarade inte inom " + (TIMEOUT_MS/1000) + " s. Vänligen, försök igen.");
 		      		}
 		    	},
 		    	TIMEOUT_MS
