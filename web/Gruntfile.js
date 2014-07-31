@@ -51,7 +51,16 @@ module.exports = function (grunt) {
             },
             client: {
               files: {
-                '<%=meta.dist %>app/js/client.min.js': ['<%=meta.dist %>app/js/app.js','<%=meta.dist %>app/js/anmalanController.js','<%=meta.dist %>app/js/controllers.js', '<%=meta.dist %>app/js/services.js']
+                '<%=meta.dist %>app/js/client.min.js': [
+                  '<%=meta.dist %>app/js/app.js',
+                  '<%=meta.dist %>app/js/controllers/anmalanCtrl.js',
+                  '<%=meta.dist %>app/js/controllers/registerCtrl.js',
+                  '<%=meta.dist %>app/js/controllers/editAnmalanCtrl.js',
+                  '<%=meta.dist %>app/js/controllers/loginCtrl.js',
+                  '<%=meta.dist %>app/js/controllers/listCtrl.js',
+                  '<%=meta.dist %>app/js/controllers/msgCtrl.js',
+                  '<%=meta.dist %>app/js/controllers/aboutCtrl.js',
+                  '<%=meta.dist %>app/js/services.js']
               }
             },
             vertbus: {

@@ -1,5 +1,6 @@
 # Can ignore specific files
 .DS_Store
+web/app/.DS_Store
 nohup.out
 web/node_modules
 web/.grunt/*
