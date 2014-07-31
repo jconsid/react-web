@@ -105,7 +105,7 @@ module.exports = function (grunt) {
         watch: {
            js: {
                 files: [
-                        '<%= meta.src.mainjs %>*.js',
+                        '<%= meta.src.mainjs %>**/*.js',
                         '<%= meta.src.test %>*Spec.js'
                 ],
                 tasks: ['jasmine:test']
@@ -151,15 +151,20 @@ module.exports = function (grunt) {
             configFile: 'config/karma.conf.js'
           }
         },
+
         jasmine: {
            test: {
-            src: '<%= meta.src.mainjs %>*.js',
+            src: '<%= meta.src.mainjs %>**/*.js',
             options: {
                 vendor: [
-                    'bower_components/jquery/dist/jquery.js',
-                    'bower_components/jasmine-jquery/lib/jasmine-jquery.js'
+                    'app/lib/angular/angular.js',
+                    'app/lib/angular/angular-route.js',
+                    'app/lib/angular/angular-cookies.js',
+                    'app/lib/angular/angular-animate.min.js',
+                    'test/lib/angular/angular-mocks.js',
+                    'app/lib/jquery-2.1.0.min.js'
                     ],
-                    specs: '<%= meta.src.test %>*Spec.js'
+                    specs: 'test/unit/**/*.js'
                 }
             }
             
