@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  angular.module('myApp.controllers')
+  angular.module('poa.controllers')
     .controller('LoginCtrl', ['$scope', 'LoginService', '$location', 'flash', 'PersonService',
       function($scope, loginService, $location, flash, personService) {
         $scope.username = personService.getUsername();

@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  angular.module('myApp.services')
+  angular.module('poa.services')
     .service('PersonService', ['PersistentStorage', function(persistentStorage) {
       this.getUsername = function() {
         if (!this.isInitialized()) {

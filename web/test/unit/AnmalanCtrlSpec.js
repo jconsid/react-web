@@ -3,7 +3,7 @@
 /* jasmine specs for services go here */
 
 describe('controllers', function() {
-  beforeEach(module('myApp'));
+  beforeEach(module('poa'));
 /* .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'PersonService', '$location', 'flash',
     function($scope, anmalanService, $routeParams, personService, $location, flash) { */
   describe('AnmalanCtrl', function() {

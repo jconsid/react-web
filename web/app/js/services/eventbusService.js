@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	angular.module('myApp.services')
+	angular.module('poa.services')
 	  .service('EventBusService', function() {
 	  	var getEb = function() {
 	  		return new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');

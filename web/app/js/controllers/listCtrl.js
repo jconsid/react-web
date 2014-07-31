@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  angular.module('myApp.controllers')
+  angular.module('poa.controllers')
     .controller('ListCtrl', ['$scope', 'AnmalanService', function($scope, anmalanService) {
       this.tickets = [];
       this.systemEvents = [];

@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  angular.module('myApp.controllers').
+  angular.module('poa.controllers').
     controller('RegisterCtrl', [ '$scope', '$location', 'AnmalanService', 'flash', 'PersonService', function($scope, $location, anmalanService, flash, personService) {
       $scope.setupNewStuletObjekt = function () {
           $scope.newStuletObjekt = {

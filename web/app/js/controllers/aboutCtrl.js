@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-    angular.module('myApp.controllers').
+    angular.module('poa.controllers').
       controller("AboutCtrl", function($scope) {
   });
 })();

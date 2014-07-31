@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-angular.module('myApp.services').
+angular.module('poa.services').
   factory("flash", ['$rootScope', function($rootScope) {
     var queue = [];
     var currentMessage = "";

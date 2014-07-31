@@ -3,7 +3,7 @@
 /* jasmine specs for services go here */
 
 describe('controllers', function() {
-  beforeEach(module('myApp'));
+  beforeEach(module('poa'));
 
   describe('LoginCtrl', function() {
     var scope, ctrl, mockedGlobal, mockedLoginService, flashMsg;

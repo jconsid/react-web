@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  angular.module('myApp.controllers').
+  angular.module('poa.controllers').
     controller("EditAnmalanCtrl", ['$scope', '$routeParams', '$location', 'flash', 'AnmalanService', 'PersonService', function($scope, $routeParams, $location, flash, anmalanService, personService) {
       $scope.isRegisterNew = false;
       $scope.userLoggedIn = personService.isInitialized();

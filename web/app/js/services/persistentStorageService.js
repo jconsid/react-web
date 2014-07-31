@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-angular.module('myApp.services')
+angular.module('poa.services')
   .service('PersistentStorage', ['$cookieStore', function(c) {
       var storage = {};
       storage.set = function(_attr, value) {

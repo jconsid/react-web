@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  angular.module('myApp.services')
+  angular.module('poa.services')
     .service('TimeDisplayService', [function() {
       this.timeSince = function(date) {
         var seconds = Math.floor((new Date() - date) / 1000);

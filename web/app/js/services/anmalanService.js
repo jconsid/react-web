@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-angular.module('myApp.services')
+angular.module('poa.services')
   .service('AnmalanService', ['PersonService', 'EventBusService', function(personService, eb) {
     this.newAnmalanInstance = function(person, _organisation) {
       var emptyInstance = {

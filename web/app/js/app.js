@@ -1,10 +1,10 @@
 // Declare app level module which depends on filters, and services
 (function () {
   'use strict';
-  angular.module('myApp', [
+  angular.module('poa', [
     'ngRoute',
-    'myApp.services',
-    'myApp.controllers',
+    'poa.services',
+    'poa.controllers',
     'ngCookies',
     'ngAnimate'
   ]).
@@ -18,6 +18,6 @@
     $routeProvider.otherwise({redirectTo: '/list'});
   }]);
 
-  angular.module('myApp.services', []);
-  angular.module('myApp.controllers', []);
+  angular.module('poa.services', []);
+  angular.module('poa.controllers', []);
 })();
