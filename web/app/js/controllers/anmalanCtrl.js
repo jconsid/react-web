@@ -57,7 +57,7 @@
             ).fail(
               function(reply) {
                 console.log('addLogMessage ERROR', reply);
-                window.alert("Något gick fel vid skapandet av ditt meddelande:" + reply.status);
+                window.alert("Något gick fel vid skapandet av ditt meddelande: " + reply);
               }
             );
 
@@ -79,7 +79,7 @@
             ).fail(
               function(reply) {
                 console.log('skickaTillPolisen ERROR', reply);
-                window.alert("Något gick fel när anmälan skickades till polisen:" + reply.status);
+                window.alert("Något gick fel när anmälan skickades till polisen: " + reply);
               }
             );
         };
