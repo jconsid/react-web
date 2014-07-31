@@ -53,13 +53,8 @@ module.exports = function (grunt) {
               files: {
                 '<%=meta.dist %>app/js/client.min.js': [
                   '<%=meta.dist %>app/js/app.js',
-                  '<%=meta.dist %>app/js/controllers/anmalanCtrl.js',
-                  '<%=meta.dist %>app/js/controllers/registerCtrl.js',
-                  '<%=meta.dist %>app/js/controllers/editAnmalanCtrl.js',
-                  '<%=meta.dist %>app/js/controllers/loginCtrl.js',
-                  '<%=meta.dist %>app/js/controllers/listCtrl.js',
-                  '<%=meta.dist %>app/js/controllers/msgCtrl.js',
-                  '<%=meta.dist %>app/js/controllers/aboutCtrl.js',
+                  '<%=meta.dist %>app/js/services/*.js',
+                  '<%=meta.dist %>app/js/controllers/*.js',
                   '<%=meta.dist %>app/js/services.js']
               }
             },
@@ -86,7 +81,7 @@ module.exports = function (grunt) {
           }
         },
         clean: {
-          js: ['<%=meta.dist %>app/js/controllers/*.js',
+          js: ['<%=meta.dist %>app/js/controllers/*.js','<%=meta.dist %>app/js/services/*.js',
               '<%=meta.dist %>app/js/*.js','!<%=meta.dist %>app/js/client.min.js',
               '<%=meta.dist %>app/lib/**/*.js', '!<%=meta.dist %>app/lib/**/*.min.js',
               '!<%=meta.dist %>app/lib/sockjs-min-0.3.4.js'],
