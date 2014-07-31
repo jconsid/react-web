@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 angular.module('myApp.services')
-  .service('AnmalanService', ['PersonService', 'EventBusService', function(personService, eventBusService) {
+  .service('AnmalanService', ['PersonService', 'EventBusService', function(personService, eb) {
     this.newAnmalanInstance = function(person, _organisation) {
       var emptyInstance = {
         titel: '',
@@ -43,17 +43,14 @@ angular.module('myApp.services')
 
     this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
       var promise = $.Deferred();
-      var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
-        eb.onopen = function() {
-            eb.send('skapa.loggmeddelande', {id: _id, skapadAv: personService.getPersonToAttach(), subject: _subject, body: _body},
-            function(reply) {
-              if (reply.status === "ok") {
-                promise.resolve(reply);
-            } else {
-              promise.reject(reply);
-            }
-            });
-      };
+
+      $.when(eb.send('skapa.loggmeddelande',
+              {id: _id, skapadAv: personService.getPersonToAttach(), subject: _subject, body: _body})
+      ).done(function(reply) {
+          promise.resolve(reply);
+      }).fail(function(reply) {
+          promise.reject(reply);
+      });
       return promise;
     };
 
@@ -113,9 +110,8 @@ angular.module('myApp.services')
     };
 
     this.findOne = function(id, fnOpen) {
-      console.log("sendOne " + id);
       $.when(
-        eventBusService.send('test.mongodb',
+        eb.send('test.mongodb',
           {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id + ""}})
       ).done(function(reply) {
           console.log('AnmalanService::findOne processing reply', reply);
