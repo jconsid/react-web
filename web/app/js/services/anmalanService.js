@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 angular.module('myApp.services')
-  .service('AnmalanService', ['PersonService', function(personService) {
+  .service('AnmalanService', ['PersonService', 'EventBusService', function(personService, eventBusService) {
     this.newAnmalanInstance = function(person, _organisation) {
       var emptyInstance = {
         titel: '',
@@ -113,15 +113,18 @@ angular.module('myApp.services')
     };
 
     this.findOne = function(id, fnOpen) {
-      var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
-      eb.onopen = function() {
-        eb.send('test.mongodb', {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id + ""}},
-        function(reply) {
+      console.log("sendOne " + id);
+      $.when(
+        eventBusService.send('test.mongodb',
+          {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id + ""}})
+      ).done(function(reply) {
           console.log('AnmalanService::findOne processing reply', reply);
           fnOpen.call(this, "ok", reply);
-          eb.close();
-        });
-      };
+      }).fail(
+          function(reply) {
+              alert("Failure " + reply);
+          }
+      );
     };
 
     this.findAll = function(fn, fnUpdated) {
@@ -148,7 +151,6 @@ angular.module('myApp.services')
           }
         );
       };
-      console.log("Events are set up.");
     };
   }]);
 })();
