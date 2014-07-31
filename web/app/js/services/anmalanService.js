@@ -43,31 +43,27 @@ angular.module('myApp.services')
 
     this.addLogMessage = function(_id, _subject, _body, _user, fnDone) {
       var promise = $.Deferred();
-
       $.when(eb.send('skapa.loggmeddelande',
               {id: _id, skapadAv: personService.getPersonToAttach(), subject: _subject, body: _body})
-      ).done(function(reply) {
-          promise.resolve(reply);
-      }).fail(function(reply) {
-          promise.reject(reply);
+      ).done(function(r) {
+          promise.resolve(r);
+      }).fail(function(r) {
+          promise.reject(r);
       });
       return promise;
     };
 
     this.skickaTillPolisen = function(_id, _title, _user, fnDone) {
-      var promise = $.Deferred();
-      var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
-      eb.onopen = function() {
-        eb.send('skicka.till.polisen', {id: _id, skapadAv: personService.getUsername(), title: _title},
-        function(reply) {
-          if (reply.status === "ok") {
-            promise.resolve(reply);
-          } else {
-            promise.reject(reply);
-          }
-        });
-       };
-       return promise;
+      var q = $.Deferred();
+
+      $.when(
+        eb.send('skicka.till.polisen', {id: _id, skapadAv: personService.getUsername(), title: _title})
+      ).done(function(r) {
+        q.resolve(r);
+      }).fail(function(r) {
+        q.reject(r);
+      });
+       return q;
     };
 
     this.fabricateHandelse = function(_typ, _person) {
@@ -89,24 +85,16 @@ angular.module('myApp.services')
 
     this.save = function(_anmalan) {
       var inloggadPerson = personService.getPersonToAttach();
-      var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
-      var promise = $.Deferred();
-      eb.onopen = function() {
-        var payloadJson = {skapadAv: inloggadPerson, anmalan: _anmalan};
-        eb.send('skapa.anmalan', payloadJson,
-        function(reply) {
-          if (reply.status === "ok") {
-            console.log("SAVE OK");
-            promise.resolve(reply._id);
-          } else {
-            console.log("save nok");
-            promise.reject(reply);
-          }
-          console.log('AnmalanService::save processing reply', reply);
-          eb.close();
-        });
-      };
-      return promise;
+      var q = $.Deferred();
+      var payloadJson = {skapadAv: inloggadPerson, anmalan: _anmalan};
+      $.when(
+        eb.send('skapa.anmalan', payloadJson)
+      ).done(function(r) {
+        q.resolve(r);
+      }).fail(function(r) {
+        q.reject(r);
+      });
+      return q;
     };
 
     this.findOne = function(id, fnOpen) {
