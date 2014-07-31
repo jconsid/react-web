@@ -6,6 +6,7 @@
         $scope.showLoggmeddelanden = true;
         $scope.showHandelser = false;
         $scope.showFieldsForNew = false;
+        $scope.showFiler = false;
         $scope.isLoggedIn = false;
         $scope.ticket = $scope.ticket || {};
         $scope.showFieldsForNewFile = false;
@@ -24,13 +25,20 @@
           console.log('$scope:', $scope.ticket);
           $location.path("/editera/" + $scope.ticket._id);
         };
-        $scope.displayHandelser = function() {
+        this.displayHandelser = function() {
           $scope.showHandelser = true;
           $scope.showLoggmeddelanden = false;
+          $scope.showFiler = false;
         };
-        $scope.displayLoggmeddelanden = function() {
+        this.displayLoggmeddelanden = function() {
           $scope.showLoggmeddelanden = true;
           $scope.showHandelser = false;
+          $scope.showFiler = false;
+        };
+        this.displayFiler = function() {
+          $scope.showLoggmeddelanden = false;
+          $scope.showHandelser = false;
+          $scope.showFiler = true;
         };
         $scope.startNew = function() {
           $scope.showFieldsForNew = true;
