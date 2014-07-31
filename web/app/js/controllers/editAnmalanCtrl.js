@@ -1,4 +1,5 @@
 (function () {
+  'use strict';
   angular.module('myApp.controllers').
     controller("EditAnmalanCtrl", ['$scope', '$routeParams', '$location', 'flash', 'AnmalanService', 'PersonService', function($scope, $routeParams, $location, flash, anmalanService, personService) {
       $scope.isRegisterNew = false;

@@ -4,6 +4,7 @@
 
 
 (function () {
+  'use strict';
 angular.module('myApp.services').
   factory("flash", ['$rootScope', function($rootScope) {
     var queue = [];
@@ -34,11 +35,13 @@ angular.module('myApp.services').
 })();
 
 (function () {
+  'use strict';
 angular.module('myApp.services')
   .value('version', '0.1');
 })();
 
 (function () {
+  'use strict';
 angular.module('myApp.services')
   .service('EventBus', function() {
     var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
@@ -47,6 +50,7 @@ angular.module('myApp.services')
 })();
 
 (function () {
+  'use strict';
 angular.module('myApp.services')
   .service('AnmalanService', ['PersonService', function(personService) {
     this.newAnmalanInstance = function(person, _organisation) {
@@ -231,6 +235,7 @@ angular.module('myApp.services')
 })();
 
 (function () {
+  'use strict';
 angular.module('myApp.services')
   .service('PersistentStorage', ['$cookieStore', function(c) {
       var storage = {};
@@ -249,6 +254,7 @@ angular.module('myApp.services')
 })();
 
 (function () {
+  'use strict';
   angular.module('myApp.services')
     .service('TimeDisplayService', [function() {
       this.timeSince = function(date) {
@@ -293,6 +299,7 @@ angular.module('myApp.services')
 })();
 
 (function () {
+  'use strict';
   angular.module('myApp.services')
     .service('PersonService', ['PersistentStorage', function(persistentStorage) {
       this.getUsername = function() {
@@ -374,6 +381,7 @@ angular.module('myApp.services')
 })();
 
 (function () {
+  'use strict';
   angular.module('myApp.services').
     service('LoginService', ['EventBus', 'PersonService', function(eb, personService) {
       this.login = function(username, password) {

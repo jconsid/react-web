@@ -1,4 +1,5 @@
 (function () {
+  'use strict';
   angular.module('myApp.controllers')
     .controller('AnmalanCtrl', ['$scope', 'AnmalanService', '$routeParams', 'PersonService', '$location', 'flash',
       function($scope, anmalanService, $routeParams, personService, $location, flash) {

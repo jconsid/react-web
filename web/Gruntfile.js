@@ -86,7 +86,8 @@ module.exports = function (grunt) {
           }
         },
         clean: {
-          js: ['<%=meta.dist %>app/js/*.js','!<%=meta.dist %>app/js/client.min.js',
+          js: ['<%=meta.dist %>app/js/controllers/*.js',
+              '<%=meta.dist %>app/js/*.js','!<%=meta.dist %>app/js/client.min.js',
               '<%=meta.dist %>app/lib/**/*.js', '!<%=meta.dist %>app/lib/**/*.min.js',
               '!<%=meta.dist %>app/lib/sockjs-min-0.3.4.js'],
           css: ['<%=meta.dist %>app/lib/**/*.css'],

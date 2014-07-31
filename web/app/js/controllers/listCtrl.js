@@ -1,4 +1,5 @@
 (function () {
+  'use strict';
   angular.module('myApp.controllers')
     .controller('ListCtrl', ['$scope', 'AnmalanService', function($scope, anmalanService) {
       $scope.tickets = [];

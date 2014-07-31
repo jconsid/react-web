@@ -1,4 +1,5 @@
 (function () {
+  'use strict';
   angular.module('myApp.controllers')
     .controller('LoginCtrl', ['$scope', 'LoginService', '$location', 'flash', 'PersonService',
       function($scope, loginService, $location, flash, personService) {
