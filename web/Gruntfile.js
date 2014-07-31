@@ -29,17 +29,16 @@ module.exports = function (grunt) {
             }
           }
         },
-        concat: {
+        /*concat: {
           options: {
             stripBanners: true,
-            banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-              '<%= grunt.template.today("yyyy-mm-dd") %> */',
+            banner: 'trash',
           },
           js: {
             src: ['<%=meta.dist %>app/lib/angular/angular.js','<%=meta.dist %>app/lib/angular/angular-cookies.js','<%=meta.dist %>app/lib/angular/angular-route.js','<%=meta.dist %>app/lib/angular/animate.min.js'],
             dest: '<%=meta.dist %>app/lib/angular/ng-all.min.js'
           }
-        },
+        },*/
         uglify: {
             options: {
               beautify:true,
