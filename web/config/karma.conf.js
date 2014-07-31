@@ -8,9 +8,9 @@ module.exports = function(config){
       'test/lib/angular/angular-mocks.js',
       'app/lib/jquery-2.1.0.min.js',
       'app/js/app.js',
-      'app/js/services.js',
+      'app/js/services/*.js',
 
-      'app/js/controllers.js',
+      'app/js/controllers/*.js',
       'app/js/anmalanController.js',
       'test/unit/**/*.js'
     ],
