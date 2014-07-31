@@ -16,29 +16,39 @@ module.exports = function (grunt) {
             dist: 'dist/'
         },
         useminPrepare: {
-          html: '<%=meta.dist %>app/index.html'
+          html: '<%=meta.dist %>app/index.html'/*,
+          css: ['<%=meta.dist %>app/style/css/client.css']*/
         },
         usemin: {
           html: '<%=meta.dist %>app/index.html'
         },
-        cssmin: {
-          /* Kör less med cleancss:true ist */
+        /* Kör less med cleancss:true ist */
+        /*cssmin: {
+          
           client: {
             files: {
               '<%=meta.dist %>app/style/css/client.min.css': ['<%=meta.dist %>app/style/css/client.css']
             }
           }
-        },
-        /*concat: {
-          options: {
-            stripBanners: true,
-            banner: 'trash',
-          },
-          js: {
-            src: ['<%=meta.dist %>app/lib/angular/angular.js','<%=meta.dist %>app/lib/angular/angular-cookies.js','<%=meta.dist %>app/lib/angular/angular-route.js','<%=meta.dist %>app/lib/angular/animate.min.js'],
-            dest: '<%=meta.dist %>app/lib/angular/ng-all.min.js'
-          }
         },*/
+        concat: {
+          options: {
+            separator: ';',
+            stripBanners: true,
+            banner: '/*\n' +
+             'AngularJS v1.2.15\n' +
+             '(c) 2010-2014 Google, Inc. http://angularjs.org\n' +
+             'License: MIT\n' +
+             '*/\n',
+          },
+          dist: {
+            src: ['<%=meta.dist %>app/lib/angular/angular.min.js',
+                  '<%=meta.dist %>app/lib/angular/angular-cookies.min.js',
+                  '<%=meta.dist %>app/lib/angular/angular-route.min.js',
+                  '<%=meta.dist %>app/lib/angular/angular-animate.min.js'],
+            dest: '<%=meta.dist %>app/lib/angular/angular-optimized.min.js',
+          },
+        },
         uglify: {
             options: {
               beautify:true,
@@ -46,7 +56,9 @@ module.exports = function (grunt) {
                 '<%= grunt.template.today("yyyy-mm-dd") %>\nConsid 2014 */',
               mangle: {
                 except: ['window','angular','vertx','$','jQuery','console','module','document']
-              }
+              }/*,
+              sourceMap: true,
+              sourceMapName: 'names.map'*/
             },
             client: {
               files: {
@@ -87,7 +99,8 @@ module.exports = function (grunt) {
           css: ['<%=meta.dist %>app/lib/**/*.css'],
           less: ['<%=meta.dist %>app/style/**/*.less', '<%=meta.dist %>app/lib/**/*.less'],
           fonts: ['<%=meta.dist %>app/lib/bootstrap-3.1.1-dist/fonts/*'],
-          dist: ["<%=meta.dist %>"]
+          dist: ["<%=meta.dist %>"],
+          temp: [".tmp/*"]
         },
         watch: {
            js: {
@@ -127,16 +140,6 @@ module.exports = function (grunt) {
             }
           }
         },
-        /*less: {
-            server: {
-                options: {
-                    paths: ['app/components/bootstrap/less', 'app/styles']
-                },
-                files: {
-                    'app/styles/main.css': 'app/styles/main.less'
-                }
-            }
-        },*/
         jshint: {
           files: ['Gruntfile.js', 'app/js/**/*.js'],
           options: {
@@ -176,7 +179,6 @@ module.exports = function (grunt) {
       'clean:css',
       'clean:less',
       'clean:fonts'
-
     ]);
 
     grunt.registerTask('build', [
@@ -186,8 +188,10 @@ module.exports = function (grunt) {
       'less:compileClient',
       'uglify:client',
       'uglify:vertbus',
+      'concat',
       'clean-build',
       'usemin',
-      'compress:dist'
+      'compress:dist',
+      'clean:temp'
     ]);
 };
