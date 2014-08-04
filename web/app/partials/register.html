@@ -74,7 +74,10 @@
 	      <div class="col-md-8">
 		  	<div class="form-group">
 		    	<label for="tid">Tidpunkt för händelse</label>
-		    	<input type="text" class="form-control" id="tid" ng-model="anmalan.tidOchPlats.tid">
+		    	<div>
+			    	<quick-datepicker ng-model='anmalan.tidOchPlats.tid'
+						placeholder='Klicka för att välja tidpunkt'></quick-datepicker>
+				</div>
 		  	</div>
 
 		  	<div class="form-group">
@@ -145,5 +148,4 @@
   <div class='fl_wrap'>
     <p>Fält markerade med * är obligatoriska</p>
   </div>
-
 </form>
