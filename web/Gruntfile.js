@@ -43,11 +43,15 @@ module.exports = function (grunt) {
              '\n',*/
           },
           js: {
-            src: ['<%=meta.dist %>app/lib/angular/angular.min.js',
+            src: ['<%=meta.dist %>app/lib/jquery-2.1.0.min.js',
+                  '<%=meta.dist %>app/lib/sockjs-min-0.3.4.js',
+                  '<%=meta.dist %>app/lib/angular/angular.min.js',
                   '<%=meta.dist %>app/lib/angular/angular-cookies.min.js',
                   '<%=meta.dist %>app/lib/angular/angular-route.min.js',
-                  '<%=meta.dist %>app/lib/angular/angular-animate.min.js'/*,
-                  '<%=meta.dist %>app/lib/ngQuickDate/ng-quick-date.min.js'*/],
+                  '<%=meta.dist %>app/lib/angular/angular-animate.min.js',
+                  '<%=meta.dist %>app/lib/ngQuickDate/ng-quick-date.min.js',
+                  '<%=meta.dist %>app/lib/bootstrap-3.1.1-dist/js/bootstrap.min.js',
+                  '<%=meta.dist %>app/lib/vertxbus.tmp.js'],
             dest: '<%=meta.dist %>app/lib/vendor.min.js',
           },
           css: {
@@ -78,7 +82,7 @@ module.exports = function (grunt) {
             },
             vertbus: {
               files: {
-                '<%=meta.dist %>app/lib/vertxbus.min.js': ['<%=meta.dist %>app/lib/vertxbus.js']
+                '<%=meta.dist %>app/lib/vertxbus.tmp.js': ['<%=meta.dist %>app/lib/vertxbus.js']
               }
             }
         },
