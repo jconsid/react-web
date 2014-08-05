@@ -35,19 +35,26 @@ module.exports = function (grunt) {
           options: {
             separator: ';',
             stripBanners: true,
-            banner: '/*\n' +
+            
+            /*banner: '/*\n' +
              'AngularJS v1.2.15\n' +
              '(c) 2010-2014 Google, Inc. http://angularjs.org\n' +
              'License: MIT\n' +
-             '*/\n',
+             '\n',*/
           },
-          dist: {
+          js: {
             src: ['<%=meta.dist %>app/lib/angular/angular.min.js',
                   '<%=meta.dist %>app/lib/angular/angular-cookies.min.js',
                   '<%=meta.dist %>app/lib/angular/angular-route.min.js',
-                  '<%=meta.dist %>app/lib/angular/angular-animate.min.js'],
-            dest: '<%=meta.dist %>app/lib/angular/angular-optimized.min.js',
+                  '<%=meta.dist %>app/lib/angular/angular-animate.min.js'/*,
+                  '<%=meta.dist %>app/lib/ngQuickDate/ng-quick-date.min.js'*/],
+            dest: '<%=meta.dist %>app/lib/vendor.min.js',
           },
+          css: {
+            src: ['<%=meta.dist %>app/lib/ngQuickDate/ng-quick-date-default-theme.css',
+                  '<%=meta.dist %>app/lib/ngQuickDate/ng-quick-date.css'],
+            dest: '<%=meta.dist %>app/style/css/style.min.css',
+          }
         },
         uglify: {
             options: {
@@ -187,13 +194,15 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('build', [
+      'clean:temp',
       'clean:dist',
       'copy',
       'useminPrepare',
       'less:compileClient',
       'uglify:client',
       'uglify:vertbus',
-      'concat',
+      'concat:js',
+      'concat:css',
       'clean-build',
       'usemin',
       'compress:dist',

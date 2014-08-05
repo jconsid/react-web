@@ -20,7 +20,7 @@
       $routeProvider.otherwise({redirectTo: '/list'});
 
     }]).
-  config(function(ngQuickDateDefaultsProvider) {
+  config(['ngQuickDateDefaultsProvider', function(ngQuickDateDefaultsProvider) {
       return ngQuickDateDefaultsProvider.set({
         dayAbbreviations: ["Sö", "Må", "Ti", "On", "To", "Fr", "Lö"],
         nextLinkHtml: 'Nästa &rarr;',
@@ -28,7 +28,7 @@
         dateFormat: 'yyyy-MM-dd',
         timeFormat: 'hh:mm'
       });
-    });
+    }]);
   angular.module('poa.services', []);
   angular.module('poa.controllers', []);
 })();
