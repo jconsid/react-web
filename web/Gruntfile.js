@@ -23,14 +23,14 @@ module.exports = function (grunt) {
           html: '<%=meta.dist %>app/index.html'
         },
         /* Kör less med cleancss:true ist */
-        /*cssmin: {
+        cssmin: {
           
           client: {
             files: {
-              '<%=meta.dist %>app/style/css/client.min.css': ['<%=meta.dist %>app/style/css/client.css']
+              '<%=meta.dist %>app/style/css/vendor.min.css': ['<%=meta.dist %>app/style/css/vendor.css']
             }
           }
-        },*/
+        },
         concat: {
           options: {
             separator: ';',
@@ -54,10 +54,15 @@ module.exports = function (grunt) {
                   '<%=meta.dist %>app/lib/vertxbus.tmp.js'],
             dest: '<%=meta.dist %>app/lib/vendor.min.js',
           },
-          css: {
+          vendorcss: {
             src: ['<%=meta.dist %>app/lib/ngQuickDate/ng-quick-date-default-theme.css',
                   '<%=meta.dist %>app/lib/ngQuickDate/ng-quick-date.css'],
-            dest: '<%=meta.dist %>app/style/css/style.min.css',
+            dest: '<%=meta.dist %>app/style/css/vendor.css',
+          },
+          allcss: {
+            src: ['app/style/css/client.css',
+                  '<%=meta.dist %>app/style/css/vendor.min.css'],
+            dest: '<%=meta.dist %>app/style/css/all.min.css',
           }
         },
         uglify: {
@@ -206,7 +211,9 @@ module.exports = function (grunt) {
       'uglify:client',
       'uglify:vertbus',
       'concat:js',
-      'concat:css',
+      'concat:vendorcss',
+      'cssmin:client',
+      'concat:allcss',
       'clean-build',
       'usemin',
       'compress:dist',
