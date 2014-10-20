@@ -97,7 +97,7 @@ angular.module('poa.services')
       return q;
     };
 
-    this.findOne = function(id, fnOpen) {
+    this.findOne = function(id, fnOpen, fnUpdated) {
       $.when(
         eb.send('test.mongodb',
           {'action': 'find', 'collection': 'anmalningar', matcher: {'_id': id + ""}})
@@ -109,6 +109,17 @@ angular.module('poa.services')
               alert("Failure " + reply);
           }
       );
+      if (fnUpdated) {
+        var ebx = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+        ebx.onopen = function() {
+          ebx.registerHandler('anmalan.uppdaterad',
+            function(updatedEvent) {
+              console.log('AnmalanService::findOne anmalan.uppdaterad', updatedEvent);
+              fnUpdated.call(this, updatedEvent); 
+            }
+          );
+        };
+      }
     };
 
     this.findAll = function(fn, fnUpdated) {

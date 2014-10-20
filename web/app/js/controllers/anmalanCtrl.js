@@ -115,7 +115,14 @@
             $scope.$apply();
           };
 
-          anmalanService.findOne($routeParams.anmalanId, ticketCall);
+          var ticketUpdated = function(parameters) {
+            console.log('ticket updated', parameters);
+            $scope.logMessages = parameters.loggbok;
+            $scope.$apply();
+            console.log('ticket updated done', parameters.loggbok);
+          };
+
+          anmalanService.findOne($routeParams.anmalanId, ticketCall, ticketUpdated);
         };
 
         $scope.findAnmalan();
