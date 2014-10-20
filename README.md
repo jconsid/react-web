@@ -17,3 +17,6 @@ Projektet innehåller även (alla?) statiska web-resurser.
 Kör igång med:
 "vertx run app.js""
 
+eller
+
+"vertx run app.js -conf conf.json"
