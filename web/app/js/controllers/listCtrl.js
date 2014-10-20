@@ -2,10 +2,12 @@
   'use strict';
   angular.module('poa.controllers')
     .controller('ListCtrl', ['$scope', 'AnmalanService', function($scope, anmalanService) {
+      var cnt = 0;
       this.tickets = [];
       this.systemEvents = [];
       this.scope = $scope;
       var thiz = this;
+
       this.toPresentation = function(anmalan) {
         var lasthandelse = anmalan.handelser[anmalan.handelser.length - 1];
         var typDesc = "uppdaterad";
@@ -18,7 +20,8 @@
           titel: anmalan.titel,
           av: lasthandelse.person.firstname + " " + lasthandelse.person.lastname,
           anmalanId: anmalan._id,
-          typ: typDesc
+          typ: typDesc,
+          ordinal: cnt++
         };
       };
       this.update = function() {
@@ -26,11 +29,10 @@
           $scope.tickets = reply;
           $scope.$apply();
         }, function(status, anmalanEvent) {
-          var h = this.toPresentation(anmalanEvent);
-          console.log("callback handelse", status, anmalanEvent, h);
+          var h = thiz.toPresentation(anmalanEvent);
 
-          this.systemEvents.push(h);
-          $scope.$apply();
+          thiz.systemEvents.push(h);
+          thiz.scope.$apply();
         });
       };
       
