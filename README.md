@@ -17,3 +17,11 @@ Projektet innehåller även (alla?) statiska web-resurser.
 Kör igång med:
 "vertx run app.js""
 
+eller
+
+"vertx run app.js -conf conf.json"
+
+
+surfa in på
+
+http://localhost:8080/app/index.html

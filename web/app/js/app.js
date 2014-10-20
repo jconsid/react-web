@@ -7,7 +7,8 @@
     'poa.controllers',
     'ngCookies',
     'ngAnimate',
-    'ngQuickDate'
+    'ngQuickDate',
+    'knalli.angular-vertxbus'
   ]).
   config(['$routeProvider',
     function($routeProvider) {
