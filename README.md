@@ -20,3 +20,8 @@ Kör igång med:
 eller
 
 "vertx run app.js -conf conf.json"
+
+
+surfa in på
+
+http://localhost:8080/app/index.html
