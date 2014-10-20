@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   angular.module('poa.services').
-    service('LoginService', ['EventBus', 'PersonService', function(eb, personService) {
+    service('LoginService', ['vertxEventBus', 'PersonService', function(eb, personService) {
       this.login = function(username, password) {
         var promise = $.Deferred();
         eb.login(username, password,
